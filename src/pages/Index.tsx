@@ -1,13 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, FileText, TrendingUp, Package, ArrowRight } from "lucide-react";
+import { TestimonialCarousel } from "@/components/TestimonialCarousel";
+import { PartnerCarousel } from "@/components/PartnerCarousel";
+import heroImage from "@/assets/hero-business.jpg";
+import cacImage from "@/assets/cac-registration.jpg";
+import planningImage from "@/assets/business-planning.jpg";
+import brandingImage from "@/assets/branding.jpg";
+import toolsImage from "@/assets/sme-tools.jpg";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative bg-primary text-primary-foreground py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src={heroImage} 
+            alt="Professional entrepreneurs collaborating" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-primary/90" />
+        </div>
+        <div className="relative max-w-7xl mx-auto text-center py-24 px-4 sm:px-6 lg:px-8 text-primary-foreground">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             We Don't Just Build Businesses—<br />We Build Empires.
           </h1>
@@ -78,23 +93,12 @@ const Index = () => {
 
       {/* Partners Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4 text-foreground">Businesses That Partner With Us</h2>
-          <p className="text-muted-foreground mb-8">We grow together, not just serve</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60">
-            <div className="h-20 flex items-center justify-center border border-border rounded-lg p-4">
-              <span className="font-semibold text-foreground">Partner Logo</span>
-            </div>
-            <div className="h-20 flex items-center justify-center border border-border rounded-lg p-4">
-              <span className="font-semibold text-foreground">Partner Logo</span>
-            </div>
-            <div className="h-20 flex items-center justify-center border border-border rounded-lg p-4">
-              <span className="font-semibold text-foreground">Partner Logo</span>
-            </div>
-            <div className="h-20 flex items-center justify-center border border-border rounded-lg p-4">
-              <span className="font-semibold text-foreground">Partner Logo</span>
-            </div>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4 text-foreground">Businesses That Partner With Us</h2>
+            <p className="text-muted-foreground">We grow together, not just serve</p>
           </div>
+          <PartnerCarousel />
         </div>
       </section>
 
@@ -103,7 +107,12 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-foreground">Our Services</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card>
+            <Card className="overflow-hidden">
+              <img 
+                src={cacImage} 
+                alt="CAC Registration Services" 
+                className="w-full h-48 object-cover"
+              />
               <CardContent className="pt-6">
                 <h3 className="text-2xl font-bold mb-3 text-primary">1. CAC Registration</h3>
                 <p className="text-muted-foreground mb-4">
@@ -126,7 +135,12 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="overflow-hidden">
+              <img 
+                src={planningImage} 
+                alt="Business Planning Services" 
+                className="w-full h-48 object-cover"
+              />
               <CardContent className="pt-6">
                 <h3 className="text-2xl font-bold mb-3 text-primary">2. Business Planning</h3>
                 <p className="text-muted-foreground mb-4">
@@ -149,7 +163,12 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="overflow-hidden">
+              <img 
+                src={brandingImage} 
+                alt="Branding and Strategy Services" 
+                className="w-full h-48 object-cover"
+              />
               <CardContent className="pt-6">
                 <h3 className="text-2xl font-bold mb-3 text-primary">3. Branding & Strategy</h3>
                 <p className="text-muted-foreground mb-4">
@@ -172,7 +191,12 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="overflow-hidden">
+              <img 
+                src={toolsImage} 
+                alt="SME Tools and Resources" 
+                className="w-full h-48 object-cover"
+              />
               <CardContent className="pt-6">
                 <h3 className="text-2xl font-bold mb-3 text-primary">4. SME Tools & Resources</h3>
                 <p className="text-muted-foreground mb-4">
@@ -238,17 +262,9 @@ const Index = () => {
 
       {/* Success Stories Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-secondary/30">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-foreground">Success Stories</h2>
-          <Card className="border-primary/20">
-            <CardContent className="pt-6">
-              <p className="text-lg italic text-foreground mb-4">
-                "BizExpress helped me register my company and refine my business plan in less than 2 weeks. 
-                Today, I'm running a profitable venture with strong branding."
-              </p>
-              <p className="font-semibold text-primary">– Client Testimonial</p>
-            </CardContent>
-          </Card>
+          <TestimonialCarousel />
         </div>
       </section>
 
