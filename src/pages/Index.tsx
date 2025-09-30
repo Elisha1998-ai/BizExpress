@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, FileText, TrendingUp, Package, ArrowRight } from "lucide-react";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { PartnerCarousel } from "@/components/PartnerCarousel";
+import { Header } from "@/components/Header";
 import heroImage from "@/assets/hero-business.jpg";
 import cacImage from "@/assets/cac-registration.jpg";
 import planningImage from "@/assets/business-planning.jpg";
@@ -12,6 +13,8 @@ import toolsImage from "@/assets/sme-tools.jpg";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Header />
+      
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
@@ -103,7 +106,7 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-accent/50">
+      <section id="services" className="py-16 px-4 sm:px-6 lg:px-8 bg-accent/50">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-foreground">Our Services</h2>
           <div className="grid md:grid-cols-2 gap-8">
