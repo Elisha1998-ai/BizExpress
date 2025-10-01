@@ -38,7 +38,7 @@ export const Header = () => {
             <div className="ml-4">
               <Link to="/contact">
                 <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  Book a Session
+                  Consult With Us
                 </Button>
               </Link>
             </div>
@@ -71,7 +71,7 @@ export const Header = () => {
               <div className="pt-4 border-t border-border">
                 <Link to="/contact" onClick={toggleMenu}>
                   <Button size="sm" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                    Book a Session
+                    Consult With Us
                   </Button>
                 </Link>
               </div>

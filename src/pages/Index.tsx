@@ -8,7 +8,6 @@ import heroImage from "@/assets/hero-growth.jpg";
 import cacImage from "@/assets/cac-registration.jpg";
 import planningImage from "@/assets/business-planning.jpg";
 import brandingImage from "@/assets/branding.jpg";
-import toolsImage from "@/assets/sme-tools.jpg";
 import socialMediaImage from "@/assets/social-media.jpg";
 import adsImage from "@/assets/ads-management.jpg";
 import contentImage from "@/assets/content-creation.jpg";
@@ -27,16 +26,15 @@ const Index = () => {
             alt="Small business transformation success" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/85" />
         </div>
-        <div className="relative max-w-7xl mx-auto text-center py-32 px-4 sm:px-6 lg:px-8 text-primary-foreground">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in">
-            From Invisible to Unstoppable:<br />We Help Small Businesses Get Seen and Grow.
+        <div className="relative max-w-7xl mx-auto text-center py-32 px-4 sm:px-6 lg:px-8">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in text-foreground">
+            Turn Your Small Business Into a Revenue Machine.
           </h1>
-          <p className="text-lg sm:text-xl mb-10 max-w-3xl mx-auto opacity-95 leading-relaxed">
+          <p className="text-lg sm:text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-muted-foreground">
             BizExpress gives small business owners the tools, strategies, and visibility they need to stand out, attract customers, and scale with confidence.
           </p>
-          <Button size="lg" variant="secondary" className="text-lg px-10 py-7 h-auto font-semibold shadow-xl hover:shadow-2xl transition-all">
+          <Button size="lg" className="text-lg px-10 py-7 h-auto font-semibold shadow-xl hover:shadow-2xl transition-all">
             Let's Grow Your Business
           </Button>
         </div>
@@ -113,6 +111,11 @@ const Index = () => {
                 </p>
               </CardContent>
             </Card>
+          </div>
+          <div className="text-center mt-12">
+            <Button size="lg" variant="outline" className="text-lg px-8 py-6 h-auto font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all">
+              Download Our SME Toolkit
+            </Button>
           </div>
         </div>
       </section>
@@ -309,33 +312,6 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="overflow-hidden hover:shadow-xl transition-shadow md:col-span-2">
-              <img 
-                src={toolsImage} 
-                alt="SME Tools and Resources" 
-                className="w-full h-56 object-cover"
-              />
-              <CardContent className="pt-6">
-                <h3 className="text-2xl font-bold mb-3 text-primary">7. SME Tools & Resources</h3>
-                <p className="text-muted-foreground mb-4">
-                  Smart kits that simplify entrepreneurship.
-                </p>
-                <ul className="grid md:grid-cols-2 gap-2 text-foreground">
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Pitch deck templates</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Accounting spreadsheets</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Marketing playbooks</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
@@ -437,10 +413,10 @@ const Index = () => {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAtNGgydjJoLTJ2LTJ6bTAgMGgydi0yaC0ydjJ6bS0yLTJoMnYyaC0ydi0yem0wIDBoLTJ2Mmgydi0yem0tMiAyaDJ2MmgtMnYtMnptMCAwdi0yaC0ydjJoMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Ready to Build your Empire?
+            Ready to Turn Your Business Into a Multi-million?
           </h2>
           <p className="text-xl mb-10 opacity-95 leading-relaxed">
-            Don't just start a business. Start strong. Start smart. Start with BizExpress.
+            Don't just start a business. Plan first. Start smart. Start with BizExpress.
           </p>
           <Button size="lg" variant="secondary" className="text-lg px-12 py-7 h-auto font-semibold shadow-2xl hover:shadow-3xl transition-all hover:scale-105">
             Partner With Us Today
