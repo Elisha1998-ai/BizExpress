@@ -35,15 +35,10 @@ export const Header = () => {
                 {link.name}
               </a>
             ))}
-            <div className="flex items-center space-x-3 ml-4">
-              <Link to="/auth?mode=signin">
-                <Button variant="ghost" size="sm">
-                  Sign In
-                </Button>
-              </Link>
-              <Link to="/auth?mode=signup">
-                <Button size="sm">
-                  Sign Up
+            <div className="ml-4">
+              <Link to="/contact">
+                <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                  Book a Session
                 </Button>
               </Link>
             </div>
@@ -73,15 +68,10 @@ export const Header = () => {
                   {link.name}
                 </a>
               ))}
-              <div className="flex flex-col space-y-2 pt-4 border-t border-border">
-                <Link to="/auth?mode=signin" onClick={toggleMenu}>
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/auth?mode=signup" onClick={toggleMenu}>
-                  <Button size="sm" className="w-full">
-                    Sign Up
+              <div className="pt-4 border-t border-border">
+                <Link to="/contact" onClick={toggleMenu}>
+                  <Button size="sm" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                    Book a Session
                   </Button>
                 </Link>
               </div>

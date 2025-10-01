@@ -9,19 +9,24 @@ import {
 
 const testimonials = [
   {
-    quote: "BizExpress helped me register my company and refine my business plan in less than 2 weeks. Today, I'm running a profitable venture with strong branding.",
-    author: "Adebayo O.",
-    role: "Tech Startup Founder"
-  },
-  {
-    quote: "The branding strategy they developed for us completely transformed our market presence. Our revenue increased by 300% in just 6 months.",
-    author: "Chioma N.",
+    quote: "Before BizExpress, my business was invisible. Within 3 months, I was getting consistent sales online and finally registered my company.",
+    author: "Sarah A.",
     role: "Fashion Retail Owner"
   },
   {
-    quote: "Fast, professional, and reliable. They handled all our CAC registration needs and provided excellent business planning support.",
-    author: "Ibrahim K.",
-    role: "Real Estate Developer"
+    quote: "The ads management service brought me 10x more leads than I was getting on my own. BizExpress knows what works.",
+    author: "Michael O.",
+    role: "Tech Services"
+  },
+  {
+    quote: "From branding to social media management, BizExpress made my business look professional and helped me attract premium clients.",
+    author: "Chioma N.",
+    role: "Beauty & Wellness"
+  },
+  {
+    quote: "The business consultation helped me avoid costly mistakes. I'm now scaling with confidence thanks to their expert guidance.",
+    author: "David T.",
+    role: "Real Estate"
   }
 ];
 
