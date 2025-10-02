@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,9 +17,17 @@ export const Header = () => {
     }
   };
 
+  const scrollToHowWeHelp = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const howWeHelpSection = document.getElementById('how-we-help');
+    if (howWeHelpSection) {
+      howWeHelpSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const navLinks = [
     { name: "Services", path: "/#services", onClick: scrollToServices },
-    { name: "About Us", path: "https://www.instagram.com/p/DJ4CDCDIn49/", external: true },
+    { name: "About Us", path: "/#how-we-help", onClick: scrollToHowWeHelp },
     { name: "Blog", path: "/blog" },
     { name: "Contact Us", path: "/contact" },
   ];
@@ -42,7 +50,6 @@ export const Header = () => {
                 href={link.path}
                 onClick={link.onClick}
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-                {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               >
                 {link.name}
               </a>
@@ -81,7 +88,6 @@ export const Header = () => {
                     }
                     toggleMenu();
                   }}
-                  {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 >
                   {link.name}
                 </a>

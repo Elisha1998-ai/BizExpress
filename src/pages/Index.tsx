@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, FileText, TrendingUp, Package, ArrowRight } from "lucide-react";
+import { CheckCircle, FileText, TrendingUp, Package, ArrowRight, Instagram, Facebook } from "lucide-react";
+import { Link } from "react-router-dom";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { PartnerCarousel } from "@/components/PartnerCarousel";
 import { Header } from "@/components/Header";
@@ -19,25 +20,27 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden min-h-[600px] flex items-center">
         <div className="absolute inset-0">
           <img 
             src={heroImage} 
             alt="Professional African entrepreneur" 
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-background/60"></div>
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
-        <div className="relative max-w-7xl mx-auto text-center py-32 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in text-foreground">
+        <div className="relative max-w-7xl mx-auto text-center py-32 px-4 sm:px-6 lg:px-8 z-10">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in text-white drop-shadow-lg">
             Turn Your Small Business Into a Revenue Machine.
           </h1>
-          <p className="text-lg sm:text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-foreground">
+          <p className="text-lg sm:text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-white/90 drop-shadow-md">
             BizExpress gives small business owners the tools, strategies, and visibility they need to stand out, attract customers, and scale with confidence.
           </p>
-          <Button size="lg" className="text-lg px-10 py-7 h-auto font-semibold shadow-xl hover:shadow-2xl transition-all">
-            Let's Grow Your Business
-          </Button>
+          <Link to="/contact">
+            <Button size="lg" className="text-lg px-10 py-7 h-auto font-semibold shadow-xl hover:shadow-2xl transition-all">
+              Let's Grow Your Business
+            </Button>
+          </Link>
         </div>
       </section>
 
@@ -318,7 +321,7 @@ const Index = () => {
       </section>
 
       {/* How We Help Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 to-primary/10">
+      <section id="how-we-help" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 to-primary/10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">How We Help You Win</h2>
@@ -404,7 +407,18 @@ const Index = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 text-foreground">Success Stories</h2>
-          <p className="text-center text-muted-foreground mb-12 text-lg">Real results from real businesses</p>
+          <p className="text-center text-muted-foreground mb-4 text-lg">Real results from real businesses</p>
+          <div className="text-center mb-12">
+            <a 
+              href="https://www.instagram.com/p/DIvdgfJsT_Y/?img_index=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
+            >
+              <Instagram size={20} />
+              View more success stories on Instagram
+            </a>
+          </div>
           <TestimonialCarousel />
         </div>
       </section>
@@ -457,18 +471,30 @@ const Index = () => {
               <ul className="space-y-2 text-muted-foreground">
                 <li>Phone: <a href="tel:08050663704" className="hover:text-primary transition-colors">08050663704</a></li>
                 <li>Email: [Your Email]</li>
-                <li>
-                  Social Media: 
+              </ul>
+              <div className="mt-4">
+                <h4 className="font-semibold text-foreground mb-3">Follow Us</h4>
+                <div className="flex gap-4">
                   <a 
                     href="https://www.instagram.com/bizexpress.ng/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="hover:text-primary transition-colors ml-2"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                    aria-label="Instagram"
                   >
-                    @bizexpress.ng
+                    <Instagram size={24} />
                   </a>
-                </li>
-              </ul>
+                  <a 
+                    href="https://web.facebook.com/people/BizExpress-NG/61573904937574/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                    aria-label="Facebook"
+                  >
+                    <Facebook size={24} />
+                  </a>
+                </div>
+              </div>
             </div>
             <div>
               <h3 className="font-bold text-lg mb-4 text-foreground">Free Resources</h3>
