@@ -4,7 +4,7 @@ import { CheckCircle, FileText, TrendingUp, Package, ArrowRight } from "lucide-r
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { PartnerCarousel } from "@/components/PartnerCarousel";
 import { Header } from "@/components/Header";
-import heroImage from "@/assets/hero-growth.jpg";
+import heroImage from "@/assets/hero-business.jpg";
 import cacImage from "@/assets/cac-registration.jpg";
 import planningImage from "@/assets/business-planning.jpg";
 import brandingImage from "@/assets/branding.jpg";
@@ -23,15 +23,16 @@ const Index = () => {
         <div className="absolute inset-0">
           <img 
             src={heroImage} 
-            alt="Small business transformation success" 
-            className="w-full h-full object-cover"
+            alt="Professional African entrepreneur" 
+            className="w-full h-full object-cover opacity-40"
           />
+          <div className="absolute inset-0 bg-background/60"></div>
         </div>
         <div className="relative max-w-7xl mx-auto text-center py-32 px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in text-foreground">
             Turn Your Small Business Into a Revenue Machine.
           </h1>
-          <p className="text-lg sm:text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-muted-foreground">
+          <p className="text-lg sm:text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-foreground">
             BizExpress gives small business owners the tools, strategies, and visibility they need to stand out, attract customers, and scale with confidence.
           </p>
           <Button size="lg" className="text-lg px-10 py-7 h-auto font-semibold shadow-xl hover:shadow-2xl transition-all">
@@ -413,7 +414,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAtNGgydjJoLTJ2LTJ6bTAgMGgydi0yaC0ydjJ6bS0yLTJoMnYyaC0ydi0yem0wIDBoLTJ2Mmgydi0yem0tMiAyaDJ2MmgtMnYtMnptMCAwdi0yaC0ydjJoMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Ready to Turn Your Business Into a Multi-million?
+            Ready To Turn Your Business Into A Multi-Million Empire?
           </h2>
           <p className="text-xl mb-10 opacity-95 leading-relaxed">
             Don't just start a business. Plan first. Start smart. Start with BizExpress.
@@ -431,18 +432,42 @@ const Index = () => {
             <div>
               <h3 className="font-bold text-lg mb-4 text-foreground">Quick Links</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#services" className="hover:text-primary transition-colors">Services</a></li>
-                <li><a href="#about" className="hover:text-primary transition-colors">About</a></li>
-                <li><a href="#contact" className="hover:text-primary transition-colors">Contact</a></li>
-                <li><a href="#faqs" className="hover:text-primary transition-colors">FAQs</a></li>
+                <li>
+                  <a 
+                    href="#services" 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const servicesSection = document.getElementById('services');
+                      if (servicesSection) {
+                        servicesSection.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="hover:text-primary transition-colors"
+                  >
+                    Services
+                  </a>
+                </li>
+                <li><a href="https://www.instagram.com/p/DJ4CDCDIn49/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">About</a></li>
+                <li><a href="/contact" className="hover:text-primary transition-colors">Contact</a></li>
+                <li><a href="/faqs" className="hover:text-primary transition-colors">FAQs</a></li>
               </ul>
             </div>
             <div>
               <h3 className="font-bold text-lg mb-4 text-foreground">Contact Info</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li>Phone: [Your Phone]</li>
+                <li>Phone: <a href="tel:08050663704" className="hover:text-primary transition-colors">08050663704</a></li>
                 <li>Email: [Your Email]</li>
-                <li>Social Media: [Handles]</li>
+                <li>
+                  Social Media: 
+                  <a 
+                    href="https://www.instagram.com/bizexpress.ng/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors ml-2"
+                  >
+                    @bizexpress.ng
+                  </a>
+                </li>
               </ul>
             </div>
             <div>

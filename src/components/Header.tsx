@@ -2,15 +2,24 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.jpg";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  const scrollToServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const navLinks = [
-    { name: "Services", path: "/#services" },
-    { name: "About Us", path: "/about" },
+    { name: "Services", path: "/#services", onClick: scrollToServices },
+    { name: "About Us", path: "https://www.instagram.com/p/DJ4CDCDIn49/", external: true },
     { name: "Blog", path: "/blog" },
     { name: "Contact Us", path: "/contact" },
   ];
@@ -21,6 +30,7 @@ export const Header = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
+            <img src={logo} alt="BizExpress Logo" className="h-10 w-10 rounded-full" />
             <span className="text-2xl font-bold text-primary">BizExpress</span>
           </Link>
 
@@ -30,7 +40,9 @@ export const Header = () => {
               <a
                 key={link.name}
                 href={link.path}
+                onClick={link.onClick}
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               >
                 {link.name}
               </a>
@@ -38,7 +50,7 @@ export const Header = () => {
             <div className="ml-4">
               <Link to="/contact">
                 <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  Consult With Us
+                  Book Consultation
                 </Button>
               </Link>
             </div>
@@ -63,7 +75,13 @@ export const Header = () => {
                   key={link.name}
                   href={link.path}
                   className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-                  onClick={toggleMenu}
+                  onClick={(e) => {
+                    if (link.onClick) {
+                      link.onClick(e);
+                    }
+                    toggleMenu();
+                  }}
+                  {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 >
                   {link.name}
                 </a>
@@ -71,7 +89,7 @@ export const Header = () => {
               <div className="pt-4 border-t border-border">
                 <Link to="/contact" onClick={toggleMenu}>
                   <Button size="sm" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                    Consult With Us
+                    Book Consultation
                   </Button>
                 </Link>
               </div>
