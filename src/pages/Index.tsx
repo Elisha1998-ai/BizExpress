@@ -6,13 +6,13 @@ import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { PartnerCarousel } from "@/components/PartnerCarousel";
 import { Header } from "@/components/Header";
 import heroImage from "@/assets/hero-business.jpg";
-import cacImage from "@/assets/cac-registration.jpg";
+import cacImage from "@/assets/cac-building.jpg";
 import planningImage from "@/assets/business-planning.jpg";
 import brandingImage from "@/assets/branding.jpg";
 import socialMediaImage from "@/assets/social-media.jpg";
 import adsImage from "@/assets/ads-management.jpg";
 import contentImage from "@/assets/content-creation.jpg";
-import consultationImage from "@/assets/consultation.jpg";
+import consultationImage from "@/assets/consultation-meeting.jpg";
 
 const Index = () => {
   return (
