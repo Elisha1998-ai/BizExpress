@@ -73,6 +73,8 @@ const Contact = () => {
                       <option value="cac">CAC Registration</option>
                       <option value="planning">Business Planning</option>
                       <option value="branding">Branding & Strategy</option>
+                      <option value="content">Content Creation</option>
+                      <option value="social">Social Media Management</option>
                       <option value="tools">SME Tools & Resources</option>
                     </select>
                   </div>
@@ -120,7 +122,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-bold text-lg mb-1 text-foreground">Call Us</h3>
-                      <p className="text-muted-foreground">+234 xxx xxx xxxx</p>
+                      <p className="text-muted-foreground">08050662704</p>
                       <p className="text-muted-foreground">Mon-Fri: 9AM - 6PM</p>
                     </div>
                   </div>

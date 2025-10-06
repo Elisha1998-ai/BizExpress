@@ -117,9 +117,11 @@ const Index = () => {
             </Card>
           </div>
           <div className="text-center mt-12">
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6 h-auto font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all">
-              Download Our SME Toolkit
-            </Button>
+            <a href="https://drive.google.com/file/d/1VCk4Do6QQzXFJ4hTJDrtXzO07fORuSXA/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="outline" className="text-lg px-8 py-6 h-auto font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all">
+                Download Our SME Toolkit
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -462,7 +464,6 @@ const Index = () => {
                   </a>
                 </li>
                 <li><a href="https://www.instagram.com/p/DJ4CDCDIn49/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">About</a></li>
-                <li><a href="/contact" className="hover:text-primary transition-colors">Contact</a></li>
                 <li><a href="/faqs" className="hover:text-primary transition-colors">FAQs</a></li>
               </ul>
             </div>
@@ -499,9 +500,11 @@ const Index = () => {
             <div>
               <h3 className="font-bold text-lg mb-4 text-foreground">Free Resources</h3>
               <p className="text-muted-foreground mb-3">Download our Free SME Toolkit to kickstart your journey.</p>
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                Download Free Toolkit
-              </Button>
+              <a href="https://drive.google.com/file/d/1VCk4Do6QQzXFJ4hTJDrtXzO07fORuSXA/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  Download Free Toolkit
+                </Button>
+              </a>
             </div>
           </div>
           <div className="border-t border-border pt-8 text-center text-muted-foreground">
