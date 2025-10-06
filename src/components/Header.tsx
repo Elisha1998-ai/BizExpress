@@ -47,11 +47,17 @@ export const Header = () => {
               <a
                 key={link.name}
                 href={link.path}
-                onClick={link.onClick}
-                className={`text-sm font-medium transition-colors ${
-                  link.disabled 
-                    ? 'text-muted-foreground cursor-not-allowed opacity-50' 
-                    : 'text-foreground hover:text-primary'
+                onClick={(e) => {
+                  if (link.disabled) {
+                    e.preventDefault();
+                    return;
+                  }
+                  if (link.onClick) {
+                    link.onClick(e);
+                  }
+                }}
+                className={`text-sm font-medium text-foreground hover:text-primary transition-colors ${
+                  link.disabled ? 'cursor-default' : ''
                 }`}
               >
                 {link.name}
@@ -84,10 +90,8 @@ export const Header = () => {
                 <a
                   key={link.name}
                   href={link.path}
-                  className={`text-sm font-medium transition-colors ${
-                    link.disabled 
-                      ? 'text-muted-foreground cursor-not-allowed opacity-50' 
-                      : 'text-foreground hover:text-primary'
+                  className={`text-sm font-medium text-foreground hover:text-primary transition-colors ${
+                    link.disabled ? 'cursor-default' : ''
                   }`}
                   onClick={(e) => {
                     if (link.disabled) {
