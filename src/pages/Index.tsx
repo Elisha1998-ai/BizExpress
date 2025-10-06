@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, FileText, TrendingUp, Package, ArrowRight, Instagram, Facebook } from "lucide-react";
@@ -5,6 +6,7 @@ import { Link } from "react-router-dom";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { PartnerCarousel } from "@/components/PartnerCarousel";
 import { Header } from "@/components/Header";
+import { SMEToolkitModal } from "@/components/SMEToolkitModal";
 import heroImage from "@/assets/hero-business.jpg";
 import cacImage from "@/assets/cac-building.jpg";
 import planningImage from "@/assets/business-planning.jpg";
@@ -15,9 +17,12 @@ import contentImage from "@/assets/content-creation.jpg";
 import consultationImage from "@/assets/consultation-meeting.jpg";
 
 const Index = () => {
+  const [isToolkitModalOpen, setIsToolkitModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <SMEToolkitModal open={isToolkitModalOpen} onOpenChange={setIsToolkitModalOpen} />
       
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[600px] flex items-center">
@@ -117,11 +122,14 @@ const Index = () => {
             </Card>
           </div>
           <div className="text-center mt-12">
-            <a href="https://drive.google.com/file/d/1VCk4Do6QQzXFJ4hTJDrtXzO07fORuSXA/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 h-auto font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all">
-                Download Our SME Toolkit
-              </Button>
-            </a>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="text-lg px-8 py-6 h-auto font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all"
+              onClick={() => setIsToolkitModalOpen(true)}
+            >
+              Download Our SME Toolkit
+            </Button>
           </div>
         </div>
       </section>
