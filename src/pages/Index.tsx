@@ -435,9 +435,11 @@ const Index = () => {
           <p className="text-xl mb-10 opacity-95 leading-relaxed">
             Don't just start a business. Plan first. Start smart. Start with BizExpress.
           </p>
-          <Button size="lg" variant="secondary" className="text-lg px-12 py-7 h-auto font-semibold shadow-2xl hover:shadow-3xl transition-all hover:scale-105">
-            Partner With Us Today
-          </Button>
+          <Link to="/contact">
+            <Button size="lg" variant="secondary" className="text-lg px-12 py-7 h-auto font-semibold shadow-2xl hover:shadow-3xl transition-all hover:scale-105">
+              Partner With Us Today
+            </Button>
+          </Link>
         </div>
       </section>
 
