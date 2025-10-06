@@ -28,6 +28,7 @@ export const Header = () => {
   const navLinks = [
     { name: "Services", path: "/#services", onClick: scrollToServices },
     { name: "About Us", path: "/#how-we-help", onClick: scrollToHowWeHelp },
+    { name: "Blog", path: "#", onClick: undefined, disabled: true },
   ];
 
   return (
@@ -47,7 +48,11 @@ export const Header = () => {
                 key={link.name}
                 href={link.path}
                 onClick={link.onClick}
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                className={`text-sm font-medium transition-colors ${
+                  link.disabled 
+                    ? 'text-muted-foreground cursor-not-allowed opacity-50' 
+                    : 'text-foreground hover:text-primary'
+                }`}
               >
                 {link.name}
               </a>
@@ -79,8 +84,16 @@ export const Header = () => {
                 <a
                   key={link.name}
                   href={link.path}
-                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                  className={`text-sm font-medium transition-colors ${
+                    link.disabled 
+                      ? 'text-muted-foreground cursor-not-allowed opacity-50' 
+                      : 'text-foreground hover:text-primary'
+                  }`}
                   onClick={(e) => {
+                    if (link.disabled) {
+                      e.preventDefault();
+                      return;
+                    }
                     if (link.onClick) {
                       link.onClick(e);
                     }
