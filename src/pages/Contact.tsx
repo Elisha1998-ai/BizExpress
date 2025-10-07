@@ -114,7 +114,8 @@ const Contact = () => {
                       <Mail className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg mb-1 text-foreground">Email Us</h3>
+                      <h3 className="font-bold text-lg mb-1 text-foreground">Book Consultation</h3>
+                      <p className="text-muted-foreground font-semibold">Email Us</p>
                       <p className="text-muted-foreground">
                         <a href="mailto:bizxpressng@gmail.com" className="hover:text-primary transition-colors">
                           bizxpressng@gmail.com
