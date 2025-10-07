@@ -52,8 +52,25 @@ export const SMEToolkitModal = ({ open, onOpenChange }: SMEToolkitModalProps) =>
       return;
     }
 
+    // Send user information via email
+    const emailBody = `
+New SME Toolkit Download Request:
+
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Business: ${formData.business}
+
+Submitted on: ${new Date().toLocaleString()}
+    `.trim();
+
+    const mailtoLink = `mailto:bizxpressng@gmail.com?subject=SME Toolkit Download Request&body=${encodeURIComponent(emailBody)}`;
+    window.location.href = mailtoLink;
+
     // Open download link
-    window.open("https://drive.google.com/file/d/1VCk4Do6QQzXFJ4hTJDrtXzO07fORuSXA/view?usp=sharing", "_blank");
+    setTimeout(() => {
+      window.open("https://drive.google.com/file/d/1VCk4Do6QQzXFJ4hTJDrtXzO07fORuSXA/view?usp=sharing", "_blank");
+    }, 500);
     
     toast({
       title: "Success!",
