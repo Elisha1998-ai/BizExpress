@@ -445,7 +445,7 @@ const Index = () => {
           </p>
           <Link to="/contact">
             <Button size="lg" variant="secondary" className="text-lg px-12 py-7 h-auto font-semibold shadow-2xl hover:shadow-3xl transition-all hover:scale-105">
-              Partner With Us Today
+              Book For Consultation
             </Button>
           </Link>
         </div>
@@ -481,7 +481,7 @@ const Index = () => {
               <h3 className="font-bold text-lg mb-4 text-foreground">Contact Info</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li>Phone: <a href="tel:08050663704" className="hover:text-primary transition-colors">08050663704</a></li>
-                <li>Email: [Your Email]</li>
+                <li>Email: <a href="mailto:bizxpressng@gmail.com" className="hover:text-primary transition-colors">bizxpressng@gmail.com</a></li>
               </ul>
               <div className="mt-4">
                 <h4 className="font-semibold text-foreground mb-3">Follow Us</h4>
@@ -510,11 +510,13 @@ const Index = () => {
             <div>
               <h3 className="font-bold text-lg mb-4 text-foreground">Free Resources</h3>
               <p className="text-muted-foreground mb-3">Download our Free SME Toolkit to kickstart your journey.</p>
-              <a href="https://drive.google.com/file/d/1VCk4Do6QQzXFJ4hTJDrtXzO07fORuSXA/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  Download Free Toolkit
-                </Button>
-              </a>
+              <Button 
+                variant="outline" 
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                onClick={() => setIsToolkitModalOpen(true)}
+              >
+                Download Free Toolkit
+              </Button>
             </div>
           </div>
           <div className="border-t border-border pt-8 text-center text-muted-foreground">

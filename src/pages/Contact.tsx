@@ -90,7 +90,15 @@ const Contact = () => {
                     />
                   </div>
                   
-                  <Button type="submit" size="lg" className="w-full">
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="w-full"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = 'mailto:bizxpressng@gmail.com';
+                    }}
+                  >
                     Send Message
                   </Button>
                 </form>
@@ -107,8 +115,11 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-bold text-lg mb-1 text-foreground">Email Us</h3>
-                      <p className="text-muted-foreground">info@bizexpress.com</p>
-                      <p className="text-muted-foreground">support@bizexpress.com</p>
+                      <p className="text-muted-foreground">
+                        <a href="mailto:bizxpressng@gmail.com" className="hover:text-primary transition-colors">
+                          bizxpressng@gmail.com
+                        </a>
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -138,8 +149,7 @@ const Contact = () => {
                     <div>
                       <h3 className="font-bold text-lg mb-1 text-foreground">Visit Us</h3>
                       <p className="text-muted-foreground">
-                        123 Business District<br />
-                        Lagos, Nigeria
+                        Remote
                       </p>
                     </div>
                   </div>
