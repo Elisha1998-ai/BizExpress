@@ -4,9 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
+  const navigate = useNavigate();
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
@@ -19,6 +22,14 @@ const Contact = () => {
       
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto">
+          <Button
+            variant="ghost"
+            onClick={() => navigate('/')}
+            className="mb-6 hover:bg-primary/10"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Home
+          </Button>
           <h1 className="text-4xl sm:text-5xl font-bold text-center mb-6 text-foreground">
             Contact Us
           </h1>
@@ -135,6 +146,7 @@ const Contact = () => {
                     <div>
                       <h3 className="font-bold text-lg mb-1 text-foreground">Call Us</h3>
                       <p className="text-muted-foreground">08050662704</p>
+                      <p className="text-muted-foreground">0201 330 9507</p>
                       <p className="text-muted-foreground">Mon-Fri: 9AM - 6PM</p>
                     </div>
                   </div>
@@ -150,7 +162,7 @@ const Contact = () => {
                     <div>
                       <h3 className="font-bold text-lg mb-1 text-foreground">Visit Us</h3>
                       <p className="text-muted-foreground">
-                        Remote
+                        No. 11th Frank Alamu Street, Ashi Bodija, Ibadan
                       </p>
                     </div>
                   </div>

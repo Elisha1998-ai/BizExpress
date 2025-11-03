@@ -9,7 +9,7 @@ import { Header } from "@/components/Header";
 import { SMEToolkitModal } from "@/components/SMEToolkitModal";
 import heroImage from "@/assets/hero-business.jpg";
 import cacImage from "@/assets/cac-building.jpg";
-import planningImage from "@/assets/business-planning.jpg";
+import planningImage from "@/assets/business-planning-new.png";
 import brandingImage from "@/assets/branding.jpg";
 import socialMediaImage from "@/assets/social-media.jpg";
 import adsImage from "@/assets/ads-management.jpg";
@@ -42,7 +42,7 @@ const Index = () => {
             BizExpress gives small business owners the tools, strategies, and visibility they need to stand out, attract customers, and scale with confidence.
           </p>
           <Link to="/contact">
-            <Button size="lg" className="text-lg px-10 py-7 h-auto font-semibold shadow-xl hover:shadow-2xl transition-all">
+            <Button size="lg" className="text-lg px-8 sm:px-10 py-6 sm:py-7 h-auto font-semibold shadow-xl hover:shadow-2xl transition-all">
               Let's Grow Your Business
             </Button>
           </Link>
@@ -125,7 +125,7 @@ const Index = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="text-lg px-8 py-6 h-auto font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all"
+              className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 h-auto font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all"
               onClick={() => setIsToolkitModalOpen(true)}
             >
               Download Our SME Toolkit
@@ -138,7 +138,7 @@ const Index = () => {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-accent/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-3 text-foreground">Businesses that Partner with us</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3 text-foreground">Businesses That Partner With Us</h2>
             <p className="text-lg text-muted-foreground">We grow together, not just serve.</p>
           </div>
           <PartnerCarousel />
@@ -375,41 +375,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Who We Serve Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      {/* Success Stories Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-foreground">Who We Serve</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardContent className="pt-8">
-                <div className="h-20 w-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">🚀</span>
-                </div>
-                <h3 className="font-bold text-xl mb-2 text-foreground">Ambitious Small Business Owners</h3>
-                <p className="text-muted-foreground">Ready to make their mark</p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardContent className="pt-8">
-                <div className="h-20 w-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">💡</span>
-                </div>
-                <h3 className="font-bold text-xl mb-2 text-foreground">Entrepreneurs Ready to Launch</h3>
-                <p className="text-muted-foreground">Taking the first step</p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardContent className="pt-8">
-                <div className="h-20 w-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">📈</span>
-                </div>
-                <h3 className="font-bold text-xl mb-2 text-foreground">Growing SMEs</h3>
-                <p className="text-muted-foreground">That need structure, visibility, and are ready to scale</p>
-              </CardContent>
-            </Card>
-          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 text-foreground">Success Stories</h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">Real results from real businesses</p>
+          <TestimonialCarousel />
         </div>
       </section>
 
@@ -424,7 +395,7 @@ const Index = () => {
             Don't just start a business. Plan first. Start smart. Start with BizExpress.
           </p>
           <Link to="/contact">
-            <Button size="lg" variant="secondary" className="text-lg px-12 py-7 h-auto font-semibold shadow-2xl hover:shadow-3xl transition-all hover:scale-105">
+            <Button size="lg" variant="secondary" className="text-base sm:text-lg px-8 sm:px-12 py-6 sm:py-7 h-auto font-semibold shadow-2xl hover:shadow-3xl transition-all hover:scale-105">
               Book For Consultation
             </Button>
           </Link>
@@ -492,7 +463,7 @@ const Index = () => {
               <p className="text-muted-foreground mb-3">Download our Free SME Toolkit to kickstart your journey.</p>
               <Button 
                 variant="outline" 
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto"
                 onClick={() => setIsToolkitModalOpen(true)}
               >
                 Download Free Toolkit
