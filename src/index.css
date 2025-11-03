@@ -19,6 +19,7 @@ All colors MUST be HSL.
 
     --primary: 142 76% 36%;
     --primary-foreground: 0 0% 100%;
+    --primary-glow: 142 76% 46%;
 
     --secondary: 142 40% 96%;
     --secondary-foreground: 142 71% 15%;
@@ -36,7 +37,11 @@ All colors MUST be HSL.
     --input: 142 30% 88%;
     --ring: 142 76% 36%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 46%));
+    --shadow-elegant: 0 10px 30px -10px hsl(142 76% 36% / 0.3);
+    --shadow-glow: 0 0 40px hsl(142 76% 46% / 0.2);
 
     --sidebar-background: 0 0% 98%;
 
@@ -67,6 +72,7 @@ All colors MUST be HSL.
 
     --primary: 142 76% 36%;
     --primary-foreground: 0 0% 100%;
+    --primary-glow: 142 76% 46%;
 
     --secondary: 142 30% 18%;
     --secondary-foreground: 142 30% 95%;
@@ -83,6 +89,10 @@ All colors MUST be HSL.
     --border: 142 30% 18%;
     --input: 142 30% 18%;
     --ring: 142 76% 45%;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 46%));
+    --shadow-elegant: 0 10px 30px -10px hsl(142 76% 36% / 0.4);
+    --shadow-glow: 0 0 40px hsl(142 76% 46% / 0.3);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -101,5 +111,27 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "kern";
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

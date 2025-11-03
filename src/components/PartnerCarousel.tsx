@@ -40,15 +40,15 @@ export const PartnerCarousel = () => {
       <CarouselContent className="-ml-2 md:-ml-4">
         {partners.map((partner, index) => (
           <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/4">
-            <div className="h-20 flex items-center justify-center border border-border rounded-lg p-4 bg-card hover:border-primary transition-colors">
+            <div className="h-32 flex items-center justify-center border border-border rounded-lg p-6 bg-card hover:border-primary hover:shadow-lg transition-all">
               {partner.logo ? (
                 <img 
                   src={partner.logo} 
                   alt={partner.name} 
-                  className="max-h-full max-w-full object-contain"
+                  className="max-h-full max-w-full object-contain filter hover:grayscale-0 transition-all"
                 />
               ) : (
-                <span className="font-semibold text-foreground text-sm md:text-base text-center">
+                <span className="font-semibold text-foreground text-base md:text-lg text-center">
                   {partner.name}
                 </span>
               )}

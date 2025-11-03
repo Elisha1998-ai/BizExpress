@@ -1,6 +1,8 @@
 import { Header } from "@/components/Header";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calendar, User } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Calendar, User, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const blogPosts = [
   {
@@ -54,11 +56,21 @@ const blogPosts = [
 ];
 
 const Blog = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
       
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <Button
+          variant="ghost"
+          onClick={() => navigate("/")}
+          className="mb-8 hover:bg-primary/10"
+        >
+          <ArrowLeft className="mr-2 h-5 w-5" />
+          Back to Home
+        </Button>
         <div className="max-w-6xl mx-auto">
           <h1 className="text-4xl sm:text-5xl font-bold text-center mb-6 text-foreground">
             BizExpress Blog
