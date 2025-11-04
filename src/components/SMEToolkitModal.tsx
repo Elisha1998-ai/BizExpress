@@ -92,10 +92,10 @@ Submitted on: ${new Date().toLocaleString()}
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center">Download SME Toolkit</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-center">Download Our Free SME Toolkit</DialogTitle>
         </DialogHeader>
         
-        <div className="space-y-6">
+        <div className="space-y-4">
           {/* Instagram Video Embed */}
           <div className="w-full">
             <h3 className="text-lg font-semibold mb-3 text-center">Watch This First</h3>
@@ -111,7 +111,7 @@ Submitted on: ${new Date().toLocaleString()}
           </div>
 
           {/* Form */}
-          <div className="mt-6">
+          <div className="mt-2">
             <h3 className="text-lg font-semibold mb-4 text-center">Fill in Your Details</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -179,7 +179,7 @@ Submitted on: ${new Date().toLocaleString()}
                 className="w-full text-lg py-6"
                 disabled={!hasWatchedVideo}
               >
-                {hasWatchedVideo ? "Download SME Toolkit" : "Please watch the video first"}
+                {hasWatchedVideo ? "Download Free SME Toolkit" : "Please watch the video first"}
               </Button>
             </form>
           </div>

@@ -128,7 +128,7 @@ const Index = () => {
               className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 h-auto font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all"
               onClick={() => setIsToolkitModalOpen(true)}
             >
-              Download Our SME Toolkit
+              Download Our Free SME Toolkit
             </Button>
           </div>
         </div>
