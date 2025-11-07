@@ -4,23 +4,16 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import cocomillea from "@/assets/partner-cocomillea.png";
-import goldnlilies from "@/assets/partner-goldnlilies.png";
-import elitetidy from "@/assets/partner-elitetidy.png";
-import lightningArtz from "@/assets/partner-lightning-artz.png";
+import cakeIndustry from "@/assets/industry-cake.png";
+import eventPlanning from "@/assets/industry-event.png";
+import realEstate from "@/assets/industry-realestate.png";
+import fashion from "@/assets/industry-fashion.png";
 
-const partners = [
-  { name: "Cocomillacakery", logo: cocomillea },
-  { name: "Goldnlilies", logo: goldnlilies },
-  { name: "Elitetidy", logo: elitetidy },
-  { name: "Lightning Artz", logo: lightningArtz },
-  { name: "Fruit Relish", logo: null },
-  { name: "JustABites Cake", logo: null },
-  { name: "Chi Delight", logo: null },
-  { name: "Bebest Lash", logo: null },
-  { name: "Papilopidea", logo: null },
-  { name: "FolaDorm", logo: null },
-  { name: "Zharn Closet", logo: null },
+const industries = [
+  { name: "Cake Industry", image: cakeIndustry },
+  { name: "Event Planning", image: eventPlanning },
+  { name: "Real Estate", image: realEstate },
+  { name: "Fashion Industry", image: fashion },
 ];
 
 export const PartnerCarousel = () => {
@@ -32,26 +25,25 @@ export const PartnerCarousel = () => {
       }}
       plugins={[
         Autoplay({
-          delay: 2000,
+          delay: 3000,
         }),
       ]}
       className="w-full"
     >
       <CarouselContent className="-ml-2 md:-ml-4">
-        {partners.map((partner, index) => (
+        {industries.map((industry, index) => (
           <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/4">
-            <div className="h-32 flex items-center justify-center border border-border rounded-lg p-6 bg-card hover:border-primary hover:shadow-lg transition-all">
-              {partner.logo ? (
-                <img 
-                  src={partner.logo} 
-                  alt={partner.name} 
-                  className="max-h-full max-w-full object-contain filter hover:grayscale-0 transition-all"
-                />
-              ) : (
-                <span className="font-semibold text-foreground text-base md:text-lg text-center">
-                  {partner.name}
-                </span>
-              )}
+            <div className="relative h-64 rounded-lg overflow-hidden group cursor-pointer">
+              <img 
+                src={industry.image} 
+                alt={industry.name} 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-6">
+                <h3 className="text-white font-bold text-xl md:text-2xl">
+                  {industry.name}
+                </h3>
+              </div>
             </div>
           </CarouselItem>
         ))}
