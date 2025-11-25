@@ -95,11 +95,11 @@ Submitted on: ${new Date().toLocaleString()}
           <DialogTitle className="text-2xl font-bold text-center">Download Our Free SME Toolkit</DialogTitle>
         </DialogHeader>
         
-        <div className="space-y-4">
+        <div className="space-y-2">
           {/* Instagram Video Embed */}
           <div className="w-full">
-            <h3 className="text-lg font-semibold mb-3 text-center">Watch This First</h3>
-            <div className="relative w-full" style={{ paddingBottom: "125%" }}>
+            <h3 className="text-lg font-semibold mb-2 text-center">Watch This First</h3>
+            <div className="relative w-full" style={{ paddingBottom: "100%" }}>
               <iframe
                 src="https://www.instagram.com/p/DJ4CDCDIn49/embed"
                 className="absolute top-0 left-0 w-full h-full border-0"
@@ -111,8 +111,8 @@ Submitted on: ${new Date().toLocaleString()}
           </div>
 
           {/* Form */}
-          <div className="mt-2">
-            <h3 className="text-lg font-semibold mb-4 text-center">Fill in Your Details</h3>
+          <div>
+            <h3 className="text-lg font-semibold mb-3 text-center">Fill in Your Details</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <Label htmlFor="name">Full Name *</Label>
