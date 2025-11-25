@@ -8,7 +8,7 @@ import { PartnerCarousel } from "@/components/PartnerCarousel";
 import { Header } from "@/components/Header";
 import { SMEToolkitModal } from "@/components/SMEToolkitModal";
 import heroImage from "@/assets/hero-business.jpg";
-import cacImage from "@/assets/cac-building.jpg";
+import cacImage from "@/assets/cac-registration.jpg";
 import planningImage from "@/assets/business-planning-new.png";
 import brandingImage from "@/assets/branding.jpg";
 import socialMediaImage from "@/assets/social-media.jpg";
