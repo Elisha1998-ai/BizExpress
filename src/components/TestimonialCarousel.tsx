@@ -1,5 +1,3 @@
-import { Star } from "lucide-react";
-
 const testimonials = [
   {
     quote: "I must say they did a very great job for me and promptly. They know their job. I highly recommend them if you need someone to work on your business plan and other business document preparations.",
@@ -49,22 +47,23 @@ const testimonials = [
 
 export const TestimonialCarousel = () => {
   return (
-    <div className="w-full max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+    <div className="w-full max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {testimonials.map((testimonial, index) => (
-          <div key={index} className="space-y-4">
-            <p className="text-foreground text-base md:text-lg leading-relaxed italic">
-              "{testimonial.quote}"
+          <div 
+            key={index} 
+            className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+          >
+            <div className="mb-4">
+              <svg className="w-8 h-8 text-primary/30" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+              </svg>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed mb-4 line-clamp-5">
+              {testimonial.quote}
             </p>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-bold text-primary text-sm md:text-base">{testimonial.author}</p>
-              </div>
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                ))}
-              </div>
+            <div className="pt-4 border-t border-gray-100">
+              <p className="font-semibold text-primary text-sm">{testimonial.author}</p>
             </div>
           </div>
         ))}
