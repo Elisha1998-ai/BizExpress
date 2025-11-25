@@ -18,7 +18,7 @@ const industries = [
   { name: "Logistics Company", image: logistics },
   { name: "Beauty", image: beauty },
   { name: "Agriculture", image: agriculture },
-  { name: "Cake Industry", image: cakeIndustry },
+  { name: "Cake & Pastries", image: cakeIndustry },
   { name: "Event Planning", image: eventPlanning },
   { name: "Real Estate", image: realEstate },
   { name: "Fashion Industry", image: fashion },
