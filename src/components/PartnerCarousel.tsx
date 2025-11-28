@@ -33,24 +33,14 @@ const industries = [
     description: "Gyms, spas, and wellness centers"
   },
   { 
-    name: "Food & Hospitality", 
-    image: food,
-    description: "Restaurants, catering, and hospitality businesses"
-  },
-  { 
-    name: "Event Planning", 
-    image: eventPlanning,
-    description: "Wedding, corporate, and social event services"
-  },
-  { 
     name: "Legal", 
     image: legal,
     description: "Law firms and legal consultancy services"
   },
   { 
-    name: "Logistics & Transportation", 
-    image: logistics,
-    description: "Delivery, freight, and transportation companies"
+    name: "Agriculture", 
+    image: agriculture,
+    description: "Farming, agribusiness, and food production"
   },
   { 
     name: "Beauty & Spa", 
@@ -63,14 +53,19 @@ const industries = [
     description: "Clothing brands, boutiques, and fashion design"
   },
   { 
-    name: "Entertainment", 
-    image: entertainment,
-    description: "Music, film, events, and creative entertainment"
+    name: "Food & Hospitality", 
+    image: food,
+    description: "Restaurants, catering, and hospitality businesses"
   },
   { 
-    name: "Agriculture", 
-    image: agriculture,
-    description: "Farming, agribusiness, and food production"
+    name: "Event Planning", 
+    image: eventPlanning,
+    description: "Wedding, corporate, and social event services"
+  },
+  { 
+    name: "Logistics & Transportation", 
+    image: logistics,
+    description: "Delivery, freight, and transportation companies"
   },
 ];
 
