@@ -9,19 +9,69 @@ import legal from "@/assets/industry-legal.png";
 import logistics from "@/assets/industry-logistics.png";
 import beauty from "@/assets/industry-beauty.png";
 import agriculture from "@/assets/industry-agriculture.png";
+import entertainment from "@/assets/industry-entertainment.png";
 
 const industries = [
-  { name: "Healthcare", image: healthcare },
-  { name: "Wellness & Fitness", image: wellness },
-  { name: "Food & Hospitality", image: food },
-  { name: "Legal", image: legal },
-  { name: "Logistics Company", image: logistics },
-  { name: "Beauty", image: beauty },
-  { name: "Agriculture", image: agriculture },
-  { name: "Cake & Pastries", image: cakeIndustry },
-  { name: "Event Planning", image: eventPlanning },
-  { name: "Real Estate", image: realEstate },
-  { name: "Fashion Industry", image: fashion },
+  { 
+    name: "Cakes & Pastries", 
+    image: cakeIndustry,
+    description: "Custom cakes, pastries, and confectionery businesses"
+  },
+  { 
+    name: "Real Estate", 
+    image: realEstate,
+    description: "Property development, sales, and management services"
+  },
+  { 
+    name: "Healthcare", 
+    image: healthcare,
+    description: "Medical practices, clinics, and health services"
+  },
+  { 
+    name: "Wellness & Fitness", 
+    image: wellness,
+    description: "Gyms, spas, and wellness centers"
+  },
+  { 
+    name: "Food & Hospitality", 
+    image: food,
+    description: "Restaurants, catering, and hospitality businesses"
+  },
+  { 
+    name: "Event Planning", 
+    image: eventPlanning,
+    description: "Wedding, corporate, and social event services"
+  },
+  { 
+    name: "Legal", 
+    image: legal,
+    description: "Law firms and legal consultancy services"
+  },
+  { 
+    name: "Logistics & Transportation", 
+    image: logistics,
+    description: "Delivery, freight, and transportation companies"
+  },
+  { 
+    name: "Beauty & Spa", 
+    image: beauty,
+    description: "Salons, beauty studios, and spa services"
+  },
+  { 
+    name: "Fashion", 
+    image: fashion,
+    description: "Clothing brands, boutiques, and fashion design"
+  },
+  { 
+    name: "Entertainment", 
+    image: entertainment,
+    description: "Music, film, events, and creative entertainment"
+  },
+  { 
+    name: "Agriculture", 
+    image: agriculture,
+    description: "Farming, agribusiness, and food production"
+  },
 ];
 
 export const PartnerCarousel = () => {
@@ -40,10 +90,19 @@ export const PartnerCarousel = () => {
                 alt={industry.name}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-4">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-4 transition-opacity duration-300 group-hover:opacity-0">
                 <h3 className="text-white font-bold text-base md:text-lg">
                   {industry.name}
                 </h3>
+              </div>
+              {/* Hover overlay with description */}
+              <div className="absolute inset-0 bg-primary/90 flex flex-col items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-primary-foreground font-bold text-base md:text-lg text-center mb-2">
+                  {industry.name}
+                </h3>
+                <p className="text-primary-foreground/90 text-sm text-center">
+                  {industry.description}
+                </p>
               </div>
             </div>
           </div>
@@ -60,10 +119,19 @@ export const PartnerCarousel = () => {
                 alt={industry.name}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-4">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-4 transition-opacity duration-300 group-hover:opacity-0">
                 <h3 className="text-white font-bold text-base md:text-lg">
                   {industry.name}
                 </h3>
+              </div>
+              {/* Hover overlay with description */}
+              <div className="absolute inset-0 bg-primary/90 flex flex-col items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-primary-foreground font-bold text-base md:text-lg text-center mb-2">
+                  {industry.name}
+                </h3>
+                <p className="text-primary-foreground/90 text-sm text-center">
+                  {industry.description}
+                </p>
               </div>
             </div>
           </div>
