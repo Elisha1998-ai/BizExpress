@@ -1,3 +1,6 @@
+import { useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import cakeIndustry from "@/assets/industry-cake.png";
 import eventPlanning from "@/assets/industry-event.png";
 import realEstate from "@/assets/industry-realestate.png";
@@ -9,7 +12,6 @@ import legal from "@/assets/industry-legal.png";
 import logistics from "@/assets/industry-logistics.png";
 import beauty from "@/assets/industry-beauty.png";
 import agriculture from "@/assets/industry-agriculture.png";
-import entertainment from "@/assets/industry-entertainment.png";
 
 const industries = [
   { 
@@ -70,28 +72,67 @@ const industries = [
 ];
 
 export const PartnerCarousel = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = 240; // Approximate card width + margin
+      const newScrollLeft = direction === "left" 
+        ? scrollRef.current.scrollLeft - scrollAmount
+        : scrollRef.current.scrollLeft + scrollAmount;
+      
+      scrollRef.current.scrollTo({
+        left: newScrollLeft,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
-    <div className="w-full overflow-hidden">
-      <div className="flex animate-scroll">
+    <div className="w-full relative group">
+      {/* Left Arrow */}
+      <Button
+        variant="outline"
+        size="icon"
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        onClick={() => scroll("left")}
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </Button>
+
+      {/* Right Arrow */}
+      <Button
+        variant="outline"
+        size="icon"
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        onClick={() => scroll("right")}
+      >
+        <ChevronRight className="h-5 w-5" />
+      </Button>
+
+      <div 
+        ref={scrollRef}
+        className="flex animate-scroll overflow-x-hidden hover:[animation-play-state:paused]"
+      >
         {/* First set of industries */}
         {industries.map((industry, index) => (
           <div
             key={`first-${index}`}
             className="flex-shrink-0 w-48 md:w-56 mx-2"
           >
-            <div className="relative h-56 md:h-64 rounded-lg overflow-hidden group cursor-pointer">
+            <div className="relative h-56 md:h-64 rounded-lg overflow-hidden group/card cursor-pointer">
               <img
                 src={industry.image}
                 alt={industry.name}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-4 transition-opacity duration-300 group-hover:opacity-0">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-4 transition-opacity duration-300 group-hover/card:opacity-0">
                 <h3 className="text-white font-bold text-base md:text-lg">
                   {industry.name}
                 </h3>
               </div>
               {/* Hover overlay with description */}
-              <div className="absolute inset-0 bg-primary/90 flex flex-col items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-primary/90 flex flex-col items-center justify-center p-4 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
                 <h3 className="text-primary-foreground font-bold text-base md:text-lg text-center mb-2">
                   {industry.name}
                 </h3>
@@ -108,19 +149,19 @@ export const PartnerCarousel = () => {
             key={`second-${index}`}
             className="flex-shrink-0 w-48 md:w-56 mx-2"
           >
-            <div className="relative h-56 md:h-64 rounded-lg overflow-hidden group cursor-pointer">
+            <div className="relative h-56 md:h-64 rounded-lg overflow-hidden group/card cursor-pointer">
               <img
                 src={industry.image}
                 alt={industry.name}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-4 transition-opacity duration-300 group-hover:opacity-0">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-4 transition-opacity duration-300 group-hover/card:opacity-0">
                 <h3 className="text-white font-bold text-base md:text-lg">
                   {industry.name}
                 </h3>
               </div>
               {/* Hover overlay with description */}
-              <div className="absolute inset-0 bg-primary/90 flex flex-col items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-primary/90 flex flex-col items-center justify-center p-4 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
                 <h3 className="text-primary-foreground font-bold text-base md:text-lg text-center mb-2">
                   {industry.name}
                 </h3>
