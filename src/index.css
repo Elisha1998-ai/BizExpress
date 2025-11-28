@@ -146,7 +146,7 @@ All colors MUST be HSL.
   }
 
   .animate-scroll {
-    animation: scroll 40s linear infinite;
+    animation: scroll 100s linear infinite;
   }
 
   .animate-scroll:hover {
