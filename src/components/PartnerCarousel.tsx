@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import cakeIndustry from "@/assets/industry-cake.png";
@@ -73,18 +73,38 @@ const industries = [
 
 export const PartnerCarousel = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-scroll effect
+  useEffect(() => {
+    if (isPaused) return;
+    
+    const interval = setInterval(() => {
+      if (scrollRef.current) {
+        const container = scrollRef.current;
+        const maxScroll = container.scrollWidth / 2;
+        
+        if (container.scrollLeft >= maxScroll) {
+          container.scrollLeft = 0;
+        } else {
+          container.scrollLeft += 1;
+        }
+      }
+    }, 30);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const scrollAmount = 240;
       const container = scrollRef.current;
-      const maxScroll = container.scrollWidth / 2; // Half because we have duplicated content
+      const maxScroll = container.scrollWidth / 2;
       
       let newScrollLeft = direction === "left" 
         ? container.scrollLeft - scrollAmount
         : container.scrollLeft + scrollAmount;
       
-      // Loop back to start when reaching the end
       if (newScrollLeft >= maxScroll) {
         newScrollLeft = 0;
       } else if (newScrollLeft < 0) {
@@ -122,7 +142,9 @@ export const PartnerCarousel = () => {
 
       <div 
         ref={scrollRef}
-        className="flex animate-scroll overflow-x-hidden hover:[animation-play-state:paused]"
+        className="flex overflow-x-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
       >
         {/* First set of industries */}
         {industries.map((industry, index) => (
