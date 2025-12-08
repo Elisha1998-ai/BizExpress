@@ -76,12 +76,22 @@ export const PartnerCarousel = () => {
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = 240; // Approximate card width + margin
-      const newScrollLeft = direction === "left" 
-        ? scrollRef.current.scrollLeft - scrollAmount
-        : scrollRef.current.scrollLeft + scrollAmount;
+      const scrollAmount = 240;
+      const container = scrollRef.current;
+      const maxScroll = container.scrollWidth / 2; // Half because we have duplicated content
       
-      scrollRef.current.scrollTo({
+      let newScrollLeft = direction === "left" 
+        ? container.scrollLeft - scrollAmount
+        : container.scrollLeft + scrollAmount;
+      
+      // Loop back to start when reaching the end
+      if (newScrollLeft >= maxScroll) {
+        newScrollLeft = 0;
+      } else if (newScrollLeft < 0) {
+        newScrollLeft = maxScroll - scrollAmount;
+      }
+      
+      container.scrollTo({
         left: newScrollLeft,
         behavior: "smooth"
       });
@@ -90,21 +100,21 @@ export const PartnerCarousel = () => {
 
   return (
     <div className="w-full relative group">
-      {/* Left Arrow */}
+      {/* Left Arrow - always visible on mobile, hover on desktop */}
       <Button
         variant="outline"
         size="icon"
-        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
         onClick={() => scroll("left")}
       >
         <ChevronLeft className="h-5 w-5" />
       </Button>
 
-      {/* Right Arrow */}
+      {/* Right Arrow - always visible on mobile, hover on desktop */}
       <Button
         variant="outline"
         size="icon"
-        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
         onClick={() => scroll("right")}
       >
         <ChevronRight className="h-5 w-5" />
