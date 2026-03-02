@@ -10,6 +10,7 @@ import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import FAQs from "./pages/FAQs";
 import NotFound from "./pages/NotFound";
+import FeedbackModal from "./components/FeedbackModal";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <FeedbackModal />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
