@@ -49,6 +49,51 @@ const Index = () => {
         </div>
       </section>
 
+      {/* How We Help Section */}
+      <section id="how-we-help" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 to-primary/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">How We Help You Win</h2>
+            <p className="text-xl text-primary font-semibold mb-6">Visibility. Growth. Structure.</p>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              BizExpress is a one-stop partner that takes you from idea → brand → growth.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
+              <CardContent className="pt-6">
+                <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
+                <p className="text-foreground font-medium">Build trust with proper legal registration</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
+              <CardContent className="pt-6">
+                <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
+                <p className="text-foreground font-medium">Get discovered through consistent branding and marketing</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
+              <CardContent className="pt-6">
+                <Package className="h-12 w-12 text-primary mx-auto mb-4" />
+                <p className="text-foreground font-medium">Attract the right customers with content and ads that convert</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
+              <CardContent className="pt-6">
+                <FileText className="h-12 w-12 text-primary mx-auto mb-4" />
+                <p className="text-foreground font-medium">Make smarter decisions with expert consultations</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all md:col-span-2 lg:col-span-2">
+              <CardContent className="pt-6">
+                <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
+                <p className="text-foreground font-medium">Scale faster with business plans tailored to your market and industry</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Partners/Portfolio Section */}
       <section id="portfolio" className="py-16 px-4 sm:px-6 lg:px-8 bg-accent/30">
         <div className="max-w-7xl mx-auto">
@@ -313,50 +358,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How We Help Section */}
-      <section id="how-we-help" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 to-primary/10">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">How We Help You Win</h2>
-            <p className="text-xl text-primary font-semibold mb-6">Visibility. Growth. Structure.</p>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              BizExpress is a one-stop partner that takes you from idea → brand → growth.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
-              <CardContent className="pt-6">
-                <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
-                <p className="text-foreground font-medium">Build trust with proper legal registration</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
-              <CardContent className="pt-6">
-                <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
-                <p className="text-foreground font-medium">Get discovered through consistent branding and marketing</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
-              <CardContent className="pt-6">
-                <Package className="h-12 w-12 text-primary mx-auto mb-4" />
-                <p className="text-foreground font-medium">Attract the right customers with content and ads that convert</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
-              <CardContent className="pt-6">
-                <FileText className="h-12 w-12 text-primary mx-auto mb-4" />
-                <p className="text-foreground font-medium">Make smarter decisions with expert consultations</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all md:col-span-2 lg:col-span-2">
-              <CardContent className="pt-6">
-                <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
-                <p className="text-foreground font-medium">Scale faster with business plans tailored to your market and industry</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+
 
       {/* Success Stories Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
