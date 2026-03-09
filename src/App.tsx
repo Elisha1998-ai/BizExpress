@@ -9,6 +9,7 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import FAQs from "./pages/FAQs";
+import Portfolio from "./pages/Portfolio";
 import NotFound from "./pages/NotFound";
 import FeedbackModal from "./components/FeedbackModal";
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/faqs" element={<FAQs />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
