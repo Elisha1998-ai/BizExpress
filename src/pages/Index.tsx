@@ -311,6 +311,7 @@ const Index = () => {
             </Button>
           </div>
         </div>
+      </section>
 
       {/* How We Help Section */}
       <section id="how-we-help" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 to-primary/10">
