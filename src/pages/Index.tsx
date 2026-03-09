@@ -49,93 +49,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why Choose BizExpress Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
-              Why Choose BizExpress?
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Small businesses don't just need to exist — they need to be visible, profitable, and credible. That's where we come in.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="border-2 border-primary/20 hover:border-primary transition-all hover:shadow-lg">
-              <CardContent className="pt-6">
-                <TrendingUp className="h-12 w-12 text-primary mb-4" />
-                <h3 className="font-bold text-xl mb-3 text-foreground">Social Media Management</h3>
-                <p className="text-muted-foreground">
-                  Build a strong online presence and engage your audience.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-primary/20 hover:border-primary transition-all hover:shadow-lg">
-              <CardContent className="pt-6">
-                <FileText className="h-12 w-12 text-primary mb-4" />
-                <h3 className="font-bold text-xl mb-3 text-foreground">Business Planning</h3>
-                <p className="text-muted-foreground">
-                  Actionable roadmaps for real growth, not theory.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-primary/20 hover:border-primary transition-all hover:shadow-lg">
-              <CardContent className="pt-6">
-                <TrendingUp className="h-12 w-12 text-primary mb-4" />
-                <h3 className="font-bold text-xl mb-3 text-foreground">Ads Management</h3>
-                <p className="text-muted-foreground">
-                  Drive traffic, capture leads, and convert sales.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-primary/20 hover:border-primary transition-all hover:shadow-lg">
-              <CardContent className="pt-6">
-                <Package className="h-12 w-12 text-primary mb-4" />
-                <h3 className="font-bold text-xl mb-3 text-foreground">Branding & Content Creation</h3>
-                <p className="text-muted-foreground">
-                  Make your business unforgettable.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-primary/20 hover:border-primary transition-all hover:shadow-lg">
-              <CardContent className="pt-6">
-                <CheckCircle className="h-12 w-12 text-primary mb-4" />
-                <h3 className="font-bold text-xl mb-3 text-foreground">CAC Registration</h3>
-                <p className="text-muted-foreground">
-                  Get legally recognized and positioned for opportunities.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-primary/20 hover:border-primary transition-all hover:shadow-lg">
-              <CardContent className="pt-6">
-                <FileText className="h-12 w-12 text-primary mb-4" />
-                <h3 className="font-bold text-xl mb-3 text-foreground">Business Consultation</h3>
-                <p className="text-muted-foreground">
-                  Expert guidance to help you make smarter, faster business decisions.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-          <div className="text-center mt-12">
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 h-auto font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all"
-              onClick={() => setIsToolkitModalOpen(true)}
-            >
-              Download Our Free SME Toolkit
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Partners Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-accent/30">
+      {/* Partners/Portfolio Section */}
+      <section id="portfolio" className="py-16 px-4 sm:px-6 lg:px-8 bg-accent/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl sm:text-4xl font-bold mb-3 text-foreground">Businesses That Partner With Us</h2>
@@ -146,6 +61,9 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
+      <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16 text-foreground">Our Services</h2>
       <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16 text-foreground">Our Services</h2>
