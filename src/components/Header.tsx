@@ -25,8 +25,17 @@ export const Header = () => {
     }
   };
 
+  const scrollToPortfolio = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const section = document.getElementById('portfolio');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const navLinks = [
     { name: "Services", path: "/#services", onClick: scrollToServices },
+    { name: "Portfolio", path: "/#portfolio", onClick: scrollToPortfolio },
     { name: "About Us", path: "/#how-we-help", onClick: scrollToHowWeHelp },
     { name: "Blog", path: "/blog", onClick: undefined, disabled: false },
   ];
