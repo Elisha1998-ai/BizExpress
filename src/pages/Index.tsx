@@ -286,6 +286,34 @@ const Index = () => {
               </CardContent>
             </Card>
 
+            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
+              <img 
+                src={socialMediaImage} 
+                alt="Social Media Management Services" 
+                className="w-full h-56 object-cover"
+              />
+              <CardContent className="pt-6">
+                <h3 className="text-2xl font-bold mb-3 text-primary">7. Social Media Management</h3>
+                <p className="text-muted-foreground mb-4">
+                  Build a powerful online presence with consistent, engaging content across all platforms.
+                </p>
+                <ul className="space-y-2 text-foreground">
+                  <li className="flex items-start">
+                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                    <span>Platform strategy & scheduling</span>
+                  </li>
+                  <li className="flex items-start">
+                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                    <span>Community engagement & growth</span>
+                  </li>
+                  <li className="flex items-start">
+                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                    <span>Analytics & performance tracking</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
           </div>
         </div>
       </section>
