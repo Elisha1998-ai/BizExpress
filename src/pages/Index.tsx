@@ -1,20 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, FileText, TrendingUp, Package, ArrowRight, Instagram, Facebook } from "lucide-react";
+import { CheckCircle, FileText, TrendingUp, Package, Instagram, Facebook } from "lucide-react";
 import { Link } from "react-router-dom";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { PartnerCarousel } from "@/components/PartnerCarousel";
 import { Header } from "@/components/Header";
 import { SMEToolkitModal } from "@/components/SMEToolkitModal";
 import heroImage from "@/assets/hero-business.jpg";
-import cacImage from "@/assets/cac-registration.jpg";
-import planningImage from "@/assets/business-planning-new.png";
-import brandingImage from "@/assets/branding.jpg";
-import socialMediaImage from "@/assets/social-media.jpg";
-import adsImage from "@/assets/ads-management.jpg";
-import contentImage from "@/assets/content-creation.jpg";
-import consultationImage from "@/assets/consultation-meeting.jpg";
 
 const Index = () => {
   const [isToolkitModalOpen, setIsToolkitModalOpen] = useState(false);
