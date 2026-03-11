@@ -34,9 +34,9 @@ export const Header = () => {
   };
 
   const navLinks = [
-    { name: "Services", path: "/#services", onClick: scrollToServices },
+    { name: "Services", path: "/services", onClick: undefined },
     { name: "Portfolio", path: "/portfolio", onClick: undefined },
-    { name: "About Us", path: "/#how-we-help", onClick: scrollToHowWeHelp },
+    { name: "About Us", path: "/about", onClick: undefined },
     { name: "Blog", path: "/blog", onClick: undefined, disabled: false },
   ];
 

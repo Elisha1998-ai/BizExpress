@@ -1,20 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, FileText, TrendingUp, Package, ArrowRight, Instagram, Facebook } from "lucide-react";
+import { CheckCircle, FileText, TrendingUp, Package, Instagram, Facebook } from "lucide-react";
 import { Link } from "react-router-dom";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { PartnerCarousel } from "@/components/PartnerCarousel";
 import { Header } from "@/components/Header";
 import { SMEToolkitModal } from "@/components/SMEToolkitModal";
 import heroImage from "@/assets/hero-business.jpg";
-import cacImage from "@/assets/cac-registration.jpg";
-import planningImage from "@/assets/business-planning-new.png";
-import brandingImage from "@/assets/branding.jpg";
-import socialMediaImage from "@/assets/social-media.jpg";
-import adsImage from "@/assets/ads-management.jpg";
-import contentImage from "@/assets/content-creation.jpg";
-import consultationImage from "@/assets/consultation-meeting.jpg";
 
 const Index = () => {
   const [isToolkitModalOpen, setIsToolkitModalOpen] = useState(false);
@@ -49,50 +42,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How We Help Section */}
-      <section id="how-we-help" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 to-primary/10">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">How We Help You Win</h2>
-            <p className="text-xl text-primary font-semibold mb-6">Visibility. Growth. Structure.</p>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              BizExpress is a one-stop partner that takes you from idea → brand → growth.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
-              <CardContent className="pt-6">
-                <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
-                <p className="text-foreground font-medium">Build trust with proper legal registration</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
-              <CardContent className="pt-6">
-                <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
-                <p className="text-foreground font-medium">Get discovered through consistent branding and marketing</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
-              <CardContent className="pt-6">
-                <Package className="h-12 w-12 text-primary mx-auto mb-4" />
-                <p className="text-foreground font-medium">Attract the right customers with content and ads that convert</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
-              <CardContent className="pt-6">
-                <FileText className="h-12 w-12 text-primary mx-auto mb-4" />
-                <p className="text-foreground font-medium">Make smarter decisions with expert consultations</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all md:col-span-2 lg:col-span-2">
-              <CardContent className="pt-6">
-                <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
-                <p className="text-foreground font-medium">Scale faster with business plans tailored to your market and industry</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+
 
       {/* Partners/Portfolio Section */}
       <section id="portfolio" className="py-16 px-4 sm:px-6 lg:px-8 bg-accent/30">
@@ -105,218 +55,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16 text-foreground">Our Services</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
-              <img 
-                src={cacImage} 
-                alt="CAC Registration Services" 
-                className="w-full h-56 object-cover"
-              />
-              <CardContent className="pt-6">
-                <h3 className="text-2xl font-bold mb-3 text-primary">1. CAC Registration</h3>
-                <p className="text-muted-foreground mb-4">
-                  Get your business legally recognized in days, not months.
-                </p>
-                <ul className="space-y-2 text-foreground">
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Business name registration</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Limited Liability Company setup</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Specialized sectors (Real Estate, Fashion, Food, NGOs, etc.)</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
 
-            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
-              <img 
-                src={planningImage} 
-                alt="Business Planning Services" 
-                className="w-full h-56 object-cover"
-              />
-              <CardContent className="pt-6">
-                <h3 className="text-2xl font-bold mb-3 text-primary">2. Business Planning</h3>
-                <p className="text-muted-foreground mb-4">
-                  Turn your ideas into scalable, investor-ready businesses.
-                </p>
-                <ul className="space-y-2 text-foreground">
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Feasibility studies</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Financial projections</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Market research</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Pitch decks</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Growth strategies</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
-              <img 
-                src={brandingImage} 
-                alt="Branding and Strategy Services" 
-                className="w-full h-56 object-cover"
-              />
-              <CardContent className="pt-6">
-                <h3 className="text-2xl font-bold mb-3 text-primary">3. Branding & Strategy</h3>
-                <p className="text-muted-foreground mb-4">
-                  Transform your business into a brand people can't ignore.
-                </p>
-                <ul className="space-y-2 text-foreground">
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Logo & visual identity</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Brand storytelling</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Go-to-market strategy</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
-              <img 
-                src={contentImage} 
-                alt="Content Creation Services" 
-                className="w-full h-56 object-cover"
-              />
-              <CardContent className="pt-6">
-                <h3 className="text-2xl font-bold mb-3 text-primary">4. Content Creation</h3>
-                <p className="text-muted-foreground mb-4">
-                  We craft content that sells, educates, and builds a connection with your audience.
-                </p>
-                <ul className="space-y-2 text-foreground">
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Social media content</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Blog posts & articles</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Video & graphics</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
-              <img 
-                src={adsImage} 
-                alt="Ads Management Services" 
-                className="w-full h-56 object-cover"
-              />
-              <CardContent className="pt-6">
-                <h3 className="text-2xl font-bold mb-3 text-primary">5. Ads Management</h3>
-                <p className="text-muted-foreground mb-4">
-                  Run targeted ad campaigns that get real results — more visibility, more leads, more sales.
-                </p>
-                <ul className="space-y-2 text-foreground">
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Facebook & Instagram ads</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Google Ads campaigns</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Performance tracking & optimization</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
-              <img 
-                src={consultationImage} 
-                alt="Business Consultation Services" 
-                className="w-full h-56 object-cover"
-              />
-              <CardContent className="pt-6">
-                <h3 className="text-2xl font-bold mb-3 text-primary">6. Business Consultation</h3>
-                <p className="text-muted-foreground mb-4">
-                  Personalized advice to solve challenges, unlock opportunities, and grow sustainably.
-                </p>
-                <ul className="space-y-2 text-foreground">
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>One-on-one consultations</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Strategic planning</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Problem-solving support</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
-              <img 
-                src={socialMediaImage} 
-                alt="Social Media Management Services" 
-                className="w-full h-56 object-cover"
-              />
-              <CardContent className="pt-6">
-                <h3 className="text-2xl font-bold mb-3 text-primary">7. Social Media Management</h3>
-                <p className="text-muted-foreground mb-4">
-                  Build a powerful online presence with consistent, engaging content across all platforms.
-                </p>
-                <ul className="space-y-2 text-foreground">
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Platform strategy & scheduling</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Community engagement & growth</span>
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Analytics & performance tracking</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-          </div>
-        </div>
-      </section>
 
       {/* Why Choose BizExpress Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
