@@ -14,9 +14,7 @@ import clientWaitingRoom from "@/assets/client-waitingroom.jpg";
 import clientODClothings from "@/assets/client-odclothings.jpg";
 import waitingRoomStats from "@/assets/waitingroom-stats.png";
 
-import tasteOfLagosBefore from "@/assets/tasteoflagos-before.png";
 import tasteOfLagosAfter from "@/assets/tasteoflagos-after.png";
-import goldnliliesBefore from "@/assets/goldnlilies-before.png";
 import goldnliliesAfter from "@/assets/goldnlilies-after.png";
 
 interface Project {
@@ -26,8 +24,8 @@ interface Project {
   services: string[];
   description: string;
   results?: { label: string; before: string; after: string }[];
-  beforeAfterImages?: { before: string; after: string; beforeLabel?: string; afterLabel?: string };
-  statsImage?: string;
+  resultImage?: string;
+  resultImageLabel?: string;
 }
 
 const businessPlanProjects: Project[] = [
@@ -79,13 +77,9 @@ const socialMediaProjects: Project[] = [
     industry: "Food & Hospitality",
     services: ["Social Media Management"],
     description:
-      "Took over Taste Of Lagos' Instagram, transforming it from a page with limited reach and minimal engagement into a growing brand with consistent content strategy and impressive growth metrics.",
-    beforeAfterImages: {
-      before: tasteOfLagosBefore,
-      after: tasteOfLagosAfter,
-      beforeLabel: "Before We Joined the Brand",
-      afterLabel: "After Our Management",
-    },
+      "Took over Taste of Lagos' Instagram and transformed it from a page with limited reach and minimal engagement into a growing brand with a consistent content strategy. Our efforts generated over 56,000 views, 2,000+ reach and engagement, gained 300 new followers, and helped increase revenue and in-store foot traffic by 20%.",
+    resultImage: tasteOfLagosAfter,
+    resultImageLabel: "Results & Growth",
   },
   {
     name: "Gold N' Lilies (Plan Padi)",
@@ -93,13 +87,9 @@ const socialMediaProjects: Project[] = [
     industry: "Event Planning & Vendor Sourcing",
     services: ["Social Media Management"],
     description:
-      "Managed the social media presence for Gold N' Lilies, running paid ad campaigns and creating engaging content that grew their follower base and increased interactions significantly.",
-    beforeAfterImages: {
-      before: goldnliliesBefore,
-      after: goldnliliesAfter,
-      beforeLabel: "Before We Joined",
-      afterLabel: "After Our Management",
-    },
+      "Managed the social media presence for Gold N' Lilies by creating engaging content and running targeted paid ad campaigns that significantly increased visibility and engagement. We grew the page from 0 to 500 followers, generated 100+ vendors and clients through a strategic Instagram commenting method, and achieved over 30,000 views and 3,000 engagements across all platforms.",
+    resultImage: goldnliliesAfter,
+    resultImageLabel: "Results & Growth",
   },
   {
     name: "The Waiting Room Podcast",
@@ -107,8 +97,9 @@ const socialMediaProjects: Project[] = [
     industry: "Media & Entertainment",
     services: ["Social Media Management"],
     description:
-      "Managed social media for The Waiting Room Podcast, building their online audience through strategic content scheduling, engaging visuals, and community interaction that delivered real viewership growth.",
-    statsImage: waitingRoomStats,
+      "Managed social media for The Waiting Room Podcast by implementing strategic content scheduling, engaging visuals, and active community interaction to grow their online audience. These efforts increased their YouTube channel growth by 20% and boosted views and engagement across social media platforms by 20%.",
+    resultImage: waitingRoomStats,
+    resultImageLabel: "Growth Results",
   },
   {
     name: "OD Clothings",
@@ -120,22 +111,21 @@ const socialMediaProjects: Project[] = [
   },
 ];
 
-const ProjectCard = ({ project, index, variant = "default" }: { project: Project; index: number; variant?: string }) => (
+const ProjectCard = ({ project, index }: { project: Project; index: number }) => (
   <div
     className={`flex flex-col ${
       index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"
     } gap-8 lg:gap-14 items-start`}
   >
-    {/* Image */}
-    <div className="w-full lg:w-5/12 sticky top-24">
+    {/* Logo */}
+    <div className="w-full lg:w-5/12">
       <div className="relative rounded-3xl overflow-hidden shadow-2xl group bg-card border border-border">
         <img
           src={project.image}
-          alt={`${project.name}`}
-          className="w-full h-64 sm:h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+          alt={project.name}
+          className="w-full h-64 sm:h-80 object-contain bg-white p-4"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
           <Badge className="bg-primary/90 text-primary-foreground backdrop-blur-sm text-xs font-medium px-3 py-1">
             {project.industry}
           </Badge>
@@ -174,56 +164,20 @@ const ProjectCard = ({ project, index, variant = "default" }: { project: Project
         </div>
       )}
 
-      {/* Before / After Screenshots */}
-      {project.beforeAfterImages && (
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 justify-center">
-                <span className="w-2 h-2 rounded-full bg-destructive" />
-                <p className="text-xs font-bold uppercase tracking-wider text-destructive">
-                  {project.beforeAfterImages.beforeLabel || "Before"}
-                </p>
-              </div>
-              <div className="rounded-xl overflow-hidden border-2 border-destructive/20 shadow-lg hover:shadow-xl transition-shadow">
-                <img
-                  src={project.beforeAfterImages.before}
-                  alt={`${project.name} before`}
-                  className="w-full object-cover"
-                />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 justify-center">
-                <span className="w-2 h-2 rounded-full bg-primary" />
-                <p className="text-xs font-bold uppercase tracking-wider text-primary">
-                  {project.beforeAfterImages.afterLabel || "After"}
-                </p>
-              </div>
-              <div className="rounded-xl overflow-hidden border-2 border-primary/20 shadow-lg hover:shadow-xl transition-shadow">
-                <img
-                  src={project.beforeAfterImages.after}
-                  alt={`${project.name} after`}
-                  className="w-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Stats Image */}
-      {project.statsImage && (
-        <div className="space-y-2">
+      {/* Result Image - Full width, clear and readable */}
+      {project.resultImage && (
+        <div className="space-y-3">
           <div className="flex items-center gap-2">
             <TrendingUp className="h-4 w-4 text-primary" />
-            <p className="text-xs font-bold uppercase tracking-wider text-primary">Growth Results</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-primary">
+              {project.resultImageLabel || "Results"}
+            </p>
           </div>
-          <div className="rounded-xl overflow-hidden border-2 border-primary/20 shadow-lg max-w-xs">
+          <div className="rounded-2xl overflow-hidden border-2 border-primary/20 shadow-xl bg-white">
             <img
-              src={project.statsImage}
-              alt={`${project.name} stats`}
-              className="w-full object-cover"
+              src={project.resultImage}
+              alt={`${project.name} results`}
+              className="w-full object-contain"
             />
           </div>
         </div>
@@ -252,16 +206,6 @@ const Portfolio = () => {
           <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
             Real businesses. Real transformations. See how BizExpress has helped brands grow from the ground up.
           </p>
-          <div className="flex gap-6 mt-10">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <FileText className="h-4 w-4 text-primary" />
-              <span><strong className="text-foreground">3</strong> Business Plans</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Share2 className="h-4 w-4 text-primary" />
-              <span><strong className="text-foreground">4</strong> Social Media Clients</span>
-            </div>
-          </div>
         </div>
       </section>
 
