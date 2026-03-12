@@ -189,11 +189,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   {project.resultImageLabel || "Results"}
                 </p>
               </div>
-              <div className="rounded-2xl overflow-hidden border border-border/50 shadow-lg bg-white">
+              <div className="rounded-2xl overflow-hidden border border-border/50 shadow-xl bg-white">
                 <img
                   src={project.resultImage}
                   alt={`${project.name} results`}
-                  className="w-full object-contain"
+                  className="w-full object-contain max-h-[500px]"
                 />
               </div>
             </div>
