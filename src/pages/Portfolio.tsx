@@ -2,7 +2,7 @@ import { Header } from "@/components/Header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, TrendingUp, FileText, Share2, Sparkles } from "lucide-react";
+import { ArrowLeft, TrendingUp, Briefcase } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import clientCocomilla from "@/assets/client-cocomilla.jpg";
