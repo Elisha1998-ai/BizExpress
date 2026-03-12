@@ -2,7 +2,7 @@ import { Header } from "@/components/Header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, TrendingUp, FileText, Share2, Sparkles } from "lucide-react";
+import { ArrowLeft, TrendingUp, Briefcase, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import clientCocomilla from "@/assets/client-cocomilla.jpg";
@@ -69,11 +69,11 @@ const projects: Project[] = [
     industry: "Cleaning Services",
     services: ["Business Planning"],
     description:
-      "Created a structured business plan for EliteTidy, helping them formalize operations, set pricing strategies, and plan for sustainable growth in the cleaning services industry.",
+      "Created a structured business plan for EliteTidy, helping them formalize operations, set pricing strategies, and plan for sustainable growth to launch their cleaning services business.",
     results: [
       { label: "Operations", before: "Unstructured", after: "Fully planned" },
       { label: "Pricing Strategy", before: "Ad-hoc", after: "Market-researched" },
-      { label: "Business Model", before: "Informal", after: "Investor-ready" },
+      { label: "Business Model", before: "Informal", after: "Launch-ready" },
     ],
   },
   {
@@ -92,10 +92,10 @@ const projects: Project[] = [
     industry: "Cake & Confectionery",
     services: ["Business Planning"],
     description:
-      "Developed a comprehensive business plan for Cocomilla Cakery, outlining growth strategies, financial projections, and a clear roadmap to scale their cake business.",
+      "Developed a comprehensive business plan for Cocomilla Cakery, outlining growth strategies, financial projections, and a clear roadmap to scale their cake business — helping them secure a business grant.",
     results: [
       { label: "Business Structure", before: "Informal", after: "Fully documented" },
-      { label: "Revenue Target", before: "No projections", after: "12-month forecast" },
+      { label: "Grant", before: "No application", after: "Grant secured ✅" },
       { label: "Growth Roadmap", before: "None", after: "Clear milestones" },
     ],
   },
@@ -122,7 +122,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <img
               src={project.image}
               alt={project.name}
-              className="w-full h-72 sm:h-80 object-contain p-6"
+              className="w-full h-48 sm:h-56 object-contain p-4"
             />
             <div className="absolute top-4 left-4">
               <Badge className="bg-primary text-primary-foreground text-[11px] font-semibold px-3 py-1 shadow-md">
@@ -189,11 +189,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   {project.resultImageLabel || "Results"}
                 </p>
               </div>
-              <div className="rounded-2xl overflow-hidden border border-border/50 shadow-lg bg-white">
+              <div className="rounded-2xl overflow-hidden border border-border/50 shadow-xl bg-white">
                 <img
                   src={project.resultImage}
                   alt={`${project.name} results`}
-                  className="w-full object-contain"
+                  className="w-full object-contain max-h-[500px]"
                 />
               </div>
             </div>
@@ -223,7 +223,7 @@ const Portfolio = () => {
             Back to Home
           </Link>
           <div className="flex items-center gap-3 mb-4">
-            <Sparkles className="h-5 w-5 text-primary" />
+            <Briefcase className="h-5 w-5 text-primary" />
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
               Our Work
             </span>
