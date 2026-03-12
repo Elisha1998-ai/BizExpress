@@ -122,7 +122,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <img
               src={project.image}
               alt={project.name}
-              className="w-full h-72 sm:h-80 object-contain p-6"
+              className="w-full h-48 sm:h-56 object-contain p-4"
             />
             <div className="absolute top-4 left-4">
               <Badge className="bg-primary text-primary-foreground text-[11px] font-semibold px-3 py-1 shadow-md">
