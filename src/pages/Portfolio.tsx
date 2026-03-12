@@ -69,11 +69,11 @@ const projects: Project[] = [
     industry: "Cleaning Services",
     services: ["Business Planning"],
     description:
-      "Created a structured business plan for EliteTidy, helping them formalize operations, set pricing strategies, and plan for sustainable growth in the cleaning services industry.",
+      "Created a structured business plan for EliteTidy, helping them formalize operations, set pricing strategies, and plan for sustainable growth to launch their cleaning services business.",
     results: [
       { label: "Operations", before: "Unstructured", after: "Fully planned" },
       { label: "Pricing Strategy", before: "Ad-hoc", after: "Market-researched" },
-      { label: "Business Model", before: "Informal", after: "Investor-ready" },
+      { label: "Business Model", before: "Informal", after: "Launch-ready" },
     ],
   },
   {
@@ -92,10 +92,10 @@ const projects: Project[] = [
     industry: "Cake & Confectionery",
     services: ["Business Planning"],
     description:
-      "Developed a comprehensive business plan for Cocomilla Cakery, outlining growth strategies, financial projections, and a clear roadmap to scale their cake business.",
+      "Developed a comprehensive business plan for Cocomilla Cakery, outlining growth strategies, financial projections, and a clear roadmap to scale their cake business — helping them secure a business grant.",
     results: [
       { label: "Business Structure", before: "Informal", after: "Fully documented" },
-      { label: "Revenue Target", before: "No projections", after: "12-month forecast" },
+      { label: "Grant", before: "No application", after: "Grant secured ✅" },
       { label: "Growth Roadmap", before: "None", after: "Clear milestones" },
     ],
   },
