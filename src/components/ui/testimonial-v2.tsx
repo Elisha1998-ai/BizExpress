@@ -165,7 +165,7 @@ export const TestimonialsSection = () => {
           ease: [0.16, 1, 0.3, 1],
           opacity: { duration: 0.8 }
         }}
-        className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%] px-6 sm:px-8 lg:px-12 z-10"
+        className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 sm:px-8 lg:px-12 z-10"
       >
         <div className="flex flex-col items-start justify-start mb-16">
           <div className="flex justify-start">
@@ -177,7 +177,7 @@ export const TestimonialsSection = () => {
           <h2 id="testimonials-heading" className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mt-6 text-left text-neutral-900 dark:text-white transition-colors">
             Success Stories
           </h2>
-          <p className="text-left mt-5 text-neutral-500 dark:text-neutral-400 text-lg leading-relaxed max-w-sm transition-colors">
+          <p className="text-left mt-5 text-neutral-500 dark:text-neutral-400 text-lg leading-relaxed transition-colors">
             Real results from real businesses
           </p>
         </div>
@@ -187,9 +187,9 @@ export const TestimonialsSection = () => {
           role="region"
           aria-label="Scrolling Testimonials"
         >
-          <TestimonialsColumn testimonials={firstColumn} duration={15} />
-          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
-          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />
+          <TestimonialsColumn testimonials={firstColumn} duration={35} />
+          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={45} />
+          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={40} />
         </div>
       </motion.div>
     </section>

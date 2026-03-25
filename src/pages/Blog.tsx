@@ -1,227 +1,253 @@
 import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Calendar, User, ArrowLeft, Loader2, Tag, ChevronRight, Sparkles, BookOpen } from "lucide-react";
-import { useNavigate, Link } from "react-router-dom";
-import { blogService, BlogPost } from "@/lib/blogService";
 import { MinimalFooter } from "@/components/ui/minimal-footer";
 import { motion } from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
+import { 
+  Linkedin, 
+  Twitter, 
+  Facebook as FacebookIcon, 
+  Search,
+  ChevronDown,
+  ArrowRight
+} from "lucide-react";
 
-const Blog = () => {
+import team1 from "@/assets/ads-management.jpg";
+import team2 from "@/assets/branding.jpg";
+import team3 from "@/assets/social-media.jpg";
+import team4 from "@/assets/content-creation.jpg";
+import team5 from "@/assets/consultation-meeting.jpg";
+import img12 from "../img12.jpg";
+import img13 from "../img13.jpg";
+
+// Dummy data for the "BizExpress" blog layout
+const DUMMY_POSTS = [
+  {
+    id: "1",
+    category: "BUSINESS REGISTRATION",
+    title: "Navigating CAC Registration: A comprehensive guide for Nigerian SMEs in 2026",
+    excerpt: "Learn the step-by-step process of securing your business identity, avoiding common pitfalls, and setting up a solid legal structure.",
+    date: "March 15, 2026",
+    author: "Christy Omolayo",
+    isLarge: true,
+    image: team5
+  },
+  {
+    id: "2",
+    category: "BRANDING",
+    title: "Building a brand that speaks: The psychology of colors and typography",
+    excerpt: "How a well-crafted visual identity can increase your customer conversion rate by over 40% in highly competitive markets.",
+    date: "March 12, 2026",
+    author: "Sarah Johnson",
+    isLarge: false,
+    image: team2
+  },
+  {
+    id: "3",
+    category: "MARKETING",
+    title: "Ads Management: How to maximize your ROI on Facebook and Instagram",
+    excerpt: "Stop wasting money on boosted posts. Discover the advanced targeting strategies we use to scale businesses fast.",
+    date: "March 10, 2026",
+    author: "Michael Chen",
+    isLarge: false,
+    image: team1
+  },
+  {
+    id: "4",
+    category: "CONTENT STRATEGY",
+    title: "The power of storytelling: Turning your business journey into sales",
+    excerpt: "Why audiences connect with stories and how you can document your process to build a loyal community of buyers.",
+    date: "March 8, 2026",
+    author: "Aisha Bello",
+    isLarge: false,
+    image: team4
+  },
+  {
+    id: "5",
+    category: "BUSINESS STRUCTURE",
+    title: "From Hustle to Enterprise: Structuring your business for long-term scalability",
+    excerpt: "Learn how to move from a one-man show to a corporate entity capable of securing grants and large-scale investments.",
+    date: "March 5, 2026",
+    author: "Daniel Adeyemi",
+    isLarge: true,
+    image: img13
+  },
+  {
+    id: "6",
+    category: "SOCIAL MEDIA",
+    title: "Dominating your niche: Social media trends to watch out for this quarter",
+    excerpt: "Stay ahead of the algorithm changes on major platforms and adapt your content strategy for maximum visibility.",
+    date: "March 1, 2026",
+    author: "BizExpress Insights",
+    isLarge: false,
+    image: team3
+  },
+  {
+    id: "7",
+    category: "COMPANY NEWS",
+    title: "BizExpress launches new SME Strategy Framework",
+    excerpt: "Our proprietary new framework designed specifically to help 10,000 businesses reach their first 100M milestone.",
+    date: "February 28, 2026",
+    author: "Press Release",
+    isLarge: false,
+    image: img12
+  },
+  {
+    id: "8",
+    category: "OPERATIONS",
+    title: "Automating your workflows: The secret to regaining your time",
+    excerpt: "A practical guide to implementing systems and tools that let your business run itself even when you sleep.",
+    date: "February 25, 2026",
+    author: "Christy Omolayo",
+    isLarge: false,
+  }
+];
+
+const BlogPage = () => {
   const navigate = useNavigate();
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const fetchedPosts = await blogService.getAllPosts();
-        setPosts(fetchedPosts);
-      } catch (error) {
-        console.error("Error fetching blog posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPosts();
-  }, []);
-
-  const featuredPost = posts[0];
-  const sidePost = posts[1];
-  const remainingPosts = posts.slice(2);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Header />
       
-      <main className="mx-auto w-[95%] sm:w-[90%] md:w-[85%] lg:w-[85%] px-4 sm:px-8 lg:px-12 py-24">
-        {/* Back Button & Intro */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="space-y-4">
-            <Button
-              variant="ghost"
-              onClick={() => navigate("/")}
-              className="pl-0 hover:bg-transparent text-muted-foreground hover:text-primary transition-colors"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
-            </Button>
-            <h1 className="text-5xl sm:text-6xl font-black tracking-tight text-foreground flex items-center gap-4">
-              Latest Stories
-              <div className="bg-primary/10 p-2 rounded-xl">
-                <Sparkles className="h-8 w-8 text-primary" />
-              </div>
-            </h1>
-          </div>
-          <p className="text-xl text-muted-foreground max-w-md">
-            Expert insights and guides for building successful businesses in Nigeria.
-          </p>
-        </div>
-
-        {loading ? (
-          <div className="flex justify-center items-center py-40">
-            <Loader2 className="h-12 w-12 animate-spin text-primary" />
-          </div>
-        ) : posts.length > 0 ? (
-          <div className="space-y-20">
-            
-            {/* Featured Grid Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Featured Main Post */}
-              {featuredPost && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="lg:col-span-2 group"
-                >
-                  <Link to={`/blog/${featuredPost.id}`}>
-                    <div className="relative h-[500px] sm:h-[600px] w-full rounded-[2.5rem] overflow-hidden bg-black flex flex-col sm:flex-row shadow-2xl transition-all duration-500 hover:shadow-primary/10">
-                      {featuredPost.imageUrl && (
-                        <div className="h-1/2 sm:h-full sm:w-1/2 overflow-hidden">
-                          <img 
-                            src={featuredPost.imageUrl} 
-                            alt={featuredPost.title} 
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                        </div>
-                      )}
-                      <div className="flex-1 p-8 sm:p-12 flex flex-col justify-center bg-zinc-950 text-white">
-                        <div className="flex items-center gap-3 mb-6">
-                          <span className="flex items-center bg-white/10 text-white text-xs font-bold px-4 py-1.5 rounded-full backdrop-blur-md">
-                            <BookOpen className="h-3 w-3 mr-2" />
-                            {featuredPost.category}
-                          </span>
-                        </div>
-                        <h2 className="text-3xl sm:text-5xl font-extrabold mb-6 leading-tight group-hover:text-primary transition-colors duration-300">
-                          {featuredPost.title}
-                        </h2>
-                        <p className="text-zinc-400 text-lg line-clamp-3 mb-8 leading-relaxed">
-                          {featuredPost.excerpt}
-                        </p>
-                        <div className="mt-auto pt-6 border-t border-white/10 flex items-center justify-between text-sm text-zinc-500">
-                          <span>{featuredPost.date}</span>
-                          <span className="flex items-center group-hover:text-primary transition-colors">
-                            Read Story <ChevronRight className="ml-1 h-4 w-4" />
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              )}
-
-              {/* Side Post */}
-              {sidePost && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="group"
-                >
-                  <Link to={`/blog/${sidePost.id}`}>
-                    <Card className="h-full border-none bg-muted/30 rounded-[2.5rem] overflow-hidden hover:bg-muted/50 transition-all duration-300">
-                      {sidePost.imageUrl && (
-                        <div className="h-64 w-full overflow-hidden">
-                          <img 
-                            src={sidePost.imageUrl} 
-                            alt={sidePost.title} 
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                        </div>
-                      )}
-                      <CardContent className="p-8">
-                        <div className="mb-4">
-                          <span className="inline-flex items-center bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                            <Tag className="h-3 w-3 mr-2" />
-                            {sidePost.category}
-                          </span>
-                        </div>
-                        <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors leading-tight">
-                          {sidePost.title}
-                        </h3>
-                        <p className="text-muted-foreground mb-6 line-clamp-3 leading-relaxed">
-                          {sidePost.excerpt}
-                        </p>
-                        <div className="flex items-center text-sm text-muted-foreground">
-                          <Calendar className="h-4 w-4 mr-2" />
-                          {sidePost.date}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </motion.div>
-              )}
+      {/* Top Banner / Breadcrumbs */}
+      <div className="pt-24 pb-8 border-b border-gray-100">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6">
+          <nav className="flex text-xs space-x-2 text-gray-500 mb-6 uppercase tracking-widest font-medium">
+            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+            <span>/</span>
+            <span className="text-gray-900">Articles</span>
+          </nav>
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="max-w-3xl">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
+                New at BizExpress Blog
+              </h1>
+              <p className="text-xl text-gray-600 leading-relaxed font-light">
+                A collection of the latest thinking from our people, about building, and what we are doing to change businesses for the better.
+              </p>
             </div>
+            
+            {/* Social Share Icons */}
+            <div className="flex gap-4 mb-2">
+              <button className="p-2 rounded-full bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">
+                <Linkedin size={20} />
+              </button>
+              <button className="p-2 rounded-full bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">
+                <Twitter size={20} />
+              </button>
+              <button className="p-2 rounded-full bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">
+                <FacebookIcon size={20} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-            {/* Remaining Posts Grid */}
-            {remainingPosts.length > 0 && (
-              <div className="space-y-12">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-3xl font-black flex items-center gap-3">
-                    Recent Stories
-                    <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+      {/* Filter Bar */}
+      <div className="sticky top-16 z-30 bg-white/95 backdrop-blur-sm border-b border-gray-100 py-4 shadow-sm md:shadow-none">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 flex items-center justify-between">
+          <div className="flex items-center space-x-8">
+            <span className="text-xs font-bold uppercase tracking-widest text-gray-900 border-b-2 border-primary pb-4 -mb-4">
+              Journal Articles
+            </span>
+          </div>
+          <div className="flex items-center space-x-4 text-xs font-medium text-gray-500 uppercase tracking-widest cursor-pointer hover:text-gray-900 transition-colors">
+            <span>Sort By: <span className="text-gray-900">Newest</span></span>
+            <ChevronDown size={14} />
+          </div>
+        </div>
+      </div>
+
+      {/* Blog Grid */}
+      <main className="py-16">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12">
+            {DUMMY_POSTS.map((post, idx) => (
+              <motion.article 
+                key={post.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className={`${post.isLarge ? 'md:col-span-2' : 'col-span-1'} group cursor-pointer`}
+              >
+                <div className="flex flex-col h-full">
+                  {/* Empty Image Frame */}
+                  <div className={`relative w-full overflow-hidden bg-gray-100 mb-6 ${post.isLarge ? 'aspect-[21/9]' : 'aspect-[16/10]'}`}>
+                    {/* No icon as requested, just light gray background */}
+                    {post.image && (
+                      <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                    )}
+                  </div>
+                  
+                  {/* Category */}
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-3">
+                    {post.category}
+                  </span>
+                  
+                  {/* Title */}
+                  <h2 className={`font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors leading-tight ${post.isLarge ? 'text-3xl' : 'text-xl'}`}>
+                    {post.title}
                   </h2>
-                  <div className="h-px flex-1 mx-8 bg-muted hidden sm:block" />
-                  <Button variant="outline" className="rounded-full border-2 hover:bg-primary hover:text-white transition-all">
-                    View All <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  
+                  {/* Excerpt */}
+                  <p className="text-sm text-gray-500 leading-relaxed mb-6 font-light line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                  
+                  {/* Meta / Link */}
+                  <div className="mt-auto flex items-center justify-between pt-6 border-t border-gray-100">
+                    <div className="flex flex-col text-[11px] text-gray-400 uppercase tracking-widest">
+                      <span>{post.date}</span>
+                      <span className="mt-1">By {post.author}</span>
+                    </div>
+                    {post.isLarge && (
+                      <span className="text-xs font-bold uppercase tracking-widest text-gray-900 flex items-center group-hover:gap-2 transition-all">
+                        Read More <ArrowRight size={14} className="ml-1" />
+                      </span>
+                    )}
+                  </div>
                 </div>
+              </motion.article>
+            ))}
+          </div>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                  {remainingPosts.map((post, index) => (
-                    <motion.div 
-                      key={post.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                    >
-                      <Link to={`/blog/${post.id}`} className="group">
-                        <Card className="h-full border-none bg-transparent hover:bg-muted/10 transition-all duration-300 rounded-[2rem] overflow-hidden flex flex-col">
-                          {post.imageUrl && (
-                            <div className="h-56 w-full overflow-hidden rounded-[2rem] mb-6">
-                              <img 
-                                src={post.imageUrl} 
-                                alt={post.title} 
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                              />
-                            </div>
-                          )}
-                          <CardContent className="px-2 pb-6 flex flex-col flex-grow">
-                            <div className="mb-4">
-                              <span className="inline-flex items-center bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                                {post.category}
-                              </span>
-                            </div>
-                            <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors line-clamp-2 leading-snug">
-                              {post.title}
-                            </h3>
-                            <p className="text-muted-foreground text-sm mb-6 flex-grow line-clamp-3 leading-relaxed">
-                              {post.excerpt}
-                            </p>
-                            <div className="flex items-center text-xs font-medium text-muted-foreground">
-                              {post.date}
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            )}
+          {/* Load More Button */}
+          <div className="mt-24 text-center">
+            <button className="inline-flex items-center px-8 py-3 bg-white border border-gray-200 text-xs font-bold uppercase tracking-[0.2em] text-gray-900 hover:bg-gray-50 transition-all shadow-sm">
+              Show More
+            </button>
           </div>
-        ) : (
-          <div className="text-center py-40 bg-muted/10 rounded-[3rem] border-2 border-dashed">
-            <BookOpen className="h-16 w-16 text-muted-foreground/30 mx-auto mb-6" />
-            <p className="text-2xl font-bold text-muted-foreground">No stories yet</p>
-            <p className="text-muted-foreground mt-2">Check back soon for insights and updates.</p>
-          </div>
-        )}
+        </div>
       </main>
+
+      {/* Newsletter Section */}
+      <section className="bg-gray-50 py-20 border-t border-gray-100">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className="max-w-xl text-center lg:text-left">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Never miss a story</h3>
+              <p className="text-gray-500 font-light">Get our very latest perspectives on the future of business delivered straight to your inbox.</p>
+            </div>
+            <div className="w-full max-w-md flex flex-col sm:flex-row gap-4">
+              <input 
+                type="email" 
+                placeholder="Email Address"
+                className="flex-1 px-6 py-4 bg-white border border-gray-200 text-sm focus:outline-none focus:border-primary transition-all rounded-none"
+              />
+              <button className="px-8 py-4 bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-primary/90 transition-all rounded-none">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <MinimalFooter />
     </div>
   );
 };
 
-export default Blog;
+export default BlogPage;

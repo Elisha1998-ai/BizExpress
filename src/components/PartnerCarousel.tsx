@@ -1,73 +1,67 @@
 import { useRef, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import cakeIndustry from "@/assets/industry-cake.png";
-import eventPlanning from "@/assets/industry-event.png";
-import realEstate from "@/assets/industry-realestate.png";
-import fashion from "@/assets/industry-fashion.png";
-import healthcare from "@/assets/industry-healthcare.png";
-import wellness from "@/assets/industry-wellness.png";
-import food from "@/assets/industry-food.png";
-import legal from "@/assets/industry-legal.png";
-import logistics from "@/assets/industry-logistics.png";
-import beauty from "@/assets/industry-beauty.png";
-import agriculture from "@/assets/industry-agriculture.png";
+import img2 from "../img2.jpg";
+import img3 from "../img3.jpg";
+import img4 from "../img4.jpg";
+import img5 from "../img5.jpg";
+import img6 from "../img6.jpg";
+import img7 from "../img7.jpg";
+import img8 from "../img8.jpg";
+import img9 from "../img9.jpg";
+import img10 from "../img10.jpg";
+import img11 from "../img11.jpg";
 
 const industries = [
   { 
     name: "Cakes & Pastries", 
-    image: cakeIndustry,
+    image: img2,
     description: "Custom cakes, pastries, and confectionery businesses"
   },
   { 
     name: "Real Estate", 
-    image: realEstate,
+    image: img3,
     description: "Property development, sales, and management services"
   },
   { 
     name: "Healthcare", 
-    image: healthcare,
+    image: img4,
     description: "Medical practices, clinics, and health services"
   },
   { 
     name: "Wellness & Fitness", 
-    image: wellness,
+    image: img5,
     description: "Gyms, spas, and wellness centers"
   },
   { 
     name: "Legal", 
-    image: legal,
+    image: img6,
     description: "Law firms and legal consultancy services"
   },
   { 
     name: "Agriculture", 
-    image: agriculture,
+    image: img7,
     description: "Farming, agribusiness, and food production"
   },
   { 
-    name: "Beauty & Spa", 
-    image: beauty,
+    name: "Spa & Beauty", 
+    image: img8,
     description: "Salons, beauty studios, and spa services"
   },
   { 
     name: "Fashion", 
-    image: fashion,
+    image: img9,
     description: "Clothing brands, boutiques, and fashion design"
   },
   { 
     name: "Food & Hospitality", 
-    image: food,
+    image: img10,
     description: "Restaurants, catering, and hospitality businesses"
   },
   { 
     name: "Event Planning", 
-    image: eventPlanning,
+    image: img11,
     description: "Wedding, corporate, and social event services"
-  },
-  { 
-    name: "Logistics & Transportation", 
-    image: logistics,
-    description: "Delivery, freight, and transportation companies"
   },
 ];
 
@@ -120,29 +114,11 @@ export const PartnerCarousel = () => {
 
   return (
     <div className="w-full relative group">
-      {/* Left Arrow - always visible on mobile, hover on desktop */}
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
-        onClick={() => scroll("left")}
-      >
-        <ChevronLeft className="h-5 w-5" />
-      </Button>
 
-      {/* Right Arrow - always visible on mobile, hover on desktop */}
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
-        onClick={() => scroll("right")}
-      >
-        <ChevronRight className="h-5 w-5" />
-      </Button>
 
       <div 
         ref={scrollRef}
-        className="flex overflow-x-hidden"
+        className="flex overflow-x-hidden mask-faded"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
@@ -150,9 +126,9 @@ export const PartnerCarousel = () => {
         {industries.map((industry, index) => (
           <div
             key={`first-${index}`}
-            className="flex-shrink-0 w-48 md:w-56 mx-2"
+            className="flex-shrink-0 w-64 md:w-72 mx-3"
           >
-            <div className="relative h-56 md:h-64 rounded-lg overflow-hidden group/card cursor-pointer">
+            <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden group/card cursor-pointer">
               <img
                 src={industry.image}
                 alt={industry.name}
@@ -179,9 +155,9 @@ export const PartnerCarousel = () => {
         {industries.map((industry, index) => (
           <div
             key={`second-${index}`}
-            className="flex-shrink-0 w-48 md:w-56 mx-2"
+            className="flex-shrink-0 w-64 md:w-72 mx-3"
           >
-            <div className="relative h-56 md:h-64 rounded-lg overflow-hidden group/card cursor-pointer">
+            <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden group/card cursor-pointer">
               <img
                 src={industry.image}
                 alt={industry.name}

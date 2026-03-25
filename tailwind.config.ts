@@ -59,6 +59,7 @@ export default {
         },
       },
       fontFamily: {
+        heading: ["General Sans", "sans-serif"],
         sans: ["Inter", "sans-serif"],
       },
       borderRadius: {

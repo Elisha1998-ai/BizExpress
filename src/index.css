@@ -114,8 +114,22 @@ All colors MUST be HSL.
     font-feature-settings: "kern";
   }
   
-  h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight;
+  h1 {
+    @apply font-heading font-semibold tracking-tight;
+  }
+
+  h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+    font-weight: 400;
+  }
+}
+
+@layer components {
+  /* Remove shadow from all buttons */
+  button, 
+  .button, 
+  [role="button"] {
+    box-shadow: none !important;
   }
 }
 
@@ -149,7 +163,19 @@ All colors MUST be HSL.
     animation: scroll 60s linear infinite;
   }
 
-  .animate-scroll:hover {
+  /* Reduced speed for testimonials */
+  .animate-scroll-slow {
+    animation: scroll 120s linear infinite;
+  }
+
+  .animate-scroll:hover,
+  .animate-scroll-slow:hover {
     animation-play-state: paused;
+  }
+
+  /* Utility for faded ends in marquee/ticker */
+  .mask-faded {
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   }
 }

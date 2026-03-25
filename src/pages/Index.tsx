@@ -19,6 +19,7 @@ import socialMediaImage from "@/assets/social-media.jpg";
 import adsImage from "@/assets/ads-management.jpg";
 import contentImage from "@/assets/content-creation.jpg";
 import consultationImage from "@/assets/consultation-meeting.jpg";
+import img1 from "../img1.jpg";
 
 const Index = () => {
   const [isToolkitModalOpen, setIsToolkitModalOpen] = useState(false);
@@ -39,16 +40,16 @@ const Index = () => {
           {/* Dark gradient overlay: transparent at the top, full dark at the bottom */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/90"></div>
         </div>
-        <div className="relative mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%] px-6 sm:px-8 lg:px-12 z-10">
+        <div className="relative mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 sm:px-8 lg:px-12 z-10">
           <div className="max-w-2xl text-left">
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-6 leading-[1.1] animate-fade-in text-white drop-shadow-2xl">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-semibold mb-6 leading-[1.1] animate-fade-in text-white drop-shadow-2xl">
               Turn Your Small Business Into a Revenue Machine.
             </h1>
             <p className="text-base sm:text-lg lg:text-xl mb-10 max-w-xl leading-relaxed text-white/90 drop-shadow-lg font-medium">
               BizExpress gives small business owners the tools, strategies, and visibility they need to stand out, attract customers, and scale with confidence.
             </p>
             <Link to="/contact">
-              <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl hover:scale-105 transition-all font-bold px-8 py-6 h-auto text-base">
+              <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 transition-all font-semibold px-8 py-6 h-auto text-base">
                 Let's Grow Your Business
               </Button>
             </Link>
@@ -73,7 +74,7 @@ const Index = () => {
 
       {/* Why Choose BizExpress Section */}
       <section className="py-24 bg-[#f1f1f1]">
-        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%] px-6 sm:px-8 lg:px-12">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 sm:px-8 lg:px-12">
           {/* Standardized Header */}
           <div className="text-left mb-16 space-y-4">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground">
@@ -117,7 +118,7 @@ const Index = () => {
                   ].map((item, idx) => (
                     <AccordionItem key={idx} value={`item-${idx}`} className="border-none bg-[#f5f5f5] rounded-xl px-6 transition-all">
                       <AccordionTrigger className="hover:no-underline py-4">
-                        <span className="text-lg font-bold text-left">{item.title}</span>
+                        <span className="text-lg font-semibold text-left">{item.title}</span>
                       </AccordionTrigger>
                       <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-4">
                         {item.description}
@@ -130,7 +131,7 @@ const Index = () => {
               {/* Right Column: Image */}
               <div className="flex-1 relative min-h-[350px] lg:min-h-full overflow-hidden">
                 <img 
-                  src={heroImage} 
+                  src={img1} 
                   alt="BizExpress Growth" 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 />
@@ -141,7 +142,7 @@ const Index = () => {
           <div className="text-center mt-16">
             <Button 
               size="lg" 
-              className="text-lg px-10 py-7 h-auto font-bold rounded-full shadow-xl hover:shadow-primary/20 transition-all group"
+              className="text-lg px-10 py-7 h-auto font-semibold rounded-full transition-all group"
               onClick={() => setIsToolkitModalOpen(true)}
             >
               Download Our Free SME Toolkit
@@ -153,7 +154,7 @@ const Index = () => {
 
       {/* Partners Section */}
       <section className="py-16 bg-accent/30 hidden">
-        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%] px-6 sm:px-8 lg:px-12">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 sm:px-8 lg:px-12">
           <div className="text-left mb-10">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-3 text-foreground">Businesses That Partner With Us</h2>
             <p className="text-lg text-muted-foreground">We grow together, not just serve.</p>
@@ -167,7 +168,7 @@ const Index = () => {
 
       {/* How We Help Section */}
       <section id="how-we-help" className="py-20 bg-gradient-to-br from-primary/5 to-primary/10">
-        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%] px-6 sm:px-8 lg:px-12">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 sm:px-8 lg:px-12">
           <div className="text-left mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4 text-foreground">How We Help You Win</h2>
             <p className="text-xl text-primary font-semibold mb-6">Visibility. Growth. Structure.</p>

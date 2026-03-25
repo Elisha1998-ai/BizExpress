@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
-import { ModeToggle } from "./mode-toggle";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase";
@@ -12,6 +11,8 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const location = useLocation();
+  const isDarkTextRoute = location.pathname === "/blog" || location.pathname === "/faqs" || location.pathname.startsWith("/blog/");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,12 +71,14 @@ export const Header = () => {
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%] px-6 sm:px-8 lg:px-12">
+      <nav className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%]">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img src={logo} alt="BizExpress Logo" className="h-10 w-10 rounded-full shadow-md" />
-            <span className={`text-2xl font-bold transition-colors ${isScrolled ? "text-primary" : "text-white drop-shadow-md"}`}>BizExpress</span>
+            <img src={logo} alt="BizExpress Logo" className="h-10 w-10 rounded-full" />
+            <span className={`text-2xl font-bold transition-colors ${
+              isScrolled ? "text-primary" : isDarkTextRoute ? "text-black" : "text-white drop-shadow-md"
+            }`}>BizExpress</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -94,40 +97,33 @@ export const Header = () => {
                   }
                 }}
                 className={`text-sm font-medium transition-colors ${
-                  isScrolled ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white drop-shadow-sm"
+                  isScrolled 
+                    ? "text-foreground hover:text-primary" 
+                    : isDarkTextRoute 
+                      ? "text-black hover:text-primary" 
+                      : "text-white/90 hover:text-white drop-shadow-sm"
                 } ${link.disabled ? 'cursor-default' : ''}`}
               >
                 {link.name}
               </a>
             ))}
-            {user && (
-              <Link
-                to="/admin"
-                className={`text-sm font-medium transition-colors ${
-                  isScrolled ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white drop-shadow-sm"
-                }`}
-              >
-                Admin
-              </Link>
-            )}
+
             <div className="ml-4">
               <Link to="/contact">
-                <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-md">
+                <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
                   Book Consultation
                 </Button>
               </Link>
-            </div>
-            <div className="ml-2">
-              <ModeToggle />
             </div>
           </div>
 
           {/* Mobile menu button */}
           <div className="flex items-center space-x-2 md:hidden">
-            <ModeToggle />
             <button
               onClick={toggleMenu}
-              className={`p-2 transition-colors ${isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"}`}
+              className={`p-2 transition-colors ${
+                isScrolled ? "text-foreground hover:text-primary" : isDarkTextRoute ? "text-black" : "text-white hover:text-white/80"
+              }`}
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -160,15 +156,7 @@ export const Header = () => {
                   {link.name}
                 </a>
               ))}
-              {user && (
-                <Link
-                  to="/admin"
-                  onClick={toggleMenu}
-                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-                >
-                  Admin Dashboard
-                </Link>
-              )}
+
               <div className="pt-4 border-t border-border">
                 <Link to="/contact" onClick={toggleMenu}>
                   <Button size="sm" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">

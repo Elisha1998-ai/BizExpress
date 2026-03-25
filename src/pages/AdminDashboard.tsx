@@ -179,7 +179,7 @@ const AdminDashboard = () => {
   if (userLoading) {
     return (
       <div className="min-h-screen bg-background">
-        <Header />
+      {!isEditing && <Header />}
         <div className="flex justify-center items-center py-40">
           <Loader2 className="h-10 w-10 animate-spin text-primary" />
         </div>
@@ -189,13 +189,13 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      <main className={`mx-auto px-6 sm:px-8 lg:px-12 py-16 ${isEditing ? 'max-w-5xl w-full' : 'w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%]'}`}>
+      {!isEditing && <Header />}
+      <main className={`mx-auto px-6 sm:px-8 lg:px-12 py-24 md:py-32 ${isEditing ? 'max-w-5xl w-full' : 'w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%]'}`}>
         
         {isEditing ? (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            {/* Editor Top Bar */}
-            <div className="fixed top-16 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b">
+            {/* Editor Top Bar - Adjusted to top-0 since Navbar is removed */}
+            <div className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b shadow-sm">
               <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <Button variant="ghost" size="sm" onClick={() => setIsEditing(false)}>
@@ -224,7 +224,7 @@ const AdminDashboard = () => {
             <div className="mt-20 max-w-4xl mx-auto">
               {/* Cover Image Area */}
               <div 
-                className={`relative group w-full h-[400px] rounded-[2.5rem] overflow-hidden mb-12 bg-muted/30 border-2 border-dashed border-muted transition-all flex flex-col items-center justify-center cursor-pointer ${currentPost.imageUrl ? 'border-none' : 'hover:bg-muted/50'}`}
+                className={`relative group w-full h-[400px] rounded-[15px] overflow-hidden mb-12 bg-muted/30 border-2 border-dashed border-muted transition-all flex flex-col items-center justify-center cursor-pointer ${currentPost.imageUrl ? 'border-none' : 'hover:bg-muted/50'}`}
                 onClick={() => fileInputRef.current?.click()}
               >
                 {currentPost.imageUrl ? (
@@ -290,7 +290,7 @@ const AdminDashboard = () => {
                   e.target.style.height = e.target.scrollHeight + 'px';
                 }} 
                 placeholder="Title"
-                className="w-full text-5xl sm:text-6xl font-extrabold bg-transparent border-none focus:outline-none focus:ring-0 resize-none placeholder:text-muted/40 leading-tight mb-4 overflow-hidden"
+                className="w-full text-5xl sm:text-6xl font-heading font-semibold bg-transparent border-none focus:outline-none focus:ring-0 resize-none placeholder:text-muted/40 leading-tight mb-4 overflow-hidden"
                 rows={1}
                 style={{ height: 'auto', minHeight: '1em' }}
               />
@@ -304,7 +304,7 @@ const AdminDashboard = () => {
                   e.target.style.height = e.target.scrollHeight + 'px';
                 }} 
                 placeholder="Write a short teaser..."
-                className="w-full text-xl text-muted-foreground bg-transparent border-none focus:outline-none focus:ring-0 resize-none placeholder:text-muted/40 leading-relaxed mb-12 overflow-hidden"
+                className="w-full text-xl font-heading text-muted-foreground/80 bg-transparent border-none focus:outline-none focus:ring-0 resize-none placeholder:text-muted-foreground/60 leading-relaxed mb-12 overflow-hidden"
                 rows={1}
                 style={{ height: 'auto', minHeight: '1.5em' }}
               />
@@ -362,14 +362,14 @@ const AdminDashboard = () => {
                 <p className="text-muted-foreground text-lg">Manage your blog posts and stories.</p>
               </div>
               <div className="flex gap-4">
-                <Button variant="outline" onClick={handleLogout} className="rounded-full">
+                <Button variant="outline" onClick={handleLogout}>
                   <LogOut className="mr-2 h-5 w-5" />
                   Logout
                 </Button>
                 <Button onClick={() => {
                   resetCurrentPost();
                   setIsEditing(true);
-                }} className="rounded-full shadow-lg hover:shadow-primary/20 transition-all">
+                }} className="shadow-lg hover:shadow-primary/20 transition-all">
                   <Plus className="mr-2 h-5 w-5" />
                   New Post
                 </Button>

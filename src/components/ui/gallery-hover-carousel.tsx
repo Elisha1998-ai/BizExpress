@@ -107,7 +107,7 @@ export default function GalleryHoverCarousel({
  
   return ( 
     <section id="services" className="py-32 bg-background overflow-hidden"> 
-      <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%] px-6 sm:px-8 lg:px-12"> 
+      <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 sm:px-8 lg:px-12"> 
         <div className="mb-8 flex flex-col justify-between md:mb-14 md:flex-row md:items-end lg:mb-16"> 
           <div className="max-w-2xl text-left"> 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground leading-tight"> 
@@ -151,9 +151,9 @@ export default function GalleryHoverCarousel({
           > 
             <CarouselContent className="-ml-4 md:-ml-6"> 
               {items.map((item) => ( 
-                <CarouselItem key={item.id} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/2 xl:basis-1/2"> 
+                <CarouselItem key={item.id} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3 xl:basis-1/3"> 
                   <Link to={item.url} className="group block relative w-full h-[400px] md:h-[450px]"> 
-                    <Card className="overflow-hidden h-full w-full rounded-[2rem] border-2 border-primary/5 hover:border-primary/20 transition-all duration-500 shadow-sm hover:shadow-xl"> 
+                    <Card className="overflow-hidden h-full w-full rounded-[10px] border-2 border-primary/5 hover:border-primary/20 transition-all duration-500 shadow-sm hover:shadow-xl"> 
                       {/* Image */} 
                       <div className="relative h-full w-full transition-all duration-700 ease-in-out group-hover:h-1/2"> 
                         <img 

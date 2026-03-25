@@ -90,7 +90,7 @@ Submitted on: ${new Date().toLocaleString()}
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center">Download Our Free SME Toolkit</DialogTitle>
         </DialogHeader>
