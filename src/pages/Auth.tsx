@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { auth } from "@/lib/firebase";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Auth = () => {
   const [searchParams] = useSearchParams();
@@ -40,24 +42,38 @@ const Auth = () => {
       return;
     }
 
-    // Simulate authentication
-    setTimeout(() => {
+    try {
+      if (mode === "signin") {
+        await signInWithEmailAndPassword(auth, email, password);
+        toast({
+          title: "Welcome back!",
+          description: "You have successfully signed in.",
+        });
+        navigate("/admin"); // Redirect to admin after successful login
+      } else {
+        await createUserWithEmailAndPassword(auth, email, password);
+        toast({
+          title: "Account created!",
+          description: "Your account has been created successfully.",
+        });
+        navigate("/admin");
+      }
+    } catch (error: any) {
       toast({
-        title: mode === "signin" ? "Welcome back!" : "Account created!",
-        description: mode === "signin" 
-          ? "You have successfully signed in." 
-          : "Your account has been created successfully.",
+        title: "Authentication Error",
+        description: error.message || "Failed to authenticate. Please check your credentials.",
+        variant: "destructive",
       });
+    } finally {
       setLoading(false);
-      navigate("/");
-    }, 1000);
+    }
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <main className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%] px-6 sm:px-8 lg:px-12 py-16">
         <div className="max-w-md mx-auto">
           <Card>
             <CardHeader>

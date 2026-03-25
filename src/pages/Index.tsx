@@ -1,13 +1,24 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, FileText, TrendingUp, Package, Instagram, Facebook } from "lucide-react";
+import { CheckCircle, FileText, TrendingUp, Package, ArrowRight, Instagram, Facebook, Sparkles, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { PartnerCarousel } from "@/components/PartnerCarousel";
 import { Header } from "@/components/Header";
 import { SMEToolkitModal } from "@/components/SMEToolkitModal";
-import heroImage from "@/assets/hero-business.jpg";
+import TestimonialsSection from "@/components/ui/testimonial-v2";
+import { CallToAction } from "@/components/ui/cta-3";
+import { MinimalFooter } from "@/components/ui/minimal-footer";
+import GalleryHoverCarousel from "@/components/ui/gallery-hover-carousel";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import heroImage from "../Hero.jpg";
+import cacImage from "@/assets/cac-registration.jpg";
+import planningImage from "@/assets/business-planning-new.png";
+import brandingImage from "@/assets/branding.jpg";
+import socialMediaImage from "@/assets/social-media.jpg";
+import adsImage from "@/assets/ads-management.jpg";
+import contentImage from "@/assets/content-creation.jpg";
+import consultationImage from "@/assets/consultation-meeting.jpg";
 
 const Index = () => {
   const [isToolkitModalOpen, setIsToolkitModalOpen] = useState(false);
@@ -18,27 +29,30 @@ const Index = () => {
       <SMEToolkitModal open={isToolkitModalOpen} onOpenChange={setIsToolkitModalOpen} />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden min-h-[600px] flex items-center">
+      <section className="relative overflow-hidden min-h-screen flex items-end pb-20">
         <div className="absolute inset-0">
           <img 
             src={heroImage} 
-            alt="Professional African entrepreneur" 
+            alt="Hero background" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/60"></div>
+          {/* Dark gradient overlay: transparent at the top, full dark at the bottom */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/90"></div>
         </div>
-        <div className="relative max-w-7xl mx-auto text-center py-32 px-4 sm:px-6 lg:px-8 z-10">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in text-white drop-shadow-lg">
-            Turn Your Small Business Into a Revenue Machine.
-          </h1>
-          <p className="text-lg sm:text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-white/90 drop-shadow-md">
-            BizExpress gives small business owners the tools, strategies, and visibility they need to stand out, attract customers, and scale with confidence.
-          </p>
-          <Link to="/contact">
-            <Button size="lg" className="text-lg px-8 sm:px-10 py-6 sm:py-7 h-auto font-semibold shadow-xl hover:shadow-2xl transition-all">
-              Let's Grow Your Business
-            </Button>
-          </Link>
+        <div className="relative mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%] px-6 sm:px-8 lg:px-12 z-10">
+          <div className="max-w-2xl text-left">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-6 leading-[1.1] animate-fade-in text-white drop-shadow-2xl">
+              Turn Your Small Business Into a Revenue Machine.
+            </h1>
+            <p className="text-base sm:text-lg lg:text-xl mb-10 max-w-xl leading-relaxed text-white/90 drop-shadow-lg font-medium">
+              BizExpress gives small business owners the tools, strategies, and visibility they need to stand out, attract customers, and scale with confidence.
+            </p>
+            <Link to="/contact">
+              <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl hover:scale-105 transition-all font-bold px-8 py-6 h-auto text-base">
+                Let's Grow Your Business
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -58,175 +72,152 @@ const Index = () => {
 
 
       {/* Why Choose BizExpress Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
+      <section className="py-24 bg-[#f1f1f1]">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%] px-6 sm:px-8 lg:px-12">
+          {/* Standardized Header */}
+          <div className="text-left mb-16 space-y-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground">
               Why Choose BizExpress?
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
               Small businesses don't just need to exist — they need to be visible, profitable, and credible. That's where we come in.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="border-2 border-primary/20 hover:border-primary transition-all hover:shadow-lg">
-              <CardContent className="pt-6">
-                <TrendingUp className="h-12 w-12 text-primary mb-4" />
-                <h3 className="font-bold text-xl mb-3 text-foreground">Social Media Management</h3>
-                <p className="text-muted-foreground">Build a strong online presence and engage your audience.</p>
-              </CardContent>
-            </Card>
-            <Card className="border-2 border-primary/20 hover:border-primary transition-all hover:shadow-lg">
-              <CardContent className="pt-6">
-                <FileText className="h-12 w-12 text-primary mb-4" />
-                <h3 className="font-bold text-xl mb-3 text-foreground">Business Planning</h3>
-                <p className="text-muted-foreground">Actionable roadmaps for real growth, not theory.</p>
-              </CardContent>
-            </Card>
-            <Card className="border-2 border-primary/20 hover:border-primary transition-all hover:shadow-lg">
-              <CardContent className="pt-6">
-                <TrendingUp className="h-12 w-12 text-primary mb-4" />
-                <h3 className="font-bold text-xl mb-3 text-foreground">Ads Management</h3>
-                <p className="text-muted-foreground">Drive traffic, capture leads, and convert sales.</p>
-              </CardContent>
-            </Card>
-            <Card className="border-2 border-primary/20 hover:border-primary transition-all hover:shadow-lg">
-              <CardContent className="pt-6">
-                <Package className="h-12 w-12 text-primary mb-4" />
-                <h3 className="font-bold text-xl mb-3 text-foreground">Branding & Content Creation</h3>
-                <p className="text-muted-foreground">Make your business unforgettable.</p>
-              </CardContent>
-            </Card>
-            <Card className="border-2 border-primary/20 hover:border-primary transition-all hover:shadow-lg">
-              <CardContent className="pt-6">
-                <CheckCircle className="h-12 w-12 text-primary mb-4" />
-                <h3 className="font-bold text-xl mb-3 text-foreground">CAC Registration</h3>
-                <p className="text-muted-foreground">Get legally recognized and positioned for opportunities.</p>
-              </CardContent>
-            </Card>
-            <Card className="border-2 border-primary/20 hover:border-primary transition-all hover:shadow-lg">
-              <CardContent className="pt-6">
-                <FileText className="h-12 w-12 text-primary mb-4" />
-                <h3 className="font-bold text-xl mb-3 text-foreground">Business Consultation</h3>
-                <p className="text-muted-foreground">Expert guidance to help you make smarter, faster business decisions.</p>
-              </CardContent>
-            </Card>
+          {/* Main Content Card */}
+          <div className="bg-background rounded-[10px] overflow-hidden border border-border/50 transition-all duration-500">
+            <div className="flex flex-col lg:flex-row min-h-[500px]">
+              {/* Left Column: Accordion */}
+              <div className="flex-1 p-8 sm:p-12 lg:p-14 flex flex-col justify-center bg-background">
+                <Accordion type="single" defaultValue="item-0" className="w-full space-y-3">
+                  {[
+                    {
+                      title: "Social Media Management",
+                      description: "Build a strong online presence and engage your audience with data-driven social strategies that convert followers into customers."
+                    },
+                    {
+                      title: "Business Planning",
+                      description: "Actionable roadmaps for real growth, not theory. We help you map out your path to profitability and scale."
+                    },
+                    {
+                      title: "Ads Management",
+                      description: "Drive targeted traffic, capture high-quality leads, and convert sales through optimized ad campaigns across multiple platforms."
+                    },
+                    {
+                      title: "Branding & Content",
+                      description: "Make your business unforgettable. We create compelling visual identities and content that resonates with your ideal audience."
+                    },
+                    {
+                      title: "CAC Registration",
+                      description: "Get legally recognized and positioned for opportunities. We handle the paperwork so you can focus on building your empire."
+                    },
+                    {
+                      title: "Business Consultation",
+                      description: "Expert guidance to help you make smarter, faster business decisions. Gain the clarity you need to move your business forward."
+                    }
+                  ].map((item, idx) => (
+                    <AccordionItem key={idx} value={`item-${idx}`} className="border-none bg-[#f5f5f5] rounded-xl px-6 transition-all">
+                      <AccordionTrigger className="hover:no-underline py-4">
+                        <span className="text-lg font-bold text-left">{item.title}</span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-4">
+                        {item.description}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+
+              {/* Right Column: Image */}
+              <div className="flex-1 relative min-h-[350px] lg:min-h-full overflow-hidden">
+                <img 
+                  src={heroImage} 
+                  alt="BizExpress Growth" 
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+            </div>
           </div>
-          <div className="text-center mt-12">
+
+          <div className="text-center mt-16">
             <Button 
               size="lg" 
-              variant="outline" 
-              className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 h-auto font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all"
+              className="text-lg px-10 py-7 h-auto font-bold rounded-full shadow-xl hover:shadow-primary/20 transition-all group"
               onClick={() => setIsToolkitModalOpen(true)}
             >
               Download Our Free SME Toolkit
+              <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
       </section>
 
+      {/* Partners Section */}
+      <section className="py-16 bg-accent/30 hidden">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%] px-6 sm:px-8 lg:px-12">
+          <div className="text-left mb-10">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-3 text-foreground">Businesses That Partner With Us</h2>
+            <p className="text-lg text-muted-foreground">We grow together, not just serve.</p>
+          </div>
+          <PartnerCarousel />
+        </div>
+      </section>
 
+      {/* Services Section */}
+      <GalleryHoverCarousel />
+
+      {/* How We Help Section */}
+      <section id="how-we-help" className="py-20 bg-gradient-to-br from-primary/5 to-primary/10">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[85%] px-6 sm:px-8 lg:px-12">
+          <div className="text-left mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4 text-foreground">How We Help You Win</h2>
+            <p className="text-xl text-primary font-semibold mb-6">Visibility. Growth. Structure.</p>
+            <p className="text-lg text-muted-foreground max-w-3xl">
+              BizExpress is a one-stop partner that takes you from idea → brand → growth.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
+              <CardContent className="pt-6">
+                <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
+                <p className="text-foreground font-medium">Build trust with proper legal registration</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
+              <CardContent className="pt-6">
+                <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
+                <p className="text-foreground font-medium">Get discovered through consistent branding and marketing</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
+              <CardContent className="pt-6">
+                <Package className="h-12 w-12 text-primary mx-auto mb-4" />
+                <p className="text-foreground font-medium">Attract the right customers with content and ads that convert</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
+              <CardContent className="pt-6">
+                <FileText className="h-12 w-12 text-primary mx-auto mb-4" />
+                <p className="text-foreground font-medium">Make smarter decisions with expert consultations</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all md:col-span-2 lg:col-span-2">
+              <CardContent className="pt-6">
+                <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
+                <p className="text-foreground font-medium">Scale faster with business plans tailored to your market and industry</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
 
       {/* Success Stories Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 text-foreground">Success Stories</h2>
-          <p className="text-center text-muted-foreground mb-12 text-lg">Real results from real businesses</p>
-          <TestimonialCarousel />
-        </div>
-      </section>
+      <TestimonialsSection />
 
-      {/* Final CTA Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAtNGgydjJoLTJ2LTJ6bTAgMGgydi0yaC0ydjJ6bS0yLTJoMnYyaC0ydi0yem0wIDBoLTJ2Mmgydi0yem0tMiAyaDJ2MmgtMnYtMnptMCAwdi0yaC0ydjJoMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Ready To Turn Your Business Into A Multi-Million Empire?
-          </h2>
-          <p className="text-xl mb-10 opacity-95 leading-relaxed">
-            Don't just start a business. Plan first. Start smart. Start with BizExpress.
-          </p>
-          <Link to="/contact">
-            <Button size="lg" variant="secondary" className="text-base sm:text-lg px-8 sm:px-12 py-6 sm:py-7 h-auto font-semibold shadow-2xl hover:shadow-3xl transition-all hover:scale-105">
-              Book For Consultation
-            </Button>
-          </Link>
-        </div>
-      </section>
+      {/* CTA Section */}
+      <CallToAction />
 
       {/* Footer */}
-      <footer className="bg-accent py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h3 className="font-bold text-lg mb-4 text-foreground">Quick Links</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>
-                  <a 
-                    href="#services" 
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const servicesSection = document.getElementById('services');
-                      if (servicesSection) {
-                        servicesSection.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}
-                    className="hover:text-primary transition-colors"
-                  >
-                    Services
-                  </a>
-                </li>
-                <li><a href="https://www.instagram.com/p/DJ4CDCDIn49/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">About</a></li>
-                <li><a href="/faqs" className="hover:text-primary transition-colors">FAQs</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4 text-foreground">Contact Info</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>Phone: <a href="tel:08050663704" className="hover:text-primary transition-colors">08050663704</a></li>
-                <li>Email: <a href="mailto:bizxpressng@gmail.com" className="hover:text-primary transition-colors">bizxpressng@gmail.com</a></li>
-              </ul>
-              <div className="mt-4">
-                <h4 className="font-semibold text-foreground mb-3">Follow Us</h4>
-                <div className="flex gap-4">
-                  <a 
-                    href="https://www.instagram.com/bizexpress.ng/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                    aria-label="Instagram"
-                  >
-                    <Instagram size={24} />
-                  </a>
-                  <a 
-                    href="https://web.facebook.com/people/BizExpress-NG/61573904937574/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                    aria-label="Facebook"
-                  >
-                    <Facebook size={24} />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4 text-foreground">Free Resources</h3>
-              <p className="text-muted-foreground mb-3">Download our Free SME Toolkit to kickstart your journey.</p>
-              <Button 
-                variant="outline" 
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto"
-                onClick={() => setIsToolkitModalOpen(true)}
-              >
-                Download Free Toolkit
-              </Button>
-            </div>
-          </div>
-          <div className="border-t border-border pt-8 text-center text-muted-foreground">
-            <p>&copy; 2025 BizExpress. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <MinimalFooter />
     </div>
   );
 };
