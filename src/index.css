@@ -107,11 +107,12 @@ All colors MUST be HSL.
 @layer base {
   * {
     @apply border-border;
+    font-weight: 400; /* Default to Regular (400) */
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "kern";
+    @apply bg-background text-foreground font-sans antialiased;
+    font-weight: 400;
   }
   
   h1 {

@@ -176,7 +176,7 @@ const Index = () => {
               BizExpress is a one-stop partner that takes you from idea → brand → growth.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
             <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
               <CardContent className="pt-6">
                 <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
@@ -201,10 +201,10 @@ const Index = () => {
                 <p className="text-foreground font-medium">Make smarter decisions with expert consultations</p>
               </CardContent>
             </Card>
-            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all md:col-span-2 lg:col-span-2">
+            <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
               <CardContent className="pt-6">
                 <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
-                <p className="text-foreground font-medium">Scale faster with business plans tailored to your market and industry</p>
+                <p className="text-foreground font-medium text-sm">Scale faster with tailored business plans</p>
               </CardContent>
             </Card>
           </div>

@@ -42,10 +42,10 @@ const FeedbackModal = () => {
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-end sm:justify-center p-4">
           <div
-            className="fixed inset-0 bg-black/50 animate-fade-in"
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm animate-fade-in"
             onClick={() => setIsOpen(false)}
           />
-          <div className="relative bg-background border border-border rounded-2xl shadow-2xl w-full max-w-md animate-scale-in overflow-hidden">
+          <div className="relative bg-background/95 backdrop-blur-md border border-border rounded-2xl shadow-2xl w-full max-w-lg animate-scale-in overflow-hidden">
             {/* Header accent */}
             <div className="h-1.5 bg-gradient-to-r from-primary to-primary/50" />
 

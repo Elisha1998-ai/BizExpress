@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "../Logo 2.png";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase";
@@ -12,7 +12,12 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [user, setUser] = useState<any>(null);
   const location = useLocation();
-  const isDarkTextRoute = location.pathname === "/blog" || location.pathname === "/faqs" || location.pathname.startsWith("/blog/");
+  const isDarkTextRoute = 
+    location.pathname === "/blog" || 
+    location.pathname === "/faqs" || 
+    location.pathname === "/portfolio" || 
+    location.pathname === "/contact" || 
+    location.pathname.startsWith("/blog/");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,11 +79,8 @@ export const Header = () => {
       <nav className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%]">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <img src={logo} alt="BizExpress Logo" className="h-10 w-10 rounded-full" />
-            <span className={`text-2xl font-bold transition-colors ${
-              isScrolled ? "text-primary" : isDarkTextRoute ? "text-black" : "text-white drop-shadow-md"
-            }`}>BizExpress</span>
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="BizExpress Logo" className="h-14 w-auto object-contain" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -133,7 +135,7 @@ export const Header = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border">
+          <div className="absolute top-16 left-0 w-full bg-white border-b border-border py-4 px-6 md:hidden shadow-xl animate-in fade-in slide-in-from-top-5 duration-300">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <a

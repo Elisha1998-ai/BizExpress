@@ -154,7 +154,7 @@ export const TestimonialsSection = () => {
   return (
     <section 
       aria-labelledby="testimonials-heading"
-      className="bg-transparent py-24 relative overflow-hidden"
+      className="bg-[#f1f1f1] py-24 relative overflow-hidden"
     >
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
@@ -183,13 +183,32 @@ export const TestimonialsSection = () => {
         </div>
 
         <div 
-          className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] max-h-[740px] overflow-hidden"
+          className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 mt-10"
           role="region"
-          aria-label="Scrolling Testimonials"
+          aria-label="Testimonials Grid"
         >
-          <TestimonialsColumn testimonials={firstColumn} duration={35} />
-          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={45} />
-          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={40} />
+          {testimonials.map(({ text, image, name, role }, i) => (
+            <div 
+              key={i}
+              className="break-inside-avoid p-10 rounded-3xl border border-neutral-200 dark:border-neutral-800 w-full bg-white dark:bg-neutral-900 transition-all duration-300 cursor-default select-none mb-6" 
+            >
+              <blockquote className="m-0 p-0">
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed font-normal m-0 transition-colors duration-300">
+                  {text}
+                </p>
+                <footer className="flex items-center gap-3 mt-6">
+                  <div className="flex flex-col">
+                    <cite className="font-semibold not-italic tracking-tight leading-5 text-neutral-900 dark:text-white transition-colors duration-300">
+                      {name}
+                    </cite>
+                    <span className="text-sm leading-5 tracking-tight text-neutral-500 dark:text-neutral-500 mt-0.5 transition-colors duration-300">
+                      {role}
+                    </span>
+                  </div>
+                </footer>
+              </blockquote>
+            </div>
+          ))}
         </div>
       </motion.div>
     </section>

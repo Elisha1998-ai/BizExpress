@@ -21,6 +21,8 @@ import {
   Carousel, 
   CarouselContent, 
   CarouselItem, 
+  CarouselPrevious,
+  CarouselNext
 } from "@/components/ui/carousel";
 import team1 from "@/assets/ads-management.jpg";
 import team2 from "@/assets/branding.jpg";
@@ -139,7 +141,7 @@ const AboutPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl md:text-2xl text-white/80 leading-relaxed font-light"
+              className="text-xl md:text-2xl text-white/80 leading-relaxed font-normal"
             >
               BizExpress was founded with a single, clear purpose: to bridge the gap between brilliant ideas and thriving, scalable business empires.
             </motion.p>
@@ -200,7 +202,7 @@ const AboutPage = () => {
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900">
               The Minds Behind BizExpress
             </h2>
-            <p className="text-xl text-muted-foreground font-light max-w-2xl leading-relaxed">
+            <p className="text-xl text-muted-foreground font-normal max-w-2xl leading-relaxed">
               Legal experts, strategic advisors, and creative thinkers dedicated to your success.
             </p>
           </div>
@@ -213,7 +215,7 @@ const AboutPage = () => {
               loop: false,
               dragFree: true
             }} 
-            className="w-full"
+            className="w-full relative"
           >
             <CarouselContent className="-ml-4">
               {teamMembers.map((member, i) => (
@@ -235,6 +237,13 @@ const AboutPage = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
+            {/* Carousel Carets - Visible on all screens, positioned for mobile usability */}
+            <div className="flex items-center justify-end gap-2 mt-8 md:hidden">
+              <CarouselPrevious className="static translate-y-0 h-10 w-10 border-primary/20 text-primary hover:bg-primary hover:text-white transition-all" />
+              <CarouselNext className="static translate-y-0 h-10 w-10 border-primary/20 text-primary hover:bg-primary hover:text-white transition-all" />
+            </div>
+            <CarouselPrevious className="hidden md:flex -left-12" />
+            <CarouselNext className="hidden md:flex -right-12" />
           </Carousel>
         </div>
       </section>
@@ -286,13 +295,14 @@ const AboutPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
                 onClick={() => window.location.href="/contact"}
-                className="bg-white text-primary hover:bg-gray-100 px-10 py-7 h-auto text-lg font-bold"
+                className="bg-white text-primary hover:bg-gray-100 px-6 py-2.5 h-auto text-sm font-semibold rounded-md shadow-sm transition-all hover:scale-105 active:scale-95"
             >
               Get Started Today
             </Button>
             <Button 
                 variant="outline" 
-                className="border-white text-white hover:bg-white/10 px-10 py-7 h-auto text-lg font-bold"
+                onClick={() => window.location.href="/about"}
+                className="bg-transparent border-white text-white hover:bg-white/10 px-6 py-2.5 h-auto text-sm font-semibold rounded-md transition-all hover:scale-105 active:scale-95"
             >
               Learn More
             </Button>

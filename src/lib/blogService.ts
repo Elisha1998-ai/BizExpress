@@ -25,7 +25,7 @@ export interface BlogPost {
   createdAt: Timestamp;
 }
 
-const BLOG_COLLECTION = "posts";
+const BLOG_COLLECTION = "blogPosts";
 
 export const blogService = {
   // Get all posts

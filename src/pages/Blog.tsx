@@ -11,6 +11,8 @@ import {
   ChevronDown,
   ArrowRight
 } from "lucide-react";
+import { collection, query, orderBy, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 import team1 from "@/assets/ads-management.jpg";
 import team2 from "@/assets/branding.jpg";
@@ -105,6 +107,45 @@ const DUMMY_POSTS = [
 
 const BlogPage = () => {
   const navigate = useNavigate();
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const blogRef = collection(db, "blogPosts");
+        const q = query(blogRef, orderBy("createdAt", sortOrder === "newest" ? "desc" : "asc"));
+        const querySnapshot = await getDocs(q);
+        const firebasePosts = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+          date: doc.data().createdAt?.toDate ? doc.data().createdAt.toDate().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : doc.data().date
+        }));
+        
+        const combined = [...firebasePosts, ...DUMMY_POSTS];
+        
+        combined.sort((a, b) => {
+          const dateA = new Date(a.date).getTime();
+          const dateB = new Date(b.date).getTime();
+          return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+        });
+
+        setPosts(combined);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+        setPosts(DUMMY_POSTS);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, [sortOrder]);
+
+  const toggleSort = () => {
+    setSortOrder(prev => prev === "newest" ? "oldest" : "newest");
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -122,10 +163,10 @@ const BlogPage = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="max-w-3xl">
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
-                New at BizExpress Blog
+                Insights for Business Growth
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed font-light">
-                A collection of the latest thinking from our people, about building, and what we are doing to change businesses for the better.
+              <p className="text-xl text-gray-600 leading-relaxed font-normal">
+                Expert perspectives on building, scaling, and transforming businesses in today's landscape.
               </p>
             </div>
             
@@ -153,9 +194,12 @@ const BlogPage = () => {
               Journal Articles
             </span>
           </div>
-          <div className="flex items-center space-x-4 text-xs font-medium text-gray-500 uppercase tracking-widest cursor-pointer hover:text-gray-900 transition-colors">
-            <span>Sort By: <span className="text-gray-900">Newest</span></span>
-            <ChevronDown size={14} />
+          <div 
+            className="flex items-center space-x-4 text-xs font-medium text-gray-500 uppercase tracking-widest cursor-pointer hover:text-gray-900 transition-colors"
+            onClick={toggleSort}
+          >
+            <span>Sort By: <span className="text-gray-900 capitalize">{sortOrder}</span></span>
+            <ChevronDown size={14} className={sortOrder === "oldest" ? "rotate-180 transition-transform" : "transition-transform"} />
           </div>
         </div>
       </div>
@@ -164,7 +208,7 @@ const BlogPage = () => {
       <main className="py-16">
         <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12">
-            {DUMMY_POSTS.map((post, idx) => (
+            {posts.map((post, idx) => (
               <motion.article 
                 key={post.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -172,6 +216,7 @@ const BlogPage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className={`${post.isLarge ? 'md:col-span-2' : 'col-span-1'} group cursor-pointer`}
+                onClick={() => navigate(`/blog/${post.id}`)}
               >
                 <div className="flex flex-col h-full">
                   {/* Empty Image Frame */}
@@ -193,7 +238,7 @@ const BlogPage = () => {
                   </h2>
                   
                   {/* Excerpt */}
-                  <p className="text-sm text-gray-500 leading-relaxed mb-6 font-light line-clamp-3">
+                  <p className="text-sm text-gray-500 leading-relaxed mb-6 font-normal line-clamp-3">
                     {post.excerpt}
                   </p>
                   
@@ -203,11 +248,9 @@ const BlogPage = () => {
                       <span>{post.date}</span>
                       <span className="mt-1">By {post.author}</span>
                     </div>
-                    {post.isLarge && (
-                      <span className="text-xs font-bold uppercase tracking-widest text-gray-900 flex items-center group-hover:gap-2 transition-all">
-                        Read More <ArrowRight size={14} className="ml-1" />
-                      </span>
-                    )}
+                    <span className="text-xs font-bold uppercase tracking-widest text-gray-900 flex items-center group-hover:gap-2 transition-all">
+                      Read More <ArrowRight size={14} className="ml-1" />
+                    </span>
                   </div>
                 </div>
               </motion.article>

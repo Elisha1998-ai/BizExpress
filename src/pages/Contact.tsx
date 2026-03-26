@@ -20,16 +20,8 @@ const Contact = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-6xl mx-auto">
-          <Button
-            variant="ghost"
-            onClick={() => navigate('/')}
-            className="mb-6 hover:bg-primary/10"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Home
-          </Button>
+      <main className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 sm:px-8 lg:px-12 py-16">
+        <div className="max-w-6xl mx-auto pt-16">
           <h1 className="text-4xl sm:text-5xl font-bold text-center mb-6 text-foreground">
             Contact Us
           </h1>
@@ -181,6 +173,8 @@ const Contact = () => {
           </div>
         </div>
       </main>
+
+      <MinimalFooter />
     </div>
   );
 };
