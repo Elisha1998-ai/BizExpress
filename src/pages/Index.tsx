@@ -176,7 +176,7 @@ const Index = () => {
               BizExpress is a one-stop partner that takes you from idea → brand → growth.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
             <Card className="text-center border-2 border-primary/20 hover:border-primary transition-all">
               <CardContent className="pt-6">
                 <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />

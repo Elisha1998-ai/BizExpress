@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel"; 
 import type { UseEmblaCarouselType } from "embla-carousel-react"; 
 import { Link } from "react-router-dom";
-import cacImage from "@/assets/cac-registration.jpg";
+import cacImage from "@/assets/cac logo.jpg";
 import planningImage from "@/assets/business-planning-new.png";
 import brandingImage from "@/assets/branding.jpg";
 import socialMediaImage from "@/assets/social-media.jpg";

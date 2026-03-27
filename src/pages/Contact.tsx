@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { MinimalFooter } from "@/components/ui/minimal-footer";
 
 const Contact = () => {
   const navigate = useNavigate();

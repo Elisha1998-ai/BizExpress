@@ -183,14 +183,14 @@ export const TestimonialsSection = () => {
         </div>
 
         <div 
-          className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 mt-10"
+          className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4 mt-10"
           role="region"
           aria-label="Testimonials Grid"
         >
           {testimonials.map(({ text, image, name, role }, i) => (
             <div 
               key={i}
-              className="break-inside-avoid p-10 rounded-3xl border border-neutral-200 dark:border-neutral-800 w-full bg-white dark:bg-neutral-900 transition-all duration-300 cursor-default select-none mb-6" 
+              className="break-inside-avoid p-10 rounded-3xl border border-neutral-200 dark:border-neutral-800 w-full bg-white dark:bg-neutral-900 transition-all duration-300 cursor-default select-none mb-4" 
             >
               <blockquote className="m-0 p-0">
                 <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed font-normal m-0 transition-colors duration-300">

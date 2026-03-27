@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import logo from "../Logo 2.png";
+import logo from "../Logo.png";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase";
@@ -80,7 +80,7 @@ export const Header = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="BizExpress Logo" className="h-14 w-auto object-contain" />
+            <img src={logo} alt="BizExpress Logo" className="h-10 w-auto object-contain" />
           </Link>
 
           {/* Desktop Navigation */}

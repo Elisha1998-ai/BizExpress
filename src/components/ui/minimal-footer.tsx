@@ -2,7 +2,7 @@ import {
 	Facebook, 
 	Instagram, 
 } from 'lucide-react'; 
-import logo from "../../Logo 2.png";
+import logo from "../../Logo.png";
 import { Link } from "react-router-dom";
 
 export function MinimalFooter() { 
@@ -73,7 +73,7 @@ export function MinimalFooter() {
 				<div className="grid grid-cols-6 gap-6 py-8"> 
 					<div className="col-span-6 flex flex-col gap-5 md:col-span-4"> 
 						<Link to="/" className="w-max"> 
-              <img src={logo} alt="BizExpress Logo" className="h-14 w-auto object-contain opacity-80" />
+              <img src={logo} alt="BizExpress Logo" className="h-10 w-auto object-contain opacity-80" />
 						</Link> 
 						<p className="text-muted-foreground max-w-sm font-sans text-sm text-balance"> 
 							BizExpress gives small business owners the tools, strategies, and visibility they need to stand out, attract customers, and scale with confidence.
