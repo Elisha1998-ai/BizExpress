@@ -24,11 +24,11 @@ import {
   CarouselPrevious,
   CarouselNext
 } from "@/components/ui/carousel";
-import team1 from "@/assets/ads-management.jpg";
-import team2 from "@/assets/branding.jpg";
-import team3 from "@/assets/social-media.jpg";
-import team4 from "@/assets/content-creation.jpg";
-import team5 from "@/assets/consultation-meeting.jpg";
+import team1 from "@/assets/Testimony.jpeg";
+import team2 from "@/assets/Tiana.jpeg";
+import team3 from "@/assets/Moses.jpeg";
+import team4 from "@/assets/Fred.jpeg";
+import team5 from "@/assets/Ope.png";
 import img12 from "../img12.jpg";
 import img13 from "../img13.jpg";
 const heroImg = img12;
@@ -36,46 +36,34 @@ const heroImg = img12;
 
 const teamMembers = [
   {
-    name: "Christy Omolayo",
-    role: "Founder & Lead Strategist",
-    image: team1,
-    bio: "Visionary leader with 10+ years experience in business development and scaling SMEs across Africa."
-  },
-  {
-    name: "Daniel Adeyemi",
-    role: "Legal & CAC Specialist",
-    image: team2,
-    bio: "Expert in Nigerian corporate law, ensuring seamless registration and compliance for hundreds of businesses."
-  },
-  {
-    name: "Sarah Johnson",
-    role: "Creative Director",
-    image: team3,
-    bio: "Branding maestro focused on creating unforgettable visual identities that resonate with global audiences."
-  },
-  {
-    name: "Michael Chen",
-    role: "Tech Lead",
+    name: "Adedeji Adeyinka Wilfred",
+    role: "Team Lead Graphic Designer",
     image: team4,
-    bio: "Full-stack developer focused on building high-performance websites and automated business solutions."
+    bio: "I'm a dedicated Graphic Designer with four years of experience focused on creating designs, including logos, detailed brand packages, and strategic marketing assets that are not just aesthetically pleasing but aligned with brand objectives. My approach centers on clarity and effectiveness, coupled with a commitment to continuous learning and integrating the latest industry trends into every project."
   },
   {
-    name: "Aisha Bello",
-    role: "Content Strategist",
+    name: "Adepetun Opeyemi",
+    role: "Marketing Strategist",
     image: team5,
-    bio: "Storyteller extraordinaire helping brands connect with their target audience through compelling content."
+    bio: "Adepetun Opeyemi is a growth-focused Marketing Strategist with more than six years of experience transforming business challenges into profitable opportunities. He has collaborated with a wide range of companies, including global brands to build marketing frameworks that strengthen brand identity, increase demand, and drive sustainable revenue growth. His approach combines sharp market insight, consumer psychology, and data-backed strategy, helping businesses stand out, scale up, and stay ahead."
   },
   {
-    name: "David Adeleke",
-    role: "Financial Strategy",
-    image: team1,
-    bio: "Expert in financial modeling, funding acquisition, and corporate structuring."
+    name: "Moses Adeleke",
+    role: "Brand Strategist and Designer",
+    image: team3,
+    bio: "Moses Adeleke is a brand strategist and designer with over half a decade of experience and a faith-driven entrepreneur. He is passionate about helping businesses and organizations define and communicate their unique value proposition through cohesive and impactful branding. He takes a holistic, customer-centric view of branding and works with clients to understand their target audience, business goals, and brand values."
   },
   {
-    name: "Chioma Okoli",
-    role: "Operations Manager",
+    name: "Christianah Olaniyi",
+    role: "Project/Product Manager",
     image: team2,
-    bio: "Master of process optimization, ensuring efficient service delivery for all clients."
+    bio: "Christianah Olaniyi is a strategic and detail-driven Project/Product Manager who combines analytical thinking with a strong sense of user empathy. She's skilled at turning complex ideas into actionable roadmaps, aligning cross-functional teams, and driving products from concept to launch with clear business impact. Known for her structured approach and curiosity, she thrives in fast-paced environments, balancing innovation with execution to deliver results that matter."
+  },
+  {
+    name: "Testimony Adeniji",
+    role: "Social Media Marketing Lead",
+    image: team1,
+    bio: "A creative and data-driven social media strategist with over 3 years of experience in digital marketing, content creation, and brand growth. Passionate about helping brands build authentic online communities and drive measurable engagement through thoughtful storytelling and strategic campaigns."
   }
 ];
 
@@ -225,7 +213,7 @@ const AboutPage = () => {
                       <img 
                         src={member.image} 
                         alt={member.name} 
-                        className="w-full h-full object-cover" 
+                        className={`w-full h-full object-cover ${i === 2 ? 'object-top' : ''}`} 
                       />
                     </div>
                     <div className="text-left space-y-2">
@@ -288,7 +276,7 @@ const AboutPage = () => {
 
       {/* CTA Section */}
       <section className="py-24 bg-primary">
-        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 text-center space-y-8">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white max-w-3xl mx-auto leading-tight">
             Ready to give your business the <br /> BizExpress advantage?
           </h2>

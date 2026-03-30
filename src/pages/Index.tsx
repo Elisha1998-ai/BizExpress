@@ -168,7 +168,7 @@ const Index = () => {
 
       {/* How We Help Section */}
       <section id="how-we-help" className="py-20 bg-gradient-to-br from-primary/5 to-primary/10">
-        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 sm:px-8 lg:px-12">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-4 sm:px-6 lg:px-8">
           <div className="text-left mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4 text-foreground">How We Help You Win</h2>
             <p className="text-xl text-primary font-semibold mb-6">Visibility. Growth. Structure.</p>

@@ -215,7 +215,7 @@ const Portfolio = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
         <div className="absolute top-20 right-20 w-80 h-80 bg-primary/5 rounded-full blur-[100px]" />
         <div className="absolute bottom-0 left-20 w-60 h-60 bg-accent/10 rounded-full blur-[80px]" />
-        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 sm:px-8 lg:px-12 relative">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-4 sm:px-6 lg:px-8 relative">
           <Link
             to="/"
             className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors mb-10 text-sm font-medium"
@@ -240,7 +240,7 @@ const Portfolio = () => {
 
       {/* Projects */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 sm:px-8 lg:px-12 space-y-32">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-4 sm:px-6 lg:px-8 space-y-32">
           {projects.map((project) => (
             <ProjectCard key={project.name} project={project} />
           ))}
@@ -251,7 +251,7 @@ const Portfolio = () => {
       <section className="py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsl(var(--primary-foreground)/0.08),transparent_60%)]" />
-        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 sm:px-8 lg:px-12 text-center relative">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-4 sm:px-6 lg:px-8 text-center relative">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl sm:text-5xl font-bold mb-6 tracking-tight text-primary-foreground">
               Want Results Like These?
@@ -263,7 +263,7 @@ const Portfolio = () => {
               <Button
                 size="lg"
                 variant="secondary"
-                className="text-lg px-12 py-6 h-auto font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
+                className="text-base sm:text-lg px-8 py-5 sm:px-12 sm:py-6 h-auto font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
               >
                 Book a Consultation
               </Button>

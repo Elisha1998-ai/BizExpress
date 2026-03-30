@@ -153,7 +153,7 @@ const BlogPage = () => {
       
       {/* Top Banner / Breadcrumbs */}
       <div className="pt-24 pb-8 border-b border-gray-100">
-        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-4 sm:px-6 lg:px-8">
           <nav className="flex text-xs space-x-2 text-gray-500 mb-6 uppercase tracking-widest font-medium">
             <Link to="/" className="hover:text-primary transition-colors">Home</Link>
             <span>/</span>
@@ -206,7 +206,7 @@ const BlogPage = () => {
 
       {/* Blog Grid */}
       <main className="py-16">
-        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12">
             {posts.map((post, idx) => (
               <motion.article 
@@ -268,7 +268,7 @@ const BlogPage = () => {
 
       {/* Newsletter Section */}
       <section className="bg-gray-50 py-20 border-t border-gray-100">
-        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6">
+        <div className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
             <div className="max-w-xl text-center lg:text-left">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Never miss a story</h3>

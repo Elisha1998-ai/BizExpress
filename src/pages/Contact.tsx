@@ -4,12 +4,31 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, ArrowLeft } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowLeft, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { MinimalFooter } from "@/components/ui/minimal-footer";
+import { useState } from "react";
 
 const Contact = () => {
   const navigate = useNavigate();
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+
+  const serviceOptions = [
+    { value: "cac", label: "CAC Registration" },
+    { value: "planning", label: "Business Planning" },
+    { value: "branding", label: "Branding & Strategy" },
+    { value: "content", label: "Content Creation" },
+    { value: "social", label: "Social Media Management" },
+    { value: "ads", label: "Ads Management" },
+    { value: "consultation", label: "Business Consultation" },
+    { value: "tools", label: "SME Tools & Resources" },
+  ];
+
+  const toggleService = (value: string) => {
+    setSelectedServices((prev) =>
+      prev.includes(value) ? prev.filter((s) => s !== value) : [...prev, value]
+    );
+  };
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +40,7 @@ const Contact = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-6 sm:px-8 lg:px-12 py-16">
+      <main className="mx-auto w-[90%] sm:w-[80%] md:w-[85%] lg:w-[80%] px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto pt-16">
           <h1 className="text-4xl sm:text-5xl font-bold text-center mb-6 text-foreground">
             Contact Us
@@ -69,18 +88,28 @@ const Contact = () => {
                   
                   <div>
                     <Label htmlFor="service">Service Interested In</Label>
-                    <select 
-                      id="service" 
-                      className="w-full mt-2 h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
-                    >
-                      <option value="">Select a service</option>
-                      <option value="cac">CAC Registration</option>
-                      <option value="planning">Business Planning</option>
-                      <option value="branding">Branding & Strategy</option>
-                      <option value="content">Content Creation</option>
-                      <option value="social">Social Media Management</option>
-                      <option value="tools">SME Tools & Resources</option>
-                    </select>
+                    <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {serviceOptions.map((option) => (
+                        <button
+                          key={option.value}
+                          type="button"
+                          onClick={() => toggleService(option.value)}
+                          className={`flex items-center justify-between px-4 py-3 rounded-lg border-2 transition-all duration-200 text-sm font-medium ${
+                            selectedServices.includes(option.value)
+                              ? "border-primary bg-primary/5 text-primary shadow-sm"
+                              : "border-input bg-background text-muted-foreground hover:border-primary/50 hover:bg-accent/50"
+                          }`}
+                        >
+                          <span>{option.label}</span>
+                          {selectedServices.includes(option.value) && (
+                            <Check className="h-4 w-4 text-primary flex-shrink-0 ml-2" />
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                    {selectedServices.length > 0 && (
+                      <input type="hidden" name="services" value={selectedServices.join(", ")} />
+                    )}
                   </div>
                   
                   <div>
@@ -155,7 +184,7 @@ const Contact = () => {
                     <div>
                       <h3 className="font-bold text-lg mb-1 text-foreground">Visit Us</h3>
                       <p className="text-muted-foreground">
-                        No. 11th Frank Alamu Street, Ashi Bodija, Ibadan
+                        No. 11 Frank Alamu Street, Ashi Bodija, Ibadan
                       </p>
                     </div>
                   </div>

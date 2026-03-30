@@ -7,7 +7,7 @@ import { SMEToolkitModal } from "@/components/SMEToolkitModal";
 import { useState } from "react";
 import { MinimalFooter } from "@/components/ui/minimal-footer";
 import { motion } from "framer-motion";
-import cacImage from "@/assets/cac-registration.jpg";
+import cacImage from "@/assets/cac logo.jpg";
 import planningImage from "@/assets/business-planning-new.png";
 import brandingImage from "@/assets/branding.jpg";
 import socialMediaImage from "@/assets/social-media.jpg";
@@ -153,14 +153,14 @@ const Services = () => {
             <Button
               size="lg"
               variant="outline"
-              className="text-base sm:text-lg px-8 py-6 h-auto font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all rounded-full"
+              className="text-base sm:text-lg px-6 py-5 sm:px-8 sm:py-6 h-auto font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all rounded-full"
               onClick={() => setIsToolkitModalOpen(true)}
             >
               Download Our Free SME Toolkit
             </Button>
             <div>
               <Link to="/contact">
-                <Button size="lg" className="text-base sm:text-lg px-10 py-6 h-auto font-semibold rounded-full shadow-lg shadow-primary/20">
+                <Button size="lg" className="text-base sm:text-lg px-8 py-5 sm:px-10 sm:py-6 h-auto font-semibold rounded-full shadow-lg shadow-primary/20">
                   Book a Consultation
                 </Button>
               </Link>
