@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { MinimalFooter } from "@/components/ui/minimal-footer";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { 
   Users, 
@@ -91,6 +92,8 @@ const faqs = [
 ];
 
 const AboutPage = () => {
+  const [expandedBio, setExpandedBio] = useState<number | null>(null);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -206,24 +209,41 @@ const AboutPage = () => {
             className="w-full relative"
           >
             <CarouselContent className="-ml-4">
-              {teamMembers.map((member, i) => (
-                <CarouselItem key={i} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="group">
-                    <div className="relative mb-6 overflow-hidden rounded-[15px] aspect-[4/3] bg-muted transition-all duration-500">
-                      <img 
-                        src={member.image} 
-                        alt={member.name} 
-                        className={`w-full h-full object-cover ${i === 2 ? 'object-top' : ''}`} 
-                      />
+              {teamMembers.map((member, i) => {
+                const isExpanded = expandedBio === i;
+                const shouldTruncate = member.bio.length > 150;
+                const displayBio = isExpanded ? member.bio : 
+                  (shouldTruncate ? member.bio.substring(0, 150) + '...' : member.bio);
+                
+                return (
+                  <CarouselItem key={i} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                    <div className="group">
+                      <div className="relative mb-6 overflow-hidden rounded-[15px] aspect-[4/3] bg-muted transition-all duration-500">
+                        <img 
+                          src={member.image} 
+                          alt={member.name} 
+                          className={`w-full h-full object-cover ${i === 2 ? 'object-top' : ''}`} 
+                        />
+                      </div>
+                      <div className="text-left space-y-2">
+                        <h3 className="text-2xl font-semibold text-gray-900">{member.name}</h3>
+                        <p className="text-primary font-bold uppercase tracking-widest text-xs">{member.role}</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed pr-4">
+                          {displayBio}
+                          {shouldTruncate && (
+                            <button
+                              onClick={() => setExpandedBio(isExpanded ? null : i)}
+                              className="text-primary font-semibold hover:underline ml-1"
+                            >
+                              {isExpanded ? 'See less' : 'See more...'}
+                            </button>
+                          )}
+                        </p>
+                      </div>
                     </div>
-                    <div className="text-left space-y-2">
-                      <h3 className="text-2xl font-semibold text-gray-900">{member.name}</h3>
-                      <p className="text-primary font-bold uppercase tracking-widest text-xs">{member.role}</p>
-                      <p className="text-sm text-muted-foreground leading-relaxed pr-4">{member.bio}</p>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
+                  </CarouselItem>
+                );
+              })}
             </CarouselContent>
             {/* Carousel Carets - Visible on all screens, positioned for mobile usability */}
             <div className="flex items-center justify-end gap-2 mt-8 md:hidden">
