@@ -54,17 +54,6 @@ const projects: Project[] = [
   },
   {
     number: 3,
-    name: "The Waiting Room Podcast",
-    image: clientWaitingRoom,
-    industry: "Media & Entertainment",
-    services: ["Social Media Management"],
-    description:
-      "Managed social media for The Waiting Room Podcast by implementing strategic content scheduling, engaging visuals, and active community interaction to grow their online audience. These efforts increased their YouTube channel growth by 20% and boosted views and engagement across social media platforms by 20%.",
-    resultImage: waitingRoomStats,
-    resultImageLabel: "Growth Results",
-  },
-  {
-    number: 4,
     name: "EliteTidy",
     image: clientElitetidy,
     industry: "Cleaning Services",
@@ -78,7 +67,7 @@ const projects: Project[] = [
     ],
   },
   {
-    number: 5,
+    number: 4,
     name: "OD Clothings",
     image: clientODClothings,
     industry: "Fashion & Apparel",
@@ -87,7 +76,7 @@ const projects: Project[] = [
       "Handled OD Clothings' social media presence, creating fashion-forward content, running targeted campaigns, and growing their brand visibility across platforms.",
   },
   {
-    number: 6,
+    number: 5,
     name: "Cocomilla Cakery",
     image: clientCocomilla,
     industry: "Cake & Confectionery",
