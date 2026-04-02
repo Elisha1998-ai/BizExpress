@@ -30,6 +30,7 @@ import team2 from "@/assets/Tiana.jpeg";
 import team3 from "@/assets/Moses.jpeg";
 import team4 from "@/assets/Fred.jpeg";
 import team5 from "@/assets/Ope.png";
+import team6 from "@/assets/Ayomide.png";
 import img12 from "../img12.jpg";
 import img13 from "../img13.jpg";
 const heroImg = img12;
@@ -65,6 +66,12 @@ const teamMembers = [
     role: "Social Media Marketing Lead",
     image: team1,
     bio: "A creative and data-driven social media strategist with over 3 years of experience in digital marketing, content creation, and brand growth. Passionate about helping brands build authentic online communities and drive measurable engagement through thoughtful storytelling and strategic campaigns."
+  },
+  {
+    name: "John Ayomide Adetimiro",
+    role: "Visual Designer",
+    image: team6,
+    bio: "A Visual Designer with 3yrs experience, I help brands and businesses stand out with clean, creative, and professional designs.\n\nLogos • Flyers • Branding • Social Media Designs"
   }
 ];
 
@@ -194,7 +201,7 @@ const AboutPage = () => {
               The Minds Behind BizExpress
             </h2>
             <p className="text-xl text-muted-foreground font-normal max-w-2xl leading-relaxed">
-              Legal experts, strategic advisors, and creative thinkers dedicated to your success.
+              Strategic advisors, and creative thinkers dedicated to your success.
             </p>
           </div>
         </div>
@@ -203,8 +210,10 @@ const AboutPage = () => {
           <Carousel 
             opts={{ 
               align: "start",
-              loop: false,
-              dragFree: true
+              loop: true,
+              dragFree: false,
+              skipSnaps: false,
+              containScroll: "trimSnaps"
             }} 
             className="w-full relative"
           >
@@ -223,6 +232,7 @@ const AboutPage = () => {
                           src={member.image} 
                           alt={member.name} 
                           className={`w-full h-full object-cover ${i === 2 ? 'object-top' : ''}`} 
+                          style={i === 5 ? { objectPosition: 'center top' } : {}}
                         />
                       </div>
                       <div className="text-left space-y-2">
