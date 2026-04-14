@@ -18,7 +18,6 @@ const AdminDashboard = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
-  const [userLoading, setUserLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [uploadingImage, setUserUploadingImage] = useState(false);
   const [currentPost, setCurrentPost] = useState<Partial<BlogPost>>({
@@ -85,21 +84,13 @@ const AdminDashboard = () => {
   }), []);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        navigate("/auth?mode=signin");
-      } else {
-        fetchPosts();
-      }
-      setUserLoading(false);
-    });
-    return () => unsubscribe();
-  }, [navigate]);
+    fetchPosts();
+  }, []);
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate("/auth?mode=signin");
+      navigate("/auth");
     } catch (error) {
       console.error("Logout error:", error);
     }
@@ -141,16 +132,20 @@ const AdminDashboard = () => {
     if (!currentPost.title) return;
     setLoading(true);
     try {
+      console.log("Attempting to save post:", currentPost);
       if (currentPost.id) {
         await blogService.updatePost(currentPost.id, currentPost);
+        console.log("Post updated successfully");
       } else {
-        await blogService.createPost(currentPost as Omit<BlogPost, "id" | "createdAt">);
+        const newId = await blogService.createPost(currentPost as Omit<BlogPost, "id" | "createdAt">);
+        console.log("Post created successfully with ID:", newId);
       }
       setIsEditing(false);
       resetCurrentPost();
       fetchPosts();
-    } catch (error) {
-      console.error("Error saving post:", error);
+    } catch (error: any) {
+      console.error("Error saving post detailed:", error);
+      alert(`Failed to save post: ${error.message || 'Unknown error'}. Please check console for details.`);
     } finally {
       setLoading(false);
     }
@@ -176,17 +171,6 @@ const AdminDashboard = () => {
     }
   };
 
-  if (userLoading) {
-    return (
-      <div className="min-h-screen bg-background">
-      {!isEditing && <Header />}
-        <div className="flex justify-center items-center py-40">
-          <Loader2 className="h-10 w-10 animate-spin text-primary" />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-background">
       {!isEditing && <Header />}
@@ -194,6 +178,13 @@ const AdminDashboard = () => {
         
         {isEditing ? (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            {/* Debug Info (Only for Dev) */}
+            {import.meta.env.DEV && (
+              <div className="bg-yellow-50 p-2 mb-4 text-xs rounded border border-yellow-200">
+                <p><strong>Debug:</strong> Firebase Collection: blogPosts</p>
+                <p><strong>Status:</strong> {loading ? "Saving..." : "Idle"}</p>
+              </div>
+            )}
             {/* Editor Top Bar - Adjusted to top-0 since Navbar is removed */}
             <div className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b shadow-sm">
               <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">

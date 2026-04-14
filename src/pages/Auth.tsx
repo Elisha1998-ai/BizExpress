@@ -8,58 +8,48 @@ import { Label } from "@/components/ui/label";
 import { Eye, EyeOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { auth } from "@/lib/firebase";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 const Auth = () => {
   const [searchParams] = useSearchParams();
-  const [mode, setMode] = useState<"signin" | "signup">(
-    (searchParams.get("mode") as "signin" | "signup") || "signin"
-  );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const urlMode = searchParams.get("mode");
-    if (urlMode === "signin" || urlMode === "signup") {
-      setMode(urlMode);
-    }
-  }, [searchParams]);
+  const adminPath = import.meta.env.VITE_ADMIN_PATH || "admin";
+  const adminEmails = import.meta.env.VITE_ADMIN_EMAILS?.split(",") || [];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    if (mode === "signup" && password !== confirmPassword) {
-      toast({
-        title: "Error",
-        description: "Passwords do not match",
-        variant: "destructive",
-      });
-      setLoading(false);
-      return;
-    }
-
     try {
-      if (mode === "signin") {
-        await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Check if user email is in the admin whitelist
+      const userEmail = user.email?.toLowerCase();
+      const isWhitelisted = adminEmails.some(
+        (email: string) => email.trim().toLowerCase() === userEmail
+      );
+
+      if (isWhitelisted) {
         toast({
           title: "Welcome back!",
           description: "You have successfully signed in.",
         });
-        navigate("/admin"); // Redirect to admin after successful login
+        navigate(`/${adminPath}`);
       } else {
-        await createUserWithEmailAndPassword(auth, email, password);
+        // If not whitelisted, sign out immediately and show error
+        await signOut(auth);
         toast({
-          title: "Account created!",
-          description: "Your account has been created successfully.",
+          title: "Access Denied",
+          description: "You do not have permission to access the admin panel.",
+          variant: "destructive",
         });
-        navigate("/admin");
       }
     } catch (error: any) {
       toast({
@@ -81,7 +71,7 @@ const Auth = () => {
           <Card>
             <CardHeader>
               <CardTitle className="text-2xl text-center">
-                {mode === "signin" ? "Sign In" : "Create Account"}
+                Admin Sign In
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -91,7 +81,7 @@ const Auth = () => {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder="admin@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -121,45 +111,10 @@ const Auth = () => {
                   </div>
                 </div>
 
-                {mode === "signup" && (
-                  <div>
-                    <Label htmlFor="confirmPassword">Confirm Password</Label>
-                    <div className="relative mt-2">
-                      <Input
-                        id="confirmPassword"
-                        type={showConfirmPassword ? "text" : "password"}
-                        placeholder="••••••••"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                        className="pr-10"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
-                      >
-                        {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                      </button>
-                    </div>
-                  </div>
-                )}
-
                 <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? "Loading..." : mode === "signin" ? "Sign In" : "Sign Up"}
+                  {loading ? "Loading..." : "Sign In"}
                 </Button>
               </form>
-
-              <div className="mt-6 text-center">
-                <button
-                  onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
-                  className="text-sm text-black font-medium hover:underline"
-                >
-                  {mode === "signin"
-                    ? "Don't have an account? Sign up"
-                    : "Already have an account? Sign in"}
-                </button>
-              </div>
             </CardContent>
           </Card>
         </div>

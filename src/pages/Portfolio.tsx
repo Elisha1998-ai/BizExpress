@@ -2,9 +2,16 @@ import { Header } from "@/components/Header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, TrendingUp, Briefcase, Award } from "lucide-react";
+import { ArrowLeft, TrendingUp, Briefcase, Award, Image as ImageIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { MinimalFooter } from "@/components/ui/minimal-footer";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 import clientCocomilla from "@/assets/client-cocomilla.jpg";
 import clientElitetidy from "@/assets/client-elitetidy-logo.jpg";
@@ -26,6 +33,7 @@ interface Project {
   results?: { label: string; before: string; after: string }[];
   resultImage?: string;
   resultImageLabel?: string;
+  additionalImages?: string[];
   number: number;
 }
 
@@ -40,6 +48,7 @@ const projects: Project[] = [
       "Took over Taste of Lagos' Instagram and transformed it from a page with limited reach and minimal engagement into a growing brand with a consistent content strategy. Our efforts generated over 56,000 views, 2,000+ reach and engagement, gained 300 new followers, and helped increase revenue and in-store foot traffic by 20%.",
     resultImage: tasteOfLagosAfter,
     resultImageLabel: "Results & Growth",
+    additionalImages: ["/TOL1.jpeg", "/TOL2.jpeg"],
   },
   {
     number: 2,
@@ -51,6 +60,7 @@ const projects: Project[] = [
       "Managed the social media presence for Gold N' Lilies by creating engaging content and running targeted paid ad campaigns that significantly increased visibility and engagement. We grew the page from 0 to 500 followers, generated 100+ vendors and clients through a strategic Instagram commenting method, and achieved over 30,000 views and 3,000 engagements across all platforms.",
     resultImage: goldnliliesAfter,
     resultImageLabel: "Results & Growth",
+    additionalImages: ["/PP1.jpeg", "/PP2.jpeg", "/PP3.jpeg", "/PP4.jpeg"],
   },
   {
     number: 3,
@@ -92,21 +102,16 @@ const projects: Project[] = [
 ];
 
 const ProjectCard = ({ project }: { project: Project }) => {
-  const isEven = project.number % 2 === 0;
-
   return (
-    <div className="group relative">
+    <div className="group relative space-y-12">
       {/* Number accent */}
       <div className="absolute -left-4 sm:-left-8 top-0 text-[120px] font-black text-primary/[0.04] leading-none select-none pointer-events-none">
         {String(project.number).padStart(2, "0")}
       </div>
 
-      <div
-        className={`relative flex flex-col ${
-          isEven ? "lg:flex-row-reverse" : "lg:flex-row"
-        } gap-8 lg:gap-16 items-start`}
-      >
-        {/* Image side */}
+      {/* Top Section: Image and Content */}
+      <div className="relative flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
+        {/* Image side - Top Left */}
         <div className="w-full lg:w-5/12">
           <div className="relative rounded-2xl overflow-hidden shadow-lg border border-border/50 bg-white">
             <img
@@ -122,7 +127,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           </div>
         </div>
 
-        {/* Content side */}
+        {/* Content side - Top Right */}
         <div className="w-full lg:w-7/12 space-y-5">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
@@ -169,27 +174,62 @@ const ProjectCard = ({ project }: { project: Project }) => {
               ))}
             </div>
           )}
-
-          {/* Result screenshot */}
-          {project.resultImage && (
-            <div className="space-y-3 pt-2">
-              <div className="flex items-center gap-2">
-                <TrendingUp className="h-4 w-4 text-primary" />
-                <p className="text-xs font-bold uppercase tracking-wider text-primary">
-                  {project.resultImageLabel || "Results"}
-                </p>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-border/50 shadow-xl bg-white">
-                <img
-                  src={project.resultImage}
-                  alt={`${project.name} results`}
-                  className="w-full object-contain max-h-[500px]"
-                />
-              </div>
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Bottom Section: Full-width Results & Growth Carousel */}
+      {(project.resultImage || (project.additionalImages && project.additionalImages.length > 0)) && (
+        <div className="w-full space-y-6 pt-4 border-t border-border/30">
+          <div className="flex items-center gap-2">
+            <TrendingUp className="h-5 w-5 text-primary" />
+            <p className="text-sm font-bold uppercase tracking-widest text-primary">
+              {project.resultImageLabel || "Results & Growth"}
+            </p>
+          </div>
+          <div className="relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {/* Main Result Image first if exists */}
+                {project.resultImage && (
+                  <CarouselItem className="basis-full sm:basis-1/2">
+                    <div className="rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-white h-full">
+                      <img
+                        src={project.resultImage}
+                        alt={`${project.name} primary result`}
+                        className="w-full h-[400px] object-cover mx-auto"
+                      />
+                    </div>
+                  </CarouselItem>
+                )}
+                {/* Additional Gallery Images */}
+                {project.additionalImages?.map((img, idx) => (
+                  <CarouselItem key={idx} className="basis-full sm:basis-1/2">
+                    <div className="rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-white h-full">
+                      <img
+                        src={img}
+                        alt={`${project.name} result ${idx + 1}`}
+                        className="w-full h-[400px] object-cover mx-auto"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="absolute inset-y-0 -left-4 sm:-left-12 flex items-center">
+                <CarouselPrevious className="relative left-0 translate-y-0 h-12 w-12 shadow-2xl bg-background/90 backdrop-blur-md border-primary/30 hover:bg-primary hover:text-primary-foreground" />
+              </div>
+              <div className="absolute inset-y-0 -right-4 sm:-right-12 flex items-center">
+                <CarouselNext className="relative right-0 translate-y-0 h-12 w-12 shadow-2xl bg-background/90 backdrop-blur-md border-primary/30 hover:bg-primary hover:text-primary-foreground" />
+              </div>
+            </Carousel>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
