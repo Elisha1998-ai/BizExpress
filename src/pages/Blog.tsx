@@ -22,88 +22,7 @@ import team5 from "@/assets/consultation-meeting.jpg";
 import img12 from "../img12.jpg";
 import img13 from "../img13.jpg";
 
-// Dummy data for the "BizExpress" blog layout
-const DUMMY_POSTS = [
-  {
-    id: "1",
-    category: "BUSINESS REGISTRATION",
-    title: "Navigating CAC Registration: A comprehensive guide for Nigerian SMEs in 2026",
-    excerpt: "Learn the step-by-step process of securing your business identity, avoiding common pitfalls, and setting up a solid legal structure.",
-    date: "March 15, 2026",
-    author: "Christy Omolayo",
-    isLarge: true,
-    image: team5
-  },
-  {
-    id: "2",
-    category: "BRANDING",
-    title: "Building a brand that speaks: The psychology of colors and typography",
-    excerpt: "How a well-crafted visual identity can increase your customer conversion rate by over 40% in highly competitive markets.",
-    date: "March 12, 2026",
-    author: "Sarah Johnson",
-    isLarge: false,
-    image: team2
-  },
-  {
-    id: "3",
-    category: "MARKETING",
-    title: "Ads Management: How to maximize your ROI on Facebook and Instagram",
-    excerpt: "Stop wasting money on boosted posts. Discover the advanced targeting strategies we use to scale businesses fast.",
-    date: "March 10, 2026",
-    author: "Michael Chen",
-    isLarge: false,
-    image: team1
-  },
-  {
-    id: "4",
-    category: "CONTENT STRATEGY",
-    title: "The power of storytelling: Turning your business journey into sales",
-    excerpt: "Why audiences connect with stories and how you can document your process to build a loyal community of buyers.",
-    date: "March 8, 2026",
-    author: "Aisha Bello",
-    isLarge: false,
-    image: team4
-  },
-  {
-    id: "5",
-    category: "BUSINESS STRUCTURE",
-    title: "From Hustle to Enterprise: Structuring your business for long-term scalability",
-    excerpt: "Learn how to move from a one-man show to a corporate entity capable of securing grants and large-scale investments.",
-    date: "March 5, 2026",
-    author: "Daniel Adeyemi",
-    isLarge: true,
-    image: img13
-  },
-  {
-    id: "6",
-    category: "SOCIAL MEDIA",
-    title: "Dominating your niche: Social media trends to watch out for this quarter",
-    excerpt: "Stay ahead of the algorithm changes on major platforms and adapt your content strategy for maximum visibility.",
-    date: "March 1, 2026",
-    author: "BizExpress Insights",
-    isLarge: false,
-    image: team3
-  },
-  {
-    id: "7",
-    category: "COMPANY NEWS",
-    title: "BizExpress launches new SME Strategy Framework",
-    excerpt: "Our proprietary new framework designed specifically to help 10,000 businesses reach their first 100M milestone.",
-    date: "February 28, 2026",
-    author: "Press Release",
-    isLarge: false,
-    image: img12
-  },
-  {
-    id: "8",
-    category: "OPERATIONS",
-    title: "Automating your workflows: The secret to regaining your time",
-    excerpt: "A practical guide to implementing systems and tools that let your business run itself even when you sleep.",
-    date: "February 25, 2026",
-    author: "Christy Omolayo",
-    isLarge: false,
-  }
-];
+
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -120,21 +39,14 @@ const BlogPage = () => {
         const firebasePosts = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data(),
+          isLarge: doc.data().isLarge || false,
           date: doc.data().createdAt?.toDate ? doc.data().createdAt.toDate().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : doc.data().date
         }));
         
-        const combined = [...firebasePosts, ...DUMMY_POSTS];
-        
-        combined.sort((a, b) => {
-          const dateA = new Date(a.date).getTime();
-          const dateB = new Date(b.date).getTime();
-          return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
-        });
-
-        setPosts(combined);
+        setPosts(firebasePosts);
       } catch (error) {
         console.error("Error fetching posts:", error);
-        setPosts(DUMMY_POSTS);
+        setPosts([]);
       } finally {
         setLoading(false);
       }

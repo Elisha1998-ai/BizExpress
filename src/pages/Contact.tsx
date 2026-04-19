@@ -4,14 +4,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, ArrowLeft, Check } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowLeft, Check, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { MinimalFooter } from "@/components/ui/minimal-footer";
 import { useState } from "react";
+import { contactService } from "@/lib/contactService";
+import { toast } from "sonner";
 
 const Contact = () => {
   const navigate = useNavigate();
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const serviceOptions = [
     { value: "cac", label: "CAC Registration" },
@@ -30,10 +39,39 @@ const Contact = () => {
     );
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted");
+    
+    if (!formData.name || !formData.email || !formData.message) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      await contactService.submitContact({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        services: selectedServices,
+        message: formData.message
+      });
+      
+      toast.success("Message sent successfully! We'll get back to you soon.");
+      
+      // Reset form
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      setSelectedServices([]);
+      
+      // Also open email client as backup
+      window.location.href = `mailto:bizxpressng@gmail.com?subject=Contact from ${formData.name}&body=${formData.message}`;
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -62,6 +100,8 @@ const Contact = () => {
                       placeholder="Your name" 
                       required 
                       className="mt-2"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     />
                   </div>
                   
@@ -73,6 +113,8 @@ const Contact = () => {
                       placeholder="your@email.com" 
                       required 
                       className="mt-2"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     />
                   </div>
                   
@@ -83,6 +125,8 @@ const Contact = () => {
                       type="tel" 
                       placeholder="+234 xxx xxx xxxx" 
                       className="mt-2"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     />
                   </div>
                   
@@ -120,6 +164,8 @@ const Contact = () => {
                       rows={5}
                       required 
                       className="mt-2"
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     />
                   </div>
                   
@@ -127,12 +173,16 @@ const Contact = () => {
                     type="submit" 
                     size="lg" 
                     className="w-full"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      window.location.href = 'mailto:bizxpressng@gmail.com';
-                    }}
+                    disabled={isSubmitting}
                   >
-                    Send Message
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Send Message"
+                    )}
                   </Button>
                 </form>
               </CardContent>

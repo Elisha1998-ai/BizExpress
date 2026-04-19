@@ -4,20 +4,24 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { blogService, BlogPost } from "@/lib/blogService";
-import { Loader2, Plus, Pencil, Trash2, ArrowLeft, LogOut, Image as ImageIcon, Video, X, Save, Eye } from "lucide-react";
+import { contactService, ContactSubmission } from "@/lib/contactService";
+import { Loader2, Plus, Pencil, Trash2, ArrowLeft, LogOut, Image as ImageIcon, Video, X, Save, Eye, Mail } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { MinimalFooter } from "@/components/ui/minimal-footer";
 import { auth } from "@/lib/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const quillRef = useRef<ReactQuill>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [contactSubmissions, setContactSubmissions] = useState<ContactSubmission[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState("posts");
   const [isEditing, setIsEditing] = useState(false);
   const [uploadingImage, setUserUploadingImage] = useState(false);
   const [currentPost, setCurrentPost] = useState<Partial<BlogPost>>({
@@ -85,7 +89,17 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     fetchPosts();
+    fetchContactSubmissions();
   }, []);
+
+  const fetchContactSubmissions = async () => {
+    try {
+      const submissions = await contactService.getAllSubmissions();
+      setContactSubmissions(submissions);
+    } catch (error) {
+      console.error("Error fetching contact submissions:", error);
+    }
+  };
 
   const handleLogout = async () => {
     try {
@@ -350,22 +364,32 @@ const AdminDashboard = () => {
             <div className="flex justify-between items-center mb-12">
               <div>
                 <h1 className="text-4xl font-bold mb-2">Admin Dashboard</h1>
-                <p className="text-muted-foreground text-lg">Manage your blog posts and stories.</p>
+                <p className="text-muted-foreground text-lg">Manage your blog posts, contact submissions, and more.</p>
               </div>
               <div className="flex gap-4">
                 <Button variant="outline" onClick={handleLogout}>
                   <LogOut className="mr-2 h-5 w-5" />
                   Logout
                 </Button>
-                <Button onClick={() => {
-                  resetCurrentPost();
-                  setIsEditing(true);
-                }} className="shadow-lg hover:shadow-primary/20 transition-all">
-                  <Plus className="mr-2 h-5 w-5" />
-                  New Post
-                </Button>
               </div>
             </div>
+
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+              <TabsList className="grid w-full max-w-md grid-cols-2">
+                <TabsTrigger value="posts">Blog Posts</TabsTrigger>
+                <TabsTrigger value="contacts">Contact Submissions</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="posts" className="space-y-8">
+                <div className="flex justify-end">
+                  <Button onClick={() => {
+                    resetCurrentPost();
+                    setIsEditing(true);
+                  }} className="shadow-lg hover:shadow-primary/20 transition-all">
+                    <Plus className="mr-2 h-5 w-5" />
+                    New Post
+                  </Button>
+                </div>
 
             <div className="grid gap-8">
               {loading ? (
@@ -437,6 +461,74 @@ const AdminDashboard = () => {
                 </Card>
               ))}
             </div>
+              </TabsContent>
+
+              <TabsContent value="contacts" className="space-y-8">
+                {loading ? (
+                  <div className="flex justify-center py-20">
+                    <Loader2 className="h-10 w-10 animate-spin text-primary" />
+                  </div>
+                ) : contactSubmissions.length === 0 ? (
+                  <div className="text-center py-20 bg-muted/20 rounded-3xl border-2 border-dashed">
+                    <Mail className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                    <p className="text-xl text-muted-foreground">No contact submissions yet.</p>
+                  </div>
+                ) : (
+                  <div className="grid gap-6">
+                    {contactSubmissions.map((submission) => (
+                      <Card key={submission.id} className="hover:shadow-lg transition-all">
+                        <CardContent className="p-6">
+                          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                            <div className="flex-1 space-y-3">
+                              <div className="flex items-center gap-3">
+                                <h3 className="text-xl font-bold">{submission.name}</h3>
+                                <span className="text-xs text-muted-foreground">
+                                  {submission.submittedAt?.toDate().toLocaleDateString('en-US', { 
+                                    month: 'long', 
+                                    day: 'numeric', 
+                                    year: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                  })}
+                                </span>
+                              </div>
+                              <div className="flex flex-wrap gap-2">
+                                <span className="text-sm text-muted-foreground flex items-center gap-1">
+                                  <Mail className="h-3 w-3" />
+                                  <a href={`mailto:${submission.email}`} className="hover:text-primary transition-colors">
+                                    {submission.email}
+                                  </a>
+                                </span>
+                                {submission.phone && (
+                                  <span className="text-sm text-muted-foreground">
+                                    Phone: {submission.phone}
+                                  </span>
+                                )}
+                              </div>
+                              {submission.services && submission.services.length > 0 && (
+                                <div className="flex flex-wrap gap-2">
+                                  {submission.services.map((service, idx) => (
+                                    <span 
+                                      key={idx}
+                                      className="bg-primary/10 text-primary text-xs font-medium px-3 py-1 rounded-full"
+                                    >
+                                      {service}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                              <p className="text-muted-foreground leading-relaxed">
+                                {submission.message}
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                )}
+              </TabsContent>
+            </Tabs>
           </>
         )}
       </main>

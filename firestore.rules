@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Blog Posts Collection
+    match /blogPosts/{postId} {
+      // Anyone can read blog posts
+      allow read: if true;
+      
+      // Only authenticated users can create, update, and delete blog posts
+      allow create, update, delete: if request.auth != null;
+    }
+    
+    // Contact Submissions Collection
+    match /contactSubmissions/{submissionId} {
+      // Only authenticated admin users can read contact submissions
+      allow read: if request.auth != null;
+      
+      // Anyone can submit contact forms
+      allow create: if true;
+      
+      // Only authenticated users can update or delete
+      allow update, delete: if request.auth != null;
+    }
+  }
+}
