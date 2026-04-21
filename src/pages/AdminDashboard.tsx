@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { blogService, BlogPost } from "@/lib/blogService";
 import { contactService, ContactSubmission } from "@/lib/contactService";
-import { Loader2, Plus, Pencil, Trash2, ArrowLeft, LogOut, Image as ImageIcon, Video, X, Save, Eye, Mail } from "lucide-react";
+import { Loader2, Plus, Pencil, Trash2, ArrowLeft, LogOut, Image as ImageIcon, Video, X, Save, Eye, Mail, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { MinimalFooter } from "@/components/ui/minimal-footer";
 import { auth } from "@/lib/firebase";
@@ -13,6 +13,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -24,6 +25,8 @@ const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("posts");
   const [isEditing, setIsEditing] = useState(false);
   const [uploadingImage, setUserUploadingImage] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedSubmission, setSelectedSubmission] = useState<ContactSubmission | null>(null);
   const [currentPost, setCurrentPost] = useState<Partial<BlogPost>>({
     title: "",
     excerpt: "",
@@ -100,6 +103,17 @@ const AdminDashboard = () => {
       console.error("Error fetching contact submissions:", error);
     }
   };
+
+  const filteredSubmissions = contactSubmissions.filter(submission => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      submission.name.toLowerCase().includes(searchLower) ||
+      submission.email.toLowerCase().includes(searchLower) ||
+      submission.phone?.toLowerCase().includes(searchLower) ||
+      submission.message.toLowerCase().includes(searchLower) ||
+      submission.services?.some(service => service.toLowerCase().includes(searchLower))
+    );
+  });
 
   const handleLogout = async () => {
     try {
@@ -464,69 +478,183 @@ const AdminDashboard = () => {
               </TabsContent>
 
               <TabsContent value="contacts" className="space-y-8">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                  <div>
+                    <h2 className="text-2xl font-bold">Contact Submissions</h2>
+                    <p className="text-muted-foreground">
+                      {filteredSubmissions.length} of {contactSubmissions.length} messages
+                    </p>
+                  </div>
+                  <div className="relative w-full sm:w-72">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      placeholder="Search submissions..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-10"
+                    />
+                  </div>
+                </div>
+
                 {loading ? (
                   <div className="flex justify-center py-20">
                     <Loader2 className="h-10 w-10 animate-spin text-primary" />
                   </div>
-                ) : contactSubmissions.length === 0 ? (
+                ) : filteredSubmissions.length === 0 ? (
                   <div className="text-center py-20 bg-muted/20 rounded-3xl border-2 border-dashed">
                     <Mail className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                    <p className="text-xl text-muted-foreground">No contact submissions yet.</p>
+                    <p className="text-xl text-muted-foreground">
+                      {searchTerm ? "No submissions match your search." : "No contact submissions yet."}
+                    </p>
                   </div>
                 ) : (
-                  <div className="grid gap-6">
-                    {contactSubmissions.map((submission) => (
-                      <Card key={submission.id} className="hover:shadow-lg transition-all">
-                        <CardContent className="p-6">
-                          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                            <div className="flex-1 space-y-3">
-                              <div className="flex items-center gap-3">
-                                <h3 className="text-xl font-bold">{submission.name}</h3>
-                                <span className="text-xs text-muted-foreground">
+                  <div className="rounded-lg border overflow-hidden">
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead className="bg-muted/50">
+                          <tr>
+                            <th className="text-left p-4 font-semibold">Name</th>
+                            <th className="text-left p-4 font-semibold">Email</th>
+                            <th className="text-left p-4 font-semibold hidden md:table-cell">Phone</th>
+                            <th className="text-left p-4 font-semibold hidden lg:table-cell">Services</th>
+                            <th className="text-left p-4 font-semibold hidden md:table-cell">Date</th>
+                            <th className="text-left p-4 font-semibold">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {filteredSubmissions.map((submission, index) => (
+                            <tr key={submission.id || index} className="border-t hover:bg-muted/30 transition-colors">
+                              <td className="p-4">
+                                <div className="font-medium">{submission.name}</div>
+                              </td>
+                              <td className="p-4">
+                                <a href={`mailto:${submission.email}`} className="text-primary hover:underline text-sm">
+                                  {submission.email}
+                                </a>
+                              </td>
+                              <td className="p-4 hidden md:table-cell">
+                                <span className="text-sm text-muted-foreground">{submission.phone || "-"}</span>
+                              </td>
+                              <td className="p-4 hidden lg:table-cell">
+                                <div className="flex flex-wrap gap-1">
+                                  {submission.services && submission.services.length > 0 ? (
+                                    submission.services.slice(0, 2).map((service, idx) => (
+                                      <span 
+                                        key={idx}
+                                        className="bg-primary/10 text-primary text-xs font-medium px-2 py-1 rounded"
+                                      >
+                                        {service}
+                                      </span>
+                                    ))
+                                  ) : (
+                                    <span className="text-sm text-muted-foreground">-</span>
+                                  )}
+                                  {submission.services && submission.services.length > 2 && (
+                                    <span className="text-xs text-muted-foreground">+{submission.services.length - 2}</span>
+                                  )}
+                                </div>
+                              </td>
+                              <td className="p-4 hidden md:table-cell">
+                                <span className="text-sm text-muted-foreground">
                                   {submission.submittedAt?.toDate().toLocaleDateString('en-US', { 
-                                    month: 'long', 
+                                    month: 'short', 
                                     day: 'numeric', 
-                                    year: 'numeric',
-                                    hour: '2-digit',
-                                    minute: '2-digit'
+                                    year: 'numeric'
                                   })}
                                 </span>
-                              </div>
-                              <div className="flex flex-wrap gap-2">
-                                <span className="text-sm text-muted-foreground flex items-center gap-1">
-                                  <Mail className="h-3 w-3" />
-                                  <a href={`mailto:${submission.email}`} className="hover:text-primary transition-colors">
-                                    {submission.email}
-                                  </a>
-                                </span>
-                                {submission.phone && (
-                                  <span className="text-sm text-muted-foreground">
-                                    Phone: {submission.phone}
-                                  </span>
-                                )}
-                              </div>
-                              {submission.services && submission.services.length > 0 && (
-                                <div className="flex flex-wrap gap-2">
-                                  {submission.services.map((service, idx) => (
-                                    <span 
-                                      key={idx}
-                                      className="bg-primary/10 text-primary text-xs font-medium px-3 py-1 rounded-full"
-                                    >
-                                      {service}
-                                    </span>
-                                  ))}
-                                </div>
-                              )}
-                              <p className="text-muted-foreground leading-relaxed">
-                                {submission.message}
-                              </p>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
+                              </td>
+                              <td className="p-4">
+                                <Button 
+                                  variant="ghost" 
+                                  size="sm"
+                                  onClick={() => setSelectedSubmission(submission)}
+                                >
+                                  <Eye className="h-4 w-4" />
+                                </Button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 )}
+
+                {/* View Submission Dialog */}
+                <Dialog open={!!selectedSubmission} onOpenChange={() => setSelectedSubmission(null)}>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle>Contact Submission Details</DialogTitle>
+                    </DialogHeader>
+                    {selectedSubmission && (
+                      <div className="space-y-4 mt-4">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <h4 className="text-sm font-semibold text-muted-foreground mb-1">Name</h4>
+                            <p className="font-medium">{selectedSubmission.name}</p>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold text-muted-foreground mb-1">Email</h4>
+                            <a href={`mailto:${selectedSubmission.email}`} className="text-primary hover:underline">
+                              {selectedSubmission.email}
+                            </a>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold text-muted-foreground mb-1">Phone</h4>
+                            <p>{selectedSubmission.phone || "Not provided"}</p>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold text-muted-foreground mb-1">Submitted</h4>
+                            <p>
+                              {selectedSubmission.submittedAt?.toDate().toLocaleString('en-US', { 
+                                month: 'long', 
+                                day: 'numeric', 
+                                year: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                              })}
+                            </p>
+                          </div>
+                        </div>
+                        
+                        {selectedSubmission.services && selectedSubmission.services.length > 0 && (
+                          <div>
+                            <h4 className="text-sm font-semibold text-muted-foreground mb-2">Services Interested In</h4>
+                            <div className="flex flex-wrap gap-2">
+                              {selectedSubmission.services.map((service, idx) => (
+                                <span 
+                                  key={idx}
+                                  className="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full"
+                                >
+                                  {service}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        
+                        <div>
+                          <h4 className="text-sm font-semibold text-muted-foreground mb-2">Message</h4>
+                          <div className="bg-muted/30 p-4 rounded-lg">
+                            <p className="whitespace-pre-wrap">{selectedSubmission.message}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex gap-2 pt-2">
+                          <Button 
+                            onClick={() => window.location.href = `mailto:${selectedSubmission.email}?subject=Re: Your inquiry to BizExpress`}
+                          >
+                            <Mail className="mr-2 h-4 w-4" />
+                            Reply via Email
+                          </Button>
+                          <Button variant="outline" onClick={() => setSelectedSubmission(null)}>
+                            Close
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </DialogContent>
+                </Dialog>
               </TabsContent>
             </Tabs>
           </>

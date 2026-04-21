@@ -66,9 +66,11 @@ const Contact = () => {
       
       // Also open email client as backup
       window.location.href = `mailto:bizxpressng@gmail.com?subject=Contact from ${formData.name}&body=${formData.message}`;
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error submitting contact form:", error);
-      toast.error("Failed to send message. Please try again.");
+      console.error("Error code:", error?.code);
+      console.error("Error message:", error?.message);
+      toast.error(`Failed to send message: ${error?.message || 'Please try again.'}`);
     } finally {
       setIsSubmitting(false);
     }
